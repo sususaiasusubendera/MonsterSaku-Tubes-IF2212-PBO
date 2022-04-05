@@ -1,4 +1,4 @@
-package com.packgage
+package com.monstersaku;
 
 public class Stats {
 	private double healthPoint;
