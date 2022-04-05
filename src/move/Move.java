@@ -1,4 +1,4 @@
-package move;
+package src.move;
 
 public abstract class Move {
 

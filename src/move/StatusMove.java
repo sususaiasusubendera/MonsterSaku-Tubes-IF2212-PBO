@@ -1,4 +1,4 @@
-package move;
+package src.move;
 
 import java.lang.annotation.ElementType;
 
