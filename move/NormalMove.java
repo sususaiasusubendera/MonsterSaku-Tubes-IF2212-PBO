@@ -1,6 +1,6 @@
 package move;
 
-import java.lang.annotation.ElementType;
+import com.monster.Monster;
 
 public class NormalMove extends Move {
 
@@ -9,7 +9,7 @@ public class NormalMove extends Move {
     public NormalMove(int id, String moveType, String name, ElementType elementType, int accuracy, int priority,
                       int ammunition, double basePower) {
 
-        super(id,moveType,name,elementType,accuracy,priority,ammunition);
+        super(id, moveType, name, elementType, accuracy, priority, ammunition);
         this.basePower = basePower;
 
     }
@@ -21,12 +21,12 @@ public class NormalMove extends Move {
 
     // buat method untuk dapetin nilai damage
 
-    public void normalMove(Monster source, Monster target) {
+    public void normalMove(Monster originMons, Monster targetMons) {
 
-        basePower = source.getAttack() - target.getDefense();
-        double newHP = target.getHealthPoint() - basePower;
-        target.setHealthPoint(newHP);
+        basePower = originMons.getBaseStats().getAttack() - targetMons.getBaseStats().getDefense();
+        double newHP = target.getBaseStats().getHealthPoint() - basePower;
+        targetMons.getBaseStats().setHealthPoint(newHP);
     }
-
-
 }
+
+
