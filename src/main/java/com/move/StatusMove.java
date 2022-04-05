@@ -1,6 +1,4 @@
-package src.move;
-
-import java.lang.annotation.ElementType;
+package com.move;
 
 public class StatusMove extends Move {
 
@@ -9,9 +7,15 @@ public class StatusMove extends Move {
 
     public StatusMove(int id, String moveType, String name, ElementType elementType, int accuracy, int priority,
                       int ammunition, int basePower) {
-        super(id, moveType, name, elementType, accuracy, priority, ammunition);
+        super(id, "STATUS" , elementType, accuracy, priority, ammunition);
         this.basePower = basePower;
     }
 
+    // Getter
 
+    public double getBasePower() {
+        return basePower;
+    }
+
+    public void
 }

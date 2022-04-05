@@ -1,10 +1,9 @@
-package src.move;
+package com.move;
 
-public abstract class Move {
+public class Move {
 
     private int id;
     private String moveType;
-    private String name;
     private ElementType elementType;
     private int accuracy;
     private int priority;
@@ -13,12 +12,11 @@ public abstract class Move {
     // Konstruktor Kelas Move
     // id berisi bilangan bulat positif unik
 
-    public Move(int id, String moveType, String name, ElementType elementType,int accuracy,
+    public Move(int id, String moveType, ElementType elementType,int accuracy,
                 int priority, int ammunition) {
 
         this.id = id;
         this.moveType = moveType;
-        this.name = name;
         this.elementType = elementType;
         this.accuracy = accuracy;
         this.priority = priority;
@@ -31,22 +29,6 @@ public abstract class Move {
     public void setId (int id) {
 
         this.id = id;
-
-    }
-
-    // Ini nama dari Movenya apa, cuman ada Normal, Special, sama Status
-
-    public void setMoveType (String moveType) {
-
-        this.moveType = moveType;
-
-    }
-
-
-    public  void setName (String name) {
-
-        this.name = name;
-
     }
 
     // Tipe elemen yang dimiliki oleh move
@@ -86,10 +68,6 @@ public abstract class Move {
         return moveType;
     }
 
-    public String getName() {
-
-        return name;
-    }
 
     public ElementType getElementType() {
 
