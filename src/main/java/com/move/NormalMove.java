@@ -6,11 +6,10 @@ public class NormalMove extends Move {
 
     private double basePower;
 
-    public NormalMove(int id, String moveType, ElementType elementType, int accuracy, int priority,
-                      int ammunition, double basePower) {
+    public NormalMove(int id, ElementType elementType, int accuracy, int priority,
+                      int ammunition) {
 
         super(id, "NORMAL", elementType, accuracy, priority, ammunition);
-        this.basePower = basePower;
 
     }
 
