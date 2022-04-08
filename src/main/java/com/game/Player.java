@@ -10,12 +10,16 @@ public class Player {
 	private Monster currentMonster;
 
 	// konstruktor
-	public Player(String name, ArrayList<Monster> listOfMonster) {
+	public Player(String name) {
 		this.name = name;
 		this.listOfMonster = new ArrayList<Monster>();
 		for (int i = 0; i < 6; i++) {
-			listMove
+			int randomMonster = new Random().nextInt(Reader.listMonster.size());
+			Monster mons = Reader.listMonster.get(randomMonster);
+			this.listOfMonster.add(mons);
 		}
+		int rando = new Random().nextInt(listOfMonster.size());
+		this.currentMonster = listOfMonster.get(rando);
 	}
 
 	// getter
@@ -65,7 +69,7 @@ public class Player {
 
 	public void printMonsters() {
 		for (int i = 0; i < listOfMonster.size(); i++) {
-            System.out.printf("[%d] " + listOfMonster.get(i).getNama(), i+1);
+            System.out.printf("[%d] " + listOfMonster.get(i).getNama(),"\n", i+1);
         }
 	}
 }

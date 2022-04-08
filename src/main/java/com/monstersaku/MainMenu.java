@@ -6,9 +6,7 @@ import java.util.Scanner;
 // ini blm lengkap si,, kynya bisa ditambah new player atau new game gitu ntar
 
 public class MainMenu {
-    public static void main(String[] args) {
-        
-    }
+    
 
     // method (kalo jadi gini bisa dipake dalem game ga ya? atau dibuat interface aja menunya?)
     public static void help() {

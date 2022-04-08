@@ -19,32 +19,33 @@ public class GameFlow {
                 System.out.println("Mulai game");
                 System.out.println("Siapa aja yang main?");
                 System.out.printf("1: " );
-                String playerName1 = scanner.next(); // butuh gasih player name? .-.
+                String playerName1 = scanner.next();
                 System.out.printf("2: ");
                 String playerName2 = scanner.next();
                 // buat players
-                Player p1 = new Player(playerName1, listOfMonster1);
-                Player p2 = new Player(playerName2, listOfMonster2);
+                Player p1 = new Player(playerName1);
+                Player p2 = new Player(playerName2);
 
                 while (!p1.isAllDead() && !p2.isAllDead()) { // while player 1 dan 2 monsternya masi blm mati semua 
                     // turn player 1
                     System.out.println("Giliran: " + p1.getName());
                     System.out.println("Pilih menu!");
-                    System.out.printf("[1] Move\n[2] Switch\n"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
+                    System.out.printf("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
                     int pilihan = scanner.nextInt();
-                    Move move1 = new DefaultMove();
+                    Move move1;
                     if (pilihan == 1) {
                         // print list of moves yg dipunyai monster
-                        System.out.println("Pilih move: ");
-                        p1.getCurrentMonster().printMoves();
-                        int movePick1 = scanner.nextInt();
-                        move1 = p1.getCurrentMonster().getMoves().get(movePick1-1);
+                        move1 = SelectionMenu.chooseMove(p1);
                     } else if (pilihan == 2) {
-                        
-                        System.out.println("Pilih monster: ");
-                        p1.printMonsters();
-                        int monsPick1 = scanner.nextInt();
-                        p1.setCurrentMonster(p1.getListOfMonster().get(monsPick1-1));
+                        SelectionMenu.chooseMonster(p1);
+                    } else if (pilihan == 3) {
+                        MainMenu.help();
+                    } else if (pilihan == 4) {
+                        MainMenu.exit();
+                    } else if (pilihan == 5) {
+                        // buat view monster info, bisa di main menu?
+                    } else if (pilihan == 6) {
+                        // buat view game info (ntahlah bisa di main menu atau di sini ae)
                     }
 
                     // turn player 2
@@ -52,24 +53,11 @@ public class GameFlow {
                     System.out.println("Pilih menu!");
                     System.out.printf("[1] Move\n[2] Switch\n");
                     int pilihan2 = scanner.nextInt();
-                    Move move2 = new DefaultMove();
+                    Move move2;
                     if (pilihan2 == 1) {
-                        // print list of moves yg dipunyai monster
-                        System.out.println("Pilih move: ");
-                        p2.getCurrentMonster().printMoves();
-                        System.out.println("[0] Default Move");
-                        int movePick2 = scanner.nextInt();
-                        if (movePick2 != 0) {
-                            move2 = p2.getCurrentMonster().getMoves().get(movePick2-1);
-                        } else {
-                            move2 = new DefaultMove();
-                        }
+                        move2 = SelectionMenu.chooseMove(p2);
                     } else if (pilihan2 == 2) {
-                        // kayanya ini dibikin method aja
-                        System.out.println("Pilih monster: ");
-                        p2.printMonsters();
-                        int monsPick2 = scanner.nextInt();
-                        p2.setCurrentMonster(p2.getListOfMonster().get(monsPick2-1));
+                        SelectionMenu.chooseMonster(p2);
                     }
 
                     // compare move
@@ -118,7 +106,7 @@ public class GameFlow {
                     } else if (pilihan == 2 && pilihan2 == 1) {
                         // use move 2
                     }
-                    
+
                 }
                 
                 

@@ -6,7 +6,6 @@ import com.monster.*;
 import com.monstersaku.util.CSVReader;
 
 import java.io.File;
-import java.lang.annotation.ElementType;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,9 +43,10 @@ public class Reader {
         }
     }
 ***/
-    
-        public static List<Monster> listMonster = new ArrayList<Monster>();
-        public static List<Move> listMove = new ArrayList<Move>();
+    public static List<Monster> listMonster = new ArrayList<Monster>();
+    public static List<Move> listMove = new ArrayList<Move>();
+    {
+        
         // baca movepool.csv
         try {
             CSVReader reader = new CSVReader(new File(Main.class.getResource("configs/movepool.csv").toURI()), ";");
@@ -60,7 +60,7 @@ public class Reader {
                 // move name
                 String mvName = line[2];
                 // element type
-                com.monster.ElementType elType = com.monster.ElementType.valueOf(line[3]);
+                ElementType elType = ElementType.valueOf(line[3]);
                 // accuracy
                 Integer accuracy = Integer.parseInt(line[4]);
                 // priority
@@ -81,10 +81,10 @@ public class Reader {
                     listMove.add(move);
                 } else {
                     // bentuk object move jenis selain status move
-                    Double basePower = Double.parseDouble(line[8]);
-                    if (mvType.equals("NORMAL")) {
-                        Move move = new Move(id, mvName, mvType, elType, accuracy, priority, ammunition);
-                    }
+                    Double damage = Double.parseDouble(line[8]);
+                    
+                    Move move = new Move(id, mvName, mvType, elType, accuracy, priority, ammunition);
+                    
                     
                     // tambahkan ke list moves
                     listMove.add(move);
@@ -105,9 +105,9 @@ public class Reader {
                 // elementTypes
                 String elType = line[2];
                 String[] arrET = elType.split(",", 10);
-                List<com.monster.ElementType> elTypes = new ArrayList<com.monster.ElementType>();
+                List<ElementType> elTypes = new ArrayList<ElementType>();
                 for (String et : arrET) {
-                    com.monster.ElementType x = com.monster.ElementType.valueOf(et);
+                    ElementType x = ElementType.valueOf(et);
                     elTypes.add(x);
                 }
                 
@@ -153,5 +153,5 @@ public class Reader {
         } catch (Exception e) {
             //apaya
         }
-    
+    }
 }
