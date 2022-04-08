@@ -32,7 +32,7 @@ public class GameFlow {
                     System.out.println("Pilih menu!");
                     System.out.printf("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
                     int pilihan = scanner.nextInt();
-                    Move move1;
+                    Move move1 = new DefaultMove();
                     if (pilihan == 1) {
                         // print list of moves yg dipunyai monster
                         move1 = SelectionMenu.chooseMove(p1);
@@ -53,7 +53,7 @@ public class GameFlow {
                     System.out.println("Pilih menu!");
                     System.out.printf("[1] Move\n[2] Switch\n");
                     int pilihan2 = scanner.nextInt();
-                    Move move2;
+                    Move move2 = new DefaultMove();
                     if (pilihan2 == 1) {
                         move2 = SelectionMenu.chooseMove(p2);
                     } else if (pilihan2 == 2) {
@@ -63,6 +63,7 @@ public class GameFlow {
                     // compare move
                     if (pilihan == 1 && pilihan2 == 1) {
                         if (move1.getPriority() > move2.getPriority()) {
+                            /*** ini ada di selectionMenu
                             if (new Random().nextDouble() <= (move1.getAccuracy()/100)) {
                                 if(move1.getTarget() == TargetOfMove.OWN) {
                                     if (move1 instanceof StatusMove) {
@@ -83,35 +84,53 @@ public class GameFlow {
                             } else {
                                 System.out.println("Player " + p1.getName() + "gagal melakukan move");
                             }
+                            // SIMPLIFIED
+                            SelectionMenu.useMove(p1, p2, move1);
+                            if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
+                                System.out.println("Yah, monster kamu mati :( ganti yak");
+                                SelectionMenu.chooseMonster(p2);
+                            } else {
+                                SelectionMenu.useMove(p2, p1, move2);
+                                if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
+                                    System.out.println("Yah, monster kamu mati :( ganti yak");
+                                    SelectionMenu.chooseMonster(p1);
+                                }
+                            }
+                            ***/
+                            // p1 move duluan
+                            SelectionMenu.battle(p1, p2, move1, move2);
                         } else if (move1.getPriority() < move2.getPriority()) {
-                            // copas,, hehe (useMove p2 duluan)
+                            // p2 move duluan
+                            SelectionMenu.battle(p2, p1, move2, move1);
                         } else if (move1.getPriority() == move2.getPriority()) {
-                            if (p1.getCurrentMonster().getBaseStats().getSpeed() < p2.getCurrentMonster().getBaseStats().getSpeed()) {
-                                // usemove (p2 duluan)
-                                // getCurrentMonster bisa dijadiin variabel
-                            } else if (p1.getCurrentMonster().getBaseStats().getSpeed() > p2.getCurrentMonster().getBaseStats().getSpeed()) {
-                                // usemove (p1 duluan)
+                            if (p1.getCurrentMonster().getBaseStats().getSpeed() > p2.getCurrentMonster().getBaseStats().getSpeed()) {
+                                // p1 move duluan
+                                SelectionMenu.battle(p1, p2, move1, move2);
+                            } else if (p1.getCurrentMonster().getBaseStats().getSpeed() < p2.getCurrentMonster().getBaseStats().getSpeed()) {
+                                // p2 move duluan
+                                SelectionMenu.battle(p2, p1, move2, move1);
                             } else if (p1.getCurrentMonster().getBaseStats().getSpeed() == p2.getCurrentMonster().getBaseStats().getSpeed()) {
                                 // ngerandom 1 atau 2
                                 if (new Random().nextInt(2) == 0) {
-                                    // use move 1 duluan
+                                    // p1 move duluan
+                                    SelectionMenu.battle(p1, p2, move1, move2);
                                 } else {
-                                    // use move 2 duluan
+                                    // p2 move duluan
+                                    SelectionMenu.battle(p2, p1, move2, move1);
                                 }
                             }
                         }
-                        // use move (siapapun yg blm)
+                        
                     } else if (pilihan == 1 && pilihan2 == 2) {
                         // use move 1
+                        SelectionMenu.useMove(p1, p2, move1);
                     } else if (pilihan == 2 && pilihan2 == 1) {
                         // use move 2
-                    }
+                        SelectionMenu.useMove(p2, p1, move2);
+                    } 
 
                 }
-                
-                
 
-                
             } else if (pick == 2) {
                 MainMenu.help();
             } else if (pick == 3) {
@@ -121,3 +140,19 @@ public class GameFlow {
 
     }
 }
+
+// YANG KURANG
+/***
+ * benerin statuscondition
+ * implementasi statuscondition (kalo movenya jenis statusmove)
+ * ^ itu kayanya harus benerin useMove, tp emang useMove masi ngaco sih
+ * benerin move (default move, trs yg lain biar ngikutin csv (?))
+ * benerin csv reader biar sesuai move
+ * damage calculation...
+ * after damage calculation
+ * view monster info
+ * view game info
+ * BOOKLET...
+ * sama apa lg ya sorry klo ada yg kelewat atau codenya gaje
+ * 
+ */

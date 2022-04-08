@@ -4,6 +4,7 @@ import com.monster.*;
 import java.util.*;
 import com.move.*;
 
+// selection menu aku masukin semua method jadinya,, kayanya namanya sabi diubah tp kalo males gausa HEHE sorry
 public class SelectionMenu {
     static Scanner scanner = new Scanner(System.in);
     public static Move chooseMove(Player p) {
@@ -15,6 +16,8 @@ public class SelectionMenu {
 
         if (movePick != 0) {
             if (p.getCurrentMonster().getMoves().get(movePick-1).getAmmunition() > 0) {
+                int currAmmo = p.getCurrentMonster().getMoves().get(movePick-1).getAmmunition();
+                p.getCurrentMonster().getMoves().get(movePick-1).setAmmunition(currAmmo-1);
                 return (p.getCurrentMonster().getMoves().get(movePick-1));
             } else {
                 System.out.println("Sorry, ammunitionnya udah abis");
@@ -37,8 +40,8 @@ public class SelectionMenu {
             p.setCurrentMonster(p.getListOfMonster().get(monsPick-1));
         }
     }
-
-    public void useMove(Player source, Player target, Move move) {
+// ini usemove blm beres
+    public static void useMove(Player source, Player target, Move move) {
         if (new Random().nextDouble() <= (move.getAccuracy()/100)) {
             if(move.getTarget() == TargetOfMove.OWN) {
                 if (move instanceof StatusMove) {
@@ -59,6 +62,20 @@ public class SelectionMenu {
             } // dibuat sesuatu semacam useMove????
         } else {
             System.out.println("Player " + source.getName() + "gagal melakukan move karena kurang beruntung");
+        }
+    }
+
+    public static void battle(Player gofirst, Player gosecond, Move movefirst, Move movesecond) {
+        SelectionMenu.useMove(gofirst, gosecond, movefirst);
+        if (gosecond.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
+            System.out.println("Yah, monster kamu mati :( ganti yak");
+            SelectionMenu.chooseMonster(gosecond);
+        } else {
+            SelectionMenu.useMove(gosecond, gofirst, movesecond);
+            if (gofirst.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
+                System.out.println("Yah, monster kamu mati :( ganti yak");
+                SelectionMenu.chooseMonster(gofirst);
+            }
         }
     }
 }
