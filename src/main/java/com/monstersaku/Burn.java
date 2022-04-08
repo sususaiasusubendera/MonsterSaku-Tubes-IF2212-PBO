@@ -1,4 +1,7 @@
 package com.monstersaku;
+
+import com.monster.*;
+
 public class Burn extends StatusCondition {
     // attribute
     private int MaxHP = super.getPemilik().getBaseStats().getHP();

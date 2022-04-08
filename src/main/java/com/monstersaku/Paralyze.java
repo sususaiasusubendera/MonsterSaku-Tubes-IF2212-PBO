@@ -2,6 +2,8 @@ package com.monstersaku;
 
 import java.util.Random;
 
+import com.monster.*;
+
 public class Paralyze extends StatusCondition {
     // attribute
     private int baseSpeed = super.getPemilik().getBaseStats().getSpeed();

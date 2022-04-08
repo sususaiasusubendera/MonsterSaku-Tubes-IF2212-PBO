@@ -1,5 +1,7 @@
 package com.game;
 
+import com.monster.*;
+
 public class Turn {
 
     public void useMove(Monster player) {

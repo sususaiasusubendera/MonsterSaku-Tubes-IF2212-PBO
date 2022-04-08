@@ -1,6 +1,7 @@
 package com.move;
 
 import com.monstersaku.Stats;
+import com.monster.*;
 
 public class SpecialMove extends Move {
 

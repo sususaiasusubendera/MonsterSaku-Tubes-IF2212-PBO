@@ -2,6 +2,8 @@ package com.game;
 
 import java.util.*;
 
+import com.monster.*;
+
 public class Player {
 	private String name;
 	private ArrayList<Monster> listOfMonster;
