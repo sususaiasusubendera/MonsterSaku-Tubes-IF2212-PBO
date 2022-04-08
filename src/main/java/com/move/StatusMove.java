@@ -4,8 +4,8 @@ import com.monster.Monster;
 
 public class StatusMove extends Move {
 
-    private String effect;
-    private Double healHP;
+    protected String effect;
+    protected Double healHP;
 
     public StatusMove(int id, ElementType elementType, int accuracy, int priority,
                       int ammunition) {

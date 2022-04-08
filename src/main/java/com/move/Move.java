@@ -1,19 +1,25 @@
 package com.move;
 
+import com.monster.ElementType;
+import com.monster.Monster;
+
 public class Move {
 
-    private int id;
-    private String moveType;
-    private ElementType elementType;
-    private int accuracy;
-    private int priority;
-    private int ammunition;
+    protected int id;
+    protected String moveType;
+    protected ElementType elementType;
+    protected int accuracy;
+    protected int priority;
+    protected int ammunition;
+    protected TargetOfMove targetOfMove;
+    protected double effect;
+
 
     // Konstruktor Kelas Move
     // id berisi bilangan bulat positif unik
 
     public Move(int id, String moveType, ElementType elementType,int accuracy,
-                int priority, int ammunition) {
+                int priority, int ammunition, TargetOfMove targetOfMove, double effect, ) {
 
         this.id = id;
         this.moveType = moveType;

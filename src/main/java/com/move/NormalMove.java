@@ -1,6 +1,8 @@
 package com.move;
 
 import com.monstersaku.Stats;
+import com.monster.Monster;
+import com.monster.ElementType;
 
 public class NormalMove extends Move {
 
