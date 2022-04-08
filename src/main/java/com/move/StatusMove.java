@@ -2,6 +2,9 @@ package com.move;
 
 public class StatusMove extends Move {
 
+    private String effect;
+    private Double healHP;
+
     public StatusMove(int id, ElementType elementType, int accuracy, int priority,
                       int ammunition) {
         super(id, "STATUS", elementType, accuracy, priority, ammunition);

@@ -1,5 +1,11 @@
 package com.monstersaku;
-public abstract class StatusCondition {
+public enum StatusCondition {
+    // diubah jd enum aja ya WKWKW
+    BURN,
+    POISON,
+    SLEEP,
+    PARALYZE;
+    /***
     // attribute
     private Monster pemilik;
     // constructor
@@ -13,4 +19,5 @@ public abstract class StatusCondition {
     public void setPemilik(Monster monster) {
         this.pemilik = monster;
     }
+    ***/
 }

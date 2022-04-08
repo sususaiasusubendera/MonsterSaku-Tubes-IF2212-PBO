@@ -6,6 +6,7 @@ import com.move.Move;
 import com.monstersaku.Stats;
 
 public class Monster {
+    private int id;
     private String nama;
     private List<ElementType> elementTypes;
     private Stats baseStats;
@@ -13,7 +14,8 @@ public class Monster {
 
 
     // Konstruktor
-    public Monster(String nama, List<ElementType> elementTypes, Stats baseStats, List<Move> moves){
+    public Monster(int id, String nama, List<ElementType> elementTypes, Stats baseStats, List<Move> moves){
+        this.id = id;
         this.setNama(nama);
         this.setElementTypes(elementTypes);
         this.setBaseStats(baseStats);
@@ -22,6 +24,9 @@ public class Monster {
 
 
     // Getter
+    public int getId() {
+        return id;
+    }
 
     public String getNama() {
         return nama;
