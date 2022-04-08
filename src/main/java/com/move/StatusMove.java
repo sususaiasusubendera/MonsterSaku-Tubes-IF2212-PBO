@@ -1,4 +1,6 @@
 package com.move;
+import com.monster.ElementType;
+import com.monster.Monster;
 
 public class StatusMove extends Move {
 
@@ -18,10 +20,5 @@ public class StatusMove extends Move {
         // Menyembuhkan HP?? duh gakebayang
 
     }
-
-}
-
-
-
 
 }
