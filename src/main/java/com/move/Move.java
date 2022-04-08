@@ -19,7 +19,7 @@ public class Move {
     // id berisi bilangan bulat positif unik
 
     public Move(int id, String moveType, ElementType elementType,int accuracy,
-                int priority, int ammunition, TargetOfMove targetOfMove, double effect, ) {
+                int priority, int ammunition, TargetOfMove targetOfMove, double effect) {
 
         this.id = id;
         this.moveType = moveType;

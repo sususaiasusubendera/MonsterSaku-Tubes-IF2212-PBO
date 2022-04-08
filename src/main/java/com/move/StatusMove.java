@@ -8,8 +8,8 @@ public class StatusMove extends Move {
     protected Double healHP;
 
     public StatusMove(int id, ElementType elementType, int accuracy, int priority,
-                      int ammunition) {
-        super(id, "STATUS", elementType, accuracy, priority, ammunition);
+                      int ammunition, TargetOfMove targetOfMove, double effect) {
+        super(id, "STATUS", elementType, accuracy, priority, ammunition, targetOfMove, effect);
     }
 
     // Getter

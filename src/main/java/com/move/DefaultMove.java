@@ -12,7 +12,7 @@ public class DefaultMove {
     public DefaultMove(int id, ElementType elementType, int accuracy, int priority,
                        int ammunition, TargetOfMove targetOfMove, double effect, double basePower) {
 
-        super(id, "DEFAULT", elementType, 100, 0, 200);
+        super(id, "DEFAULT", elementType, 100, 0, 200, targetOfMove,effect);
         basePower = 50;
 
     }

@@ -4,15 +4,15 @@ import com.monster.*;
 
 public class Turn {
 
-    public void useMove(Monster player) {
+    public void useMove(Monster currMons) {
         System.out.println("Pada giliran ini kamu akan melakukan Move!");
-        player.chooseMove();
+        currMons.chooseMove(currMons);
     }
 
-    public void useSwitch(Monster player) {
+    public void useSwitch(Player currPlayer) {
 
         System.out.println("Pada giliran ini kamu akan melakukan Switch!");
-        player.chooseSwitch();
+        currPlayer.chooseMonster(currPlayer);
     }
 
 }
