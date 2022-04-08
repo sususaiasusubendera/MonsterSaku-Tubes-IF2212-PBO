@@ -1,8 +1,7 @@
 package com.monstersaku;
 
-import java.util.Random;
-
 import com.monster.*;
+import java.util.Random;
 
 public class Sleep extends StatusCondition {
     // constructor

@@ -25,7 +25,7 @@ public class NormalMove extends Move {
     public void normalMove(Monster originMons, Monster targetMons) {
 
         basePower = originMons.getBaseStats().getAttack() - targetMons.getBaseStats().getDefense();
-        double newHP = target.getBaseStats().getHealthPoint() - basePower;
+        double newHP = targetMons.getBaseStats().getHealthPoint() - basePower;
         targetMons.getBaseStats().setHealthPoint(newHP);
     }
 }

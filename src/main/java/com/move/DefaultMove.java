@@ -1,18 +1,17 @@
 package com.move;
 
 import java.lang.*;
-import com.monster.*;
 
 public class DefaultMove {
 
     // Tipe serangan default adalah normal
 
-    protected double basePower;
+    private double basePower;
 
-    public DefaultMove(int id, ElementType elementType, int accuracy, int priority,
-                       int ammunition, TargetOfMove targetOfMove, double effect, double basePower) {
+    public DefaultMove(int id, String name, int accuracy, int priority,
+                       double basePower) {
 
-        super(id, "DEFAULT", elementType, 100, 0, 200);
+        super(id, name, "DEFAULT", elementType, 100, 0, 50);
         basePower = 50;
 
     }

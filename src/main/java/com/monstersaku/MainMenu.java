@@ -7,30 +7,7 @@ import java.util.Scanner;
 
 public class MainMenu {
     public static void main(String[] args) {
-        System.out.println("Welcome to Monster Saku!");
-        System.out.println("Siapa aja yang main?");
-        Scanner scanner = new Scanner(System.in);
-        System.out.printf("1: " );
-        String playerName1 = scanner.next(); // butuh gasih player name? .-.
-        System.out.printf("2: ");
-        String playerName2 = scanner.next();
-        while (true) {
-            System.out.println("Pilih menu: ");
-            System.out.println("[1] Start Game\n[2] Help\n[3] Exit");
-            int pick = scanner.nextInt();
-            if (pick == 1) {
-                System.out.println("Mulai game");
-                /***
-                gimana nih mulai gamenya(?)
-                Game game = new Game();
-                game.startGame();
-                ***/
-            } else if (pick == 2) {
-                MainMenu.help();
-            } else if (pick == 3) {
-                MainMenu.exit();
-            }
-        }
+        
     }
 
     // method (kalo jadi gini bisa dipake dalem game ga ya? atau dibuat interface aja menunya?)

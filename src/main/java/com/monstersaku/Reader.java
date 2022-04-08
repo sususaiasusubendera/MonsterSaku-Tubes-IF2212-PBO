@@ -16,7 +16,7 @@ import javax.lang.model.element.Element;
 
 import java.util.ArrayList;
 
-public class Main {
+public class Reader {
     private static final List<String> CSV_FILE_PATHS = Collections.unmodifiableList(Arrays.asList(
             "configs/monsterpool.csv",
             "configs/movepool.csv",
@@ -44,9 +44,9 @@ public class Main {
         }
     }
 ***/
-    public static void main(String[] args) {
-        List<Monster> listMonster = new ArrayList<Monster>();
-        List<Move> listMove = new ArrayList<Move>();
+    
+        public static List<Monster> listMonster = new ArrayList<Monster>();
+        public static List<Move> listMove = new ArrayList<Move>();
         // baca movepool.csv
         try {
             CSVReader reader = new CSVReader(new File(Main.class.getResource("configs/movepool.csv").toURI()), ";");
@@ -81,10 +81,10 @@ public class Main {
                     listMove.add(move);
                 } else {
                     // bentuk object move jenis selain status move
-                    Double damage = Double.parseDouble(line[8]);
-                    
-                    Move move = new Move(id, mvName, mvType, elType, accuracy, priority, ammunition);
-                    
+                    Double basePower = Double.parseDouble(line[8]);
+                    if (mvType.equals("NORMAL")) {
+                        Move move = new Move(id, mvName, mvType, elType, accuracy, priority, ammunition);
+                    }
                     
                     // tambahkan ke list moves
                     listMove.add(move);
@@ -153,5 +153,5 @@ public class Main {
         } catch (Exception e) {
             //apaya
         }
-    }
+    
 }

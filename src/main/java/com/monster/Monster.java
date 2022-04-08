@@ -63,5 +63,10 @@ public class Monster {
         this.moves = moves;
     }
 
-    
+    // print move
+    public void printMoves() {
+        for (int i = 0; i < moves.size(); i++) {
+            System.out.printf("[%d] " + moves.get(i).getName(), i+1);
+        }
+    }
 }
