@@ -36,13 +36,11 @@ public class Move {
     public void setAccuracy (int accuracy) {
 
         this.accuracy = accuracy;
-
     }
 
     public void setPriority (int priority) {
 
         this.priority = priority;
-
     }
 
     public void setAmmunition (int ammunition) {
@@ -56,7 +54,6 @@ public class Move {
 
         return moveType;
     }
-
 
     public ElementType getElementType() {
 

@@ -1,20 +1,17 @@
 package com.monstersaku;
 // KAYANYAAA ntar main menu mau dipindah ke sini
-import com.move.*;
-import com.monster.*;
 
+import com.monster.Monster;
 import com.monstersaku.util.CSVReader;
+import com.move.Move;
+import com.move.StatusMove;
+import com.move.TargetOfMove;
 
 import java.io.File;
 import java.lang.annotation.ElementType;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.lang.model.element.Element;
-
-import java.util.ArrayList;
 
 public class Reader {
     private static List<Monster> listMonster = new ArrayList<Monster>();
@@ -117,14 +114,14 @@ public class Reader {
                     String statsEffect = line[9];
                     String[] arrStatsEffect = statsEffect.split(",", 10);
                     Double healHP = Double.parseDouble(arrStatsEffect[0]);
-                    StatusMove move = new StatusMove(id, mvName, elType, accuracy, priority, ammunition, effect, healHP);
+                    StatusMove move = new StatusMove(id, mvName, elType, accuracy, priority, ammunition, tOfMove, statsEffect, healHP);
                     // tambahkan ke listMove
                     listMove.add(move);
                 } else {
                     // bentuk object move jenis selain status move
                     Double damage = Double.parseDouble(line[8]);
                     
-                    Move move = new Move(id, mvName, mvType, elType, accuracy, priority, ammunition);
+                    Move move = new Move(mvName, mvType, elType, accuracy, priority, ammunition,tOfMove);
                     
                     
                     // tambahkan ke listMove
