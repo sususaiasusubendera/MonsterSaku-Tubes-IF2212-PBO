@@ -15,16 +15,11 @@ public class SelectionMenu {
         int movePick = scanner.nextInt();
 
         if (movePick != 0) {
-            if (p.getCurrentMonster().getMoves().get(movePick-1).getAmmunition() > 0) {
-                int currAmmo = p.getCurrentMonster().getMoves().get(movePick-1).getAmmunition();
-                p.getCurrentMonster().getMoves().get(movePick-1).setAmmunition(currAmmo-1);
-                return (p.getCurrentMonster().getMoves().get(movePick-1));
-            } else {
-                System.out.println("Sorry, ammunitionnya udah abis");
-                SelectionMenu.chooseMove(p);
-            }
+            int currAmmo = p.getCurrentMonster().getMoves().get(movePick-1).getAmmunition();
+            p.getCurrentMonster().getMoves().get(movePick-1).setAmmunition(currAmmo-1);
+            return (p.getCurrentMonster().getMoves().get(movePick-1));
         } else {
-            return (new DefaultMove());
+            return (new DefaultMove("DEFAULT"));
         }
     }
 
@@ -47,13 +42,13 @@ public class SelectionMenu {
 // ini usemove blm beres
     public static void useMove(Player source, Player target, Move move) {
         if (new Random().nextDouble() <= (move.getAccuracy()/100)) {
-            if(move.getTarget() == TargetOfMove.OWN) {
+            if(move.getTargetOfMove() == TargetOfMove.OWN) {
                 if (move instanceof StatusMove) {
                     StatusMove statusMove = (StatusMove)move;
                     double currHP = source.getCurrentMonster().getBaseStats().getHealthPoint();
                     source.getCurrentMonster().getBaseStats().setHealthPoint(currHP + statusMove.getHealHP());
                 }
-            } else if (move.getTarget() == TargetOfMove.ENEMY) {
+            } else if (move.getTargetOfMove() == TargetOfMove.ENEMY) {
                 if (move instanceof NormalMove) {
                     NormalMove normalMove = (NormalMove)move;
                     // damage calculation menyusulll
@@ -63,7 +58,15 @@ public class SelectionMenu {
                 } else if (move instanceof DefaultMove) {
                     //aaaaaaaaaaaaaaaaaaaaaa
                 }
-            } // dibuat sesuatu semacam useMove????
+            }
+            // hapus move dari list kalo ammunition udah abis
+            if (move.getAmmunition() == 0){
+                for (Move m : source.getCurrentMonster().getMoves()) {
+                    if (m.equals(move)) {
+                        source.getCurrentMonster().getMoves().remove(m);
+                    }
+                }
+            }
         } else {
             System.out.println("Player " + source.getName() + "gagal melakukan move karena kurang beruntung");
         }
