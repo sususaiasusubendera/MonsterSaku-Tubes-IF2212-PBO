@@ -3,9 +3,7 @@ package com.monstersaku;
 
 import com.monster.Monster;
 import com.monstersaku.util.CSVReader;
-import com.move.Move;
-import com.move.StatusMove;
-import com.move.TargetOfMove;
+import com.move.*;
 
 import java.io.File;
 import java.lang.annotation.ElementType;
@@ -114,18 +112,19 @@ public class Reader {
                     String statsEffect = line[9];
                     String[] arrStatsEffect = statsEffect.split(",", 10);
                     Double healHP = Double.parseDouble(arrStatsEffect[0]);
-                    StatusMove move = new StatusMove(id, mvName, elType, accuracy, priority, ammunition, tOfMove, statsEffect, healHP);
+                    StatusMove move = new StatusMove(id, mvName, elType, accuracy, priority, ammunition, tOfMove, effect, healHP);
                     // tambahkan ke listMove
                     listMove.add(move);
                 } else {
                     // bentuk object move jenis selain status move
-                    Double damage = Double.parseDouble(line[8]);
-                    
-                    Move move = new Move(mvName, mvType, elType, accuracy, priority, ammunition,tOfMove);
-                    
-                    
-                    // tambahkan ke listMove
-                    listMove.add(move);
+                    Double basePower = Double.parseDouble(line[8]);
+                    if (mvType.equals("NORMAL")) {
+                        NormalMove move = new NormalMove(id, mvName, elType, accuracy, priority, ammunition,tOfMove,basePower);
+                        listMove.add(move);
+                    } else if (mvType.equals("SPECIAL")) {
+                        SpecialMove move = new SpecialMove(id, mvName, mvType, elType, accuracy, priority, ammunition,tOfMove,basePower);
+                        listMove.add(move);
+                    }
                 }               
                 // karna ga ngerjain bonus, status move cuma ngasih dampak ke status condition dan heal HP
             }

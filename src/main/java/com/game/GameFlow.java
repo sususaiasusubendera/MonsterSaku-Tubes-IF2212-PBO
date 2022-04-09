@@ -45,7 +45,7 @@ public class GameFlow {
                     } else if (pilihan == 4) {
                         MainMenu.exit();
                     } else if (pilihan == 5) {
-                        // buat view monster info, bisa di main menu?
+                        MainMenu.viewMonsterInfo(p1);
                     } else if (pilihan == 6) {
                         // buat view game info (ntahlah bisa di main menu atau di sini ae)
                     }
