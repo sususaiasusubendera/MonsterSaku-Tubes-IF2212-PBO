@@ -8,14 +8,9 @@ public class DefaultMove {
 
     private double basePower;
 
-    public DefaultMove(int id, String name, int accuracy, int priority,
-                       double basePower) {
+    public DefaultMove() {
 
-<<<<<<< HEAD
-        super(id, name, "DEFAULT", elementType, 100, 0, 50);
-=======
-        super(id, "DEFAULT", elementType, 100, 0, 200, targetOfMove,effect);
->>>>>>> 866735d7867eec97902a55d80daadcda22af1d96
+        
         basePower = 50;
 
     }

@@ -5,7 +5,9 @@ import com.monster.*;
 
 public class SpecialMove extends Move {
 
-    private double basePower;
+    protected double basePower;
+    protected int id;
+
 
     public SpecialMove(int id, String moveType, ElementType elementType, int accuracy,
                        int priority, int ammunition, int basePower) {
