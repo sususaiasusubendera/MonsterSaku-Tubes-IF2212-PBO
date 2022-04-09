@@ -17,19 +17,34 @@ public class NormalMove extends Move {
 
     }
 
+    // Getter
     public double getBasePower() {
-
         return basePower;
     }
 
-    // buat method untuk dapetin nilai damage
+    // Setter
+    public void setBasePower(double basePower) {
+        this.basePower = basePower;
+    }
+
+
+    // buat method untuk dapetin nilai damage calculation
 
     public void normalMove(Monster originMons, Monster targetMons) {
 
-        basePower = originMons.getBaseStats().getAttack() - targetMons.getBaseStats().getDefense();
-        double newHP = targetMons.getBaseStats().getHealthPoint() - basePower;
+        double damage = originMons.getBaseStats().getAttack() - targetMons.getBaseStats().getDefense();
+        double newHP = targetMons.getBaseStats().getHealthPoint() - damage;
         targetMons.getBaseStats().setHealthPoint(newHP);
     }
+
+    /***
+     *
+     * Rumus damage calculation pada normal move
+     * - use stats attack
+     * - use stats defense
+     *
+     *
+     */
 }
 
 

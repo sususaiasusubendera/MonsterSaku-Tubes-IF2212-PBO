@@ -9,9 +9,9 @@ public class DefaultMove extends Move {
 
     private final double basePower; // Gk bisa di apa2in lagi
 
-    public DefaultMove(String moveName) {
+    public DefaultMove() {
 
-        super(moveName, "DEFAULT", ElementType.NORMAL, 100, 0, 50, TargetOfMove.ENEMY);
+        super("DEFAULT", "DEFAULT", ElementType.NORMAL, 100, 0, 50, TargetOfMove.ENEMY);
         this.basePower = 50;
     }
 

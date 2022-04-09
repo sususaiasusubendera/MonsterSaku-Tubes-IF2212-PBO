@@ -16,9 +16,14 @@ public class SpecialMove extends Move {
         this.basePower = basePower;
     }
 
+    // Getter
     public double getBasePower() {
-
         return basePower;
+    }
+
+    // Setter
+    public void setBasePower(double basePower) {
+        this.basePower = basePower;
     }
 
     public void specialMove(Monster originMons, Monster targetMons) {
