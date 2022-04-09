@@ -6,7 +6,8 @@ import com.monster.ElementType;
 
 public class NormalMove extends Move {
 
-    private double basePower;
+    protected double basePower;
+    protected int id;
 
     public NormalMove(int id, ElementType elementType, int accuracy, int priority,
                       int ammunition) {
