@@ -6,25 +6,21 @@ public class StatusMove extends Move {
 
     protected String statsEffect; // nama nya aku ubah biar gak sama kayak effect yang double.
     protected double healHP;
+    protected int id;
 
-    public StatusMove(int id, String moveName, ElementType elementType, int accuracy, int priority,
-                      int ammunition, TargetOfMove targetOfMove, double effect, String statsEffect, Double healHP) {
-        super(id,"STATUS",moveName, elementType, accuracy, priority, ammunition, targetOfMove, effect);
+    public StatusMove(int id,String moveName, ElementType elementType, int accuracy, int priority,
+                      int ammunition, TargetOfMove targetOfMove, String statsEffect, Double healHP) {
+
+        super(moveName, "STATUS", elementType, accuracy, priority, ammunition,targetOfMove);
+        this.id = id;
         this.statsEffect = statsEffect;
         this.healHP = healHP;
     }
 
     // Getter
 
-    public void statusMove(Monster originMons, Monster targetMons) {
-
-        // Hanya memberikan dampak pada status condition
-        // Menyembuhkan HP?? duh gakebayang
-
-    }
-
     public String getEffect() {
-        return effect;
+        return statsEffect;
     }
 
     public double getHealHP() {
@@ -33,12 +29,21 @@ public class StatusMove extends Move {
 
     // Setter
 
-    public void setEffect(String effect) {
-        this.effect = effect;
+    public void setEffect(String statsEffect) {
+        this.statsEffect = statsEffect;
     }
 
     public void setHealHP(double healHP) {
         this.healHP = healHP;
+    }
+
+    // Method
+
+    public void statusMove(Monster originMons, Monster targetMons) {
+
+        // Hanya memberikan dampak pada status condition
+        // Menyembuhkan HP?? duh gakebayang
+
     }
 
 }

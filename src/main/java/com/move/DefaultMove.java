@@ -7,11 +7,11 @@ public class DefaultMove extends Move {
 
     // Tipe serangan default adalah normal
 
-    private final double basePower;
+    private final double basePower; // Gk bisa di apa2in lagi
 
-    public DefaultMove(int id, String moveName, ElementType elementType, TargetOfMove targetOfMove, double effect, double basePower) {
+    public DefaultMove(String moveName) {
 
-        super(id, moveName, "DEFAULT", elementType, 100, 0, 50,targetOfMove, effect)
+        super(moveName, "DEFAULT", ElementType.NORMAL, 100, 0, 50, TargetOfMove.ENEMY);
         this.basePower = 50;
     }
 

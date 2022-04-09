@@ -1,7 +1,7 @@
 package com.move;
 
-import com.monstersaku.Stats;
-import com.monster.*;
+import com.monster.ElementType;
+import com.monster.Monster;
 
 public class SpecialMove extends Move {
 
@@ -9,9 +9,10 @@ public class SpecialMove extends Move {
     protected int id;
 
 
-    public SpecialMove(int id, String moveType, ElementType elementType, int accuracy,
-                       int priority, int ammunition, int basePower) {
-        super(id,"SPECIAL", name, elementType, accuracy, priority, ammunition);
+    public SpecialMove(int id, String moveName, String moveType, ElementType elementType, int accuracy,
+                       int priority, int ammunition, TargetOfMove targetOfMove, double basePower) {
+        super(moveName, "SPECIAL", elementType, accuracy, priority, ammunition, targetOfMove);
+        this.id = id;
         this.basePower = basePower;
     }
 
@@ -23,7 +24,7 @@ public class SpecialMove extends Move {
     public void specialMove(Monster originMons, Monster targetMons) {
 
         basePower = originMons.getBaseStats().getSpecialAttack() - targetMons.getBaseStats().getSpecialDefense();
-        double newHP = targetMons.getHealthPoint() - basePower;
+        double newHP = targetMons.getBaseStats().getHealthPoint() - basePower;
         originMons.getBaseStats().setHealthPoint(newHP);
     }
 

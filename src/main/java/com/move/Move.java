@@ -5,7 +5,6 @@ import com.monster.Monster;
 
 public class Move {
 
-    protected int id;
     protected String moveType;
     protected String moveName;
     protected ElementType elementType;
@@ -19,10 +18,9 @@ public class Move {
     // Konstruktor Kelas Move
     // id berisi bilangan bulat positif unik
 
-    public Move(int id, String moveName, String moveType, ElementType elementType,int accuracy,
-                int priority, int ammunition, TargetOfMove targetOfMove, double effect) {
+    public Move(String moveName, String moveType, ElementType elementType,int accuracy,
+                int priority, int ammunition, TargetOfMove targetOfMove) {
 
-        this.id = id;
         this.moveName = moveName;
         this.moveType = moveType;
         this.elementType = elementType;
@@ -30,25 +28,10 @@ public class Move {
         this.priority = priority;
         this.ammunition = ammunition;
         this.targetOfMove = targetOfMove;
-        this.effect = effect;
 
     }
 
-    // Setter Kelas Move
-
-    public void setId (int id) {
-
-        this.id = id;
-    }
-
-    // Tipe elemen yang dimiliki oleh move
-    // Dapat menentukan efektivitasnya terhadap target monster.
-
-    public void setElementType (ElementType elementType) {
-
-        this.elementType = elementType;
-
-    }
+    // Setter
 
     public void setAccuracy (int accuracy) {
 
@@ -68,11 +51,6 @@ public class Move {
     }
 
     // Getter Kelas Move
-
-    public int getId() {
-
-        return id;
-    }
 
     public String getMoveType() {
 
@@ -98,6 +76,11 @@ public class Move {
     public int getAmmunition() {
 
         return ammunition;
+    }
+
+    public TargetOfMove getTargetOfMove() {
+
+        return targetOfMove;
     }
 
     // Method

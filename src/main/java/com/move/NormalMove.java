@@ -1,18 +1,19 @@
 package com.move;
 
-import com.monstersaku.Stats;
-import com.monster.Monster;
 import com.monster.ElementType;
+import com.monster.Monster;
 
 public class NormalMove extends Move {
 
     protected double basePower;
     protected int id;
 
-    public NormalMove(int id, ElementType elementType, int accuracy, int priority,
-                      int ammunition) {
+    public NormalMove(int id, String moveName, ElementType elementType, int accuracy, int priority,
+                      int ammunition, TargetOfMove targetOfMove, double basePower) {
 
-        super(id, "NORMAL", elementType, accuracy, priority, ammunition);
+        super(moveName, "NORMAL", elementType, accuracy, priority, ammunition, targetOfMove);
+        this.id = id;
+        this.basePower = basePower;
 
     }
 
