@@ -27,6 +27,10 @@ public class StatusMove extends Move {
         return healHP;
     }
 
+    public int getId() {
+        return id;
+    }
+
     // Setter
 
     public void setEffect(String statsEffect) {
@@ -35,6 +39,10 @@ public class StatusMove extends Move {
 
     public void setHealHP(double healHP) {
         this.healHP = healHP;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     // Method
