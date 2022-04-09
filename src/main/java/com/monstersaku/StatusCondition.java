@@ -4,7 +4,9 @@ public enum StatusCondition {
     BURN,
     POISON,
     SLEEP,
-    PARALYZE;
+    PARALYZE,
+    NONE;
+
     /***
     // attribute
     private Monster pemilik;
