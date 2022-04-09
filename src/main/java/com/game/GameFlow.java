@@ -122,33 +122,49 @@ public class GameFlow {
                                 }
                             }
                         }
-
-                        // Jika salah satu monster mati
-                        if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                            ArrayList<Monster> monsters = p1.getListOfMonster();
-                            monsters.remove(p1.getCurrentMonster());
-                            p1.setListofMonster(monsters);
-                            if (!p1.getListOfMonster().isEmpty()){
-                                SelectionMenu.chooseMonster(p1);
-                            }
-                        } else if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
+                    } else if (pilihan == 1 && pilihan2 == 2) {
+                        // use move1 (p1 melakukan move)
+                        SelectionMenu.useMove(p1, p2, move1);
+                        // jika monster p2 mati setelah p1 melakukan move
+                        if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
+                            System.out.println("Yah, monster kamu mati :(");
                             ArrayList<Monster> monsters = p2.getListOfMonster();
                             monsters.remove(p2.getCurrentMonster());
                             p2.setListofMonster(monsters);
-                            SelectionMenu.chooseMonster(p2);
-                            if (!p2.getListOfMonster().isEmpty()){
-                                SelectionMenu.chooseMonster(p2);
+                            // jika p2 masih punya monster lain setelah currentMonster mati
+                            if (!p1.isAllDead()){
+                                System.out.println("Yuk ganti monster");
+                                /** 
+                                 * di sini tidak dilakukan chooseMonster(p2) karena p2 
+                                 * memang memilih untuk chooseMonster walaupun currentMonster masih hidup
+                                **/
                             }
                         }
-                        
-                    } else if (pilihan == 1 && pilihan2 == 2) {
-                        // use move 1
-                        SelectionMenu.useMove(p1, p2, move1);
-                        SelectionMenu.chooseMonster(p2);
+                        // jika p2 masih punya monster, maka bisa chooseMonster sesuai pilihan2
+                        if (!p2.isAllDead()){
+                            SelectionMenu.chooseMonster(p2);
+                        }
                     } else if (pilihan == 2 && pilihan2 == 1) {
-                        // use move 2
+                        // p1 memilih monster
                         SelectionMenu.chooseMonster(p1);
+                        // use move2 (p2 melakukan move)
                         SelectionMenu.useMove(p2, p1, move2);
+                        // jika monsternya p1 mati
+                        if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
+                            System.out.println("Yah, monster kamu mati :(");
+                            ArrayList<Monster> monsters = p1.getListOfMonster();
+                            monsters.remove(p1.getCurrentMonster());
+                            p1.setListofMonster(monsters);
+                            // jika p1 masih punya monster
+                            if (!p1.isAllDead()){
+                                System.out.println("Yuk ganti monster");
+                                SelectionMenu.chooseMonster(p1);
+                            }
+                        }
+                    } else if (pilihan == 2 && pilihan2 == 2){
+                        // p1 dan p2 memilih monster
+                        SelectionMenu.chooseMonster(p1);
+                        SelectionMenu.chooseMonster(p2);
                     } 
 
                 }

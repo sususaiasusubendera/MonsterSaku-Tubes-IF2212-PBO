@@ -65,16 +65,31 @@ public class SelectionMenu {
         }
     }
 
+    // kalau kedua player sama-sama move
     public static void battle(Player gofirst, Player gosecond, Move movefirst, Move movesecond) {
         SelectionMenu.useMove(gofirst, gosecond, movefirst);
         if (gosecond.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
-            System.out.println("Yah, monster kamu mati :( ganti yak");
-            SelectionMenu.chooseMonster(gosecond);
+            System.out.println("Yah, monster kamu mati :(");
+            ArrayList<Monster> monsters = gosecond.getListOfMonster();
+            monsters.remove(gosecond.getCurrentMonster());
+            gosecond.setListofMonster(monsters);
+            // jika masih punya monster
+            if (!gosecond.isAllDead()){
+                System.out.println("Yuk ganti monster");
+                SelectionMenu.chooseMonster(gosecond);
+            }
         } else {
             SelectionMenu.useMove(gosecond, gofirst, movesecond);
             if (gofirst.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
-                System.out.println("Yah, monster kamu mati :( ganti yak");
-                SelectionMenu.chooseMonster(gofirst);
+                System.out.println("Yah, monster kamu mati :(");
+                ArrayList<Monster> monsters = gofirst.getListOfMonster();
+                monsters.remove(gofirst.getCurrentMonster());
+                gofirst.setListofMonster(monsters);
+                // jika masih punya monster
+                if (!gofirst.isAllDead()){
+                    System.out.println("Yuk ganti monster");
+                    SelectionMenu.chooseMonster(gofirst);
+                }
             }
         }
     }
