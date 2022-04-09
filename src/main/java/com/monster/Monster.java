@@ -3,6 +3,7 @@ package com.monster;
 import java.util.List;
 
 import com.move.Move;
+import com.monstersaku.Condition;
 import com.monstersaku.Stats;
 
 public class Monster {
@@ -11,7 +12,7 @@ public class Monster {
     private List<ElementType> elementTypes;
     private Stats baseStats;
     private List<Move> moves;
-
+    private Condition condi;
 
     // Konstruktor
     public Monster(int id, String nama, List<ElementType> elementTypes, Stats baseStats, List<Move> moves){
@@ -20,6 +21,7 @@ public class Monster {
         this.setElementTypes(elementTypes);
         this.setBaseStats(baseStats);
         this.setMoves(moves);
+        this.condi = new Condition();
     }
 
 
@@ -44,6 +46,9 @@ public class Monster {
         return moves;
     }
 
+    public Condition getCondi() {
+        return condi;
+    }
 
     // Setter
 
@@ -63,10 +68,14 @@ public class Monster {
         this.moves = moves;
     }
 
+    public void setCondi(Condition condi) {
+        this.condi = condi;
+    }
+
     // print move
     public void printMoves() {
         for (int i = 0; i < moves.size(); i++) {
-            System.out.printf("[%d] " + moves.get(i).getName(), i+1);
+            System.out.printf("[%d] " + moves.get(i).getMoveName(), i+1);
         }
     }
 }

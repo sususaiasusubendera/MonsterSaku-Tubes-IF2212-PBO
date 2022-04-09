@@ -1,6 +1,8 @@
 package com.move;
 
 import com.monster.*;
+import com.monstersaku.StatusCondition;
+import com.game.*;
 
 public class StatusMove extends Move {
 
@@ -46,10 +48,9 @@ public class StatusMove extends Move {
     }
 
     // Method
-    public void statusMove(Monster originMons, Monster targetMons) {
-
-        // Hanya memberikan dampak pada status condition
-        // Menyembuhkan HP?
+    public void burn(Player source, Player target) {
+        target.getCurrentMonster().getCondi().setStatCondi(StatusCondition.BURN);
+        
 
     }
 
