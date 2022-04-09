@@ -13,6 +13,7 @@ public class Monster {
     private Stats baseStats;
     private List<Move> moves;
     private Condition condi;
+    private final double maxHP;
 
     // Konstruktor
     public Monster(int id, String nama, List<ElementType> elementTypes, Stats baseStats, List<Move> moves){
@@ -22,6 +23,7 @@ public class Monster {
         this.setBaseStats(baseStats);
         this.setMoves(moves);
         this.condi = new Condition();
+        this.maxHP = baseStats.getHealthPoint();
     }
 
 
@@ -48,6 +50,10 @@ public class Monster {
 
     public Condition getCondi() {
         return condi;
+    }
+
+    public double getMaxHP() {
+        return maxHP;
     }
 
     // Setter
