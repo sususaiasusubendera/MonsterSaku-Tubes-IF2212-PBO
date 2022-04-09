@@ -19,7 +19,7 @@ public class SelectionMenu {
             p.getCurrentMonster().getMoves().get(movePick-1).setAmmunition(currAmmo-1);
             return (p.getCurrentMonster().getMoves().get(movePick-1));
         } else {
-            return (new DefaultMove("DEFAULT"));
+            return (new DefaultMove());
         }
     }
 
