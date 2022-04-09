@@ -1,11 +1,10 @@
 package com.game;
 
-import java.util.Random;
-
 import com.monster.*;
 import com.game.*;
 import com.monstersaku.*;
 import com.move.*;
+import java.util.*;
 
 public class DamageCalculation {
     public static void normalDamage(Player source, Player target, NormalMove move) {
@@ -19,7 +18,8 @@ public class DamageCalculation {
         Random rand = new Random();
         int randomInt = rand.nextInt(100-85+1) + 85;
         double ranDouble = randomInt/100;
-        double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getAttack()/target.getCurrentMonster().getBaseStats().getDefense())+2)*(ranDouble)*(burnfactor));
+        double effectivity = damageEffectivity(target, move);
+        double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getAttack()/target.getCurrentMonster().getBaseStats().getDefense())+2)*(ranDouble)*effectivity*(burnfactor));
         double newHP = target.getCurrentMonster().getBaseStats().getHealthPoint() - damage;
         target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
     }
@@ -35,7 +35,8 @@ public class DamageCalculation {
         Random rand = new Random();
         int randomInt = rand.nextInt(100-85) + 85;
         double ranDouble = randomInt/100;
-        double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getSpecialAttack()/target.getCurrentMonster().getBaseStats().getSpecialDefense())+2)*(ranDouble)*(burnfactor));
+        double effectivity = damageEffectivity(target, move);
+        double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getSpecialAttack()/target.getCurrentMonster().getBaseStats().getSpecialDefense())+2)*(ranDouble)*effectivity*(burnfactor));
         double newHP = target.getCurrentMonster().getBaseStats().getHealthPoint() - damage;
         target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
     }
@@ -51,7 +52,8 @@ public class DamageCalculation {
         Random rand = new Random();
         int randomInt = rand.nextInt(100-85) + 85;
         double ranDouble = randomInt/100;
-        double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getAttack()/target.getCurrentMonster().getBaseStats().getDefense())+2)*(ranDouble)*(burnfactor));
+        double effectivity = damageEffectivity(target, move);
+        double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getAttack()/target.getCurrentMonster().getBaseStats().getDefense())+2)*(ranDouble)*effectivity*(burnfactor));
         double newHP = target.getCurrentMonster().getBaseStats().getHealthPoint() - damage;
         target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
         move.defaultMove(source.getCurrentMonster());
@@ -73,5 +75,21 @@ public class DamageCalculation {
         target.getCurrentMonster().getBaseStats().setHealthPoint(currHP-damage);
     }
 
-
+    public static double damageEffectivity(Player target, Move moveSource) {
+        ElementType elTypeMove = moveSource.getElementType();
+        String stringETMove = elTypeMove.name();
+        List<ElementType> monsterElements = target.getCurrentMonster().getElementTypes();
+        List<String> pairElTypes = new ArrayList<String>();
+        for (ElementType et : monsterElements) {
+            String pairString = stringETMove+et.name();
+            pairElTypes.add(pairString);
+        }
+        double totalEffectivity = 1;
+        for (String key : pairElTypes) {
+            if (Reader.getGameMapEffectivity().containsKey(key)) {
+                totalEffectivity = totalEffectivity * Reader.getGameMapEffectivity().get(key);
+            }
+        }
+        return totalEffectivity;
+    }
 }
