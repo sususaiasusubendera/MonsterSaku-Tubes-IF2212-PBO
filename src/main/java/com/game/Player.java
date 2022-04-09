@@ -14,8 +14,8 @@ public class Player {
 		this.name = name;
 		this.listOfMonster = new ArrayList<Monster>();
 		for (int i = 0; i < 6; i++) {
-			int randomMonster = new Random().nextInt(Reader.listMonster.size());
-			Monster mons = Reader.listMonster.get(randomMonster);
+			int randomMonster = new Random().nextInt(Reader.getGameMonsters().size());
+			Monster mons = Reader.getGameMonsters().get(randomMonster);
 			this.listOfMonster.add(mons);
 		}
 		int rando = new Random().nextInt(listOfMonster.size());

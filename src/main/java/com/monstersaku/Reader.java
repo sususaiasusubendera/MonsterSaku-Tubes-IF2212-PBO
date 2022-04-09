@@ -6,6 +6,7 @@ import com.monster.*;
 import com.monstersaku.util.CSVReader;
 
 import java.io.File;
+import java.lang.annotation.ElementType;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,82 +17,30 @@ import javax.lang.model.element.Element;
 import java.util.ArrayList;
 
 public class Reader {
-    private static final List<String> CSV_FILE_PATHS = Collections.unmodifiableList(Arrays.asList(
-            "configs/monsterpool.csv",
-            "configs/movepool.csv",
-            "configs/element-type-effectivity-chart.csv"));
-/***
-    public static void main(String[] args) {
-        for (String fileName : CSV_FILE_PATHS) {
-            try {
-                System.out.printf("Filename: %s\n", fileName);
-                CSVReader reader = new CSVReader(new File(Main.class.getResource(fileName).toURI()), ";");
-                reader.setSkipHeader(true);
-                List<String[]> lines = reader.read();
-                System.out.println("=========== CONTENT START ===========");
-                for (String[] line : lines) {
-                    for (String word : line) {
-                        System.out.printf("%s ", word);
-                    }
-                    System.out.println();
-                }
-                System.out.println("=========== CONTENT END ===========");
-                System.out.println();
-            } catch (Exception e) {
-                // do nothing
-            }
-        }
+    private static List<Monster> listMonster = new ArrayList<Monster>();
+    private static List<Move> listMove = new ArrayList<Move>();
+    private static HashMap<String, Double> mapEffectivity = new HashMap<String, Double>();
+    
+
+    // Getter
+
+    public static List<Monster> getGameMonsters(){
+        return listMonster;
     }
-***/
-    public static List<Monster> listMonster = new ArrayList<Monster>();
-    public static List<Move> listMove = new ArrayList<Move>();
-    {
-        
-        // baca movepool.csv
-        try {
-            CSVReader reader = new CSVReader(new File(Main.class.getResource("configs/movepool.csv").toURI()), ";");
-            reader.setSkipHeader(true);
-            List<String[]> lines = reader.read();
-            for (String[] line : lines) {
-                // id
-                Integer id = Integer.parseInt(line[0]);
-                // moveType 
-                String mvType = line[1];
-                // move name
-                String mvName = line[2];
-                // element type
-                ElementType elType = ElementType.valueOf(line[3]);
-                // accuracy
-                Integer accuracy = Integer.parseInt(line[4]);
-                // priority
-                Integer priority = Integer.parseInt(line[5]);
-                // ammunition
-                Integer ammunition = Integer.parseInt(line[6]);
-                // target
-                TargetOfMove tOfMove = TargetOfMove.valueOf(line[7]);
-                // effect (non status vs status move)
-                if (mvType.equals("STATUS")) {
-                    // bentuk object status move
-                    String effect = line[8];
-                    String statsEffect = line[9];
-                    String[] arrStatsEffect = statsEffect.split(",", 10);
-                    Double healHP = Double.parseDouble(arrStatsEffect[0]);
-                    StatusMove move = new StatusMove(id, mvName, elType, accuracy, priority, ammunition, effect, healHP);
-                    // tambahkan ke list moves
-                    listMove.add(move);
-                } else {
-                    // bentuk object move jenis selain status move
-                    Double damage = Double.parseDouble(line[8]);
-                    
-                    Move move = new Move(id, mvName, mvType, elType, accuracy, priority, ammunition);
-                    
-                    
-                    // tambahkan ke list moves
-                    listMove.add(move);
-                }               
-                // karna ga ngerjain bonus, status move cuma ngasih dampak ke status condition dan heal HP
-            }
-        // baca monsterpool.csv
+
+    public static List<Move> getGameMoves(){
+        return listMove;
+    }
+
+    public static HashMap<String, Double> getGameMapEffectivity(){
+        return mapEffectivity;
+    }
+
+
+    // Setter (Tanpa parameter, lokasi dan nama file tetap)
+
+    public static void setGameMonsters(){
+        try{
             CSVReader reader2 = new CSVReader(new File(Main.class.getResource("configs/monsterpool.csv").toURI()), ";");
             reader2.setSkipHeader(true);
             List<String[]> lines2 = reader2.read();
@@ -105,9 +54,9 @@ public class Reader {
                 // elementTypes
                 String elType = line[2];
                 String[] arrET = elType.split(",", 10);
-                List<ElementType> elTypes = new ArrayList<ElementType>();
+                List<com.monster.ElementType> elTypes = new ArrayList<com.monster.ElementType>();
                 for (String et : arrET) {
-                    ElementType x = ElementType.valueOf(et);
+                    com.monster.ElementType x = com.monster.ElementType.valueOf(et);
                     elTypes.add(x);
                 }
                 
@@ -131,11 +80,65 @@ public class Reader {
 
                 // buat object monster
                 Monster monster = new Monster(id, name, elTypes, baseStats, theMoves);
+                // tambahkan ke listMonster
                 listMonster.add(monster);
             }
-            // baca element type effectivity
-            // enaknya dibuat apa ya? hash map?
-            HashMap<String, Double> listEffectivity = new HashMap<String, Double>();
+        } catch (Exception e){
+            //apaya
+        }
+    }
+
+    public static void setGameMoves(){
+        try {
+            CSVReader reader = new CSVReader(new File(Main.class.getResource("configs/movepool.csv").toURI()), ";");
+            reader.setSkipHeader(true);
+            List<String[]> lines = reader.read();
+            for (String[] line : lines) {
+                // id
+                Integer id = Integer.parseInt(line[0]);
+                // moveType 
+                String mvType = line[1];
+                // move name
+                String mvName = line[2];
+                // element type
+                com.monster.ElementType elType = com.monster.ElementType.valueOf(line[3]);
+                // accuracy
+                Integer accuracy = Integer.parseInt(line[4]);
+                // priority
+                Integer priority = Integer.parseInt(line[5]);
+                // ammunition
+                Integer ammunition = Integer.parseInt(line[6]);
+                // target
+                TargetOfMove tOfMove = TargetOfMove.valueOf(line[7]);
+                // effect (non status vs status move)
+                if (mvType.equals("STATUS")) {
+                    // bentuk object status move
+                    String effect = line[8];
+                    String statsEffect = line[9];
+                    String[] arrStatsEffect = statsEffect.split(",", 10);
+                    Double healHP = Double.parseDouble(arrStatsEffect[0]);
+                    StatusMove move = new StatusMove(id, mvName, elType, accuracy, priority, ammunition, effect, healHP);
+                    // tambahkan ke listMove
+                    listMove.add(move);
+                } else {
+                    // bentuk object move jenis selain status move
+                    Double damage = Double.parseDouble(line[8]);
+                    
+                    Move move = new Move(id, mvName, mvType, elType, accuracy, priority, ammunition);
+                    
+                    
+                    // tambahkan ke listMove
+                    listMove.add(move);
+                }               
+                // karna ga ngerjain bonus, status move cuma ngasih dampak ke status condition dan heal HP
+            }
+        } catch (Exception e) {
+            //apaya
+        }
+    }
+
+    public static void setGameMapEffectivity(){
+        try{
             CSVReader reader3 = new CSVReader(new File(Main.class.getResource("configs/element-type-effectivity-chart.csv").toURI()), ";");
             reader3.setSkipHeader(true);
             List<String[]> lines3 = reader3.read();
@@ -148,10 +151,35 @@ public class Reader {
                 Double effectivity = Double.parseDouble(line[2]);
                 // add ke hash map
                 String snt = source.name()+target.name();
-                listEffectivity.put(snt, effectivity);
+                mapEffectivity.put(snt, effectivity);
             }
-        } catch (Exception e) {
+        } catch (Exception e){
             //apaya
         }
     }
+
 }
+    
+/***
+    public static void main(String[] args) {
+        for (String fileName : CSV_FILE_PATHS) {
+            try {
+                System.out.printf("Filename: %s\n", fileName);
+                CSVReader reader = new CSVReader(new File(Main.class.getResource(fileName).toURI()), ";");
+                reader.setSkipHeader(true);
+                List<String[]> lines = reader.read();
+                System.out.println("=========== CONTENT START ===========");
+                for (String[] line : lines) {
+                    for (String word : line) {
+                        System.out.printf("%s ", word);
+                    }
+                    System.out.println();
+                }
+                System.out.println("=========== CONTENT END ===========");
+                System.out.println();
+            } catch (Exception e) {
+                // do nothing
+            }
+        }
+    }
+***/

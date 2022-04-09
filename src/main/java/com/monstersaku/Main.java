@@ -21,6 +21,34 @@ public class Main {
             "configs/monsterpool.csv",
             "configs/movepool.csv",
             "configs/element-type-effectivity-chart.csv"));
+    private static List<Monster> listMonster;
+    private static List<Move> listMove;
+    private static HashMap<String, Double> mapEffectivity;
+    
+    public static List<Monster> getGameMonsters(){
+        return listMonster;
+    }
+
+    public static List<Move> getGameMoves(){
+        return listMove;
+    }
+
+    public static HashMap<String, Double> getGameMapEffectivity(){
+        return mapEffectivity;
+    }
+
+    public static void setGameMonsters(List<Monster> inputList){
+        listMonster = inputList;
+    }
+
+    public static void setGameMoves(List<Move> inputList){
+        listMove = inputList;
+    }
+
+    public static void setGameMapEffectivity(HashMap<String, Double> inputMap){
+        mapEffectivity = inputMap;
+    }
+    
 /***
     public static void main(String[] args) {
         for (String fileName : CSV_FILE_PATHS) {
@@ -45,8 +73,9 @@ public class Main {
     }
 ***/
     public static void main(String[] args) {
-        List<Monster> listMonster = new ArrayList<Monster>();
-        List<Move> listMove = new ArrayList<Move>();
+        List<Move>              moves           = new ArrayList<Move>();
+        List<Monster>           monsters        = new ArrayList<Monster>();
+        HashMap<String, Double> effectivities   = new HashMap<String, Double>();
         // baca movepool.csv
         try {
             CSVReader reader = new CSVReader(new File(Main.class.getResource("configs/movepool.csv").toURI()), ";");
@@ -77,8 +106,9 @@ public class Main {
                     String[] arrStatsEffect = statsEffect.split(",", 10);
                     Double healHP = Double.parseDouble(arrStatsEffect[0]);
                     StatusMove move = new StatusMove(id, mvName, elType, accuracy, priority, ammunition, effect, healHP);
-                    // tambahkan ke list moves
-                    listMove.add(move);
+                    // tambahkan ke listMove
+                    moves.add(move);
+                    setGameMoves(moves);
                 } else {
                     // bentuk object move jenis selain status move
                     Double damage = Double.parseDouble(line[8]);
@@ -86,8 +116,9 @@ public class Main {
                     Move move = new Move(id, mvName, mvType, elType, accuracy, priority, ammunition);
                     
                     
-                    // tambahkan ke list moves
-                    listMove.add(move);
+                    // tambahkan ke listMove
+                    moves.add(move);
+                    setGameMoves(moves);
                 }               
                 // karna ga ngerjain bonus, status move cuma ngasih dampak ke status condition dan heal HP
             }
@@ -131,11 +162,12 @@ public class Main {
 
                 // buat object monster
                 Monster monster = new Monster(id, name, elTypes, baseStats, theMoves);
-                listMonster.add(monster);
+                // tambahkan ke listMonster
+                monsters.add(monster);
+                setGameMonsters(monsters);
             }
             // baca element type effectivity
             // enaknya dibuat apa ya? hash map?
-            HashMap<String, Double> listEffectivity = new HashMap<String, Double>();
             CSVReader reader3 = new CSVReader(new File(Main.class.getResource("configs/element-type-effectivity-chart.csv").toURI()), ";");
             reader3.setSkipHeader(true);
             List<String[]> lines3 = reader3.read();
@@ -148,7 +180,8 @@ public class Main {
                 Double effectivity = Double.parseDouble(line[2]);
                 // add ke hash map
                 String snt = source.name()+target.name();
-                listEffectivity.put(snt, effectivity);
+                effectivities.put(snt, effectivity);
+                setGameMapEffectivity(effectivities);
             }
         } catch (Exception e) {
             //apaya
