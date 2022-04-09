@@ -28,8 +28,8 @@ public class SpecialMove extends Move {
 
     public void specialMove(Monster originMons, Monster targetMons) {
 
-        basePower = originMons.getBaseStats().getSpecialAttack() - targetMons.getBaseStats().getSpecialDefense();
-        double newHP = targetMons.getBaseStats().getHealthPoint() - basePower;
+        double damage = originMons.getBaseStats().getSpecialAttack() - targetMons.getBaseStats().getSpecialDefense();
+        double newHP = targetMons.getBaseStats().getHealthPoint() - damage;
         originMons.getBaseStats().setHealthPoint(newHP);
     }
 

@@ -83,6 +83,11 @@ public class Move {
         return targetOfMove;
     }
 
+    public String getMoveName() {
+
+        return moveName;
+    }
+
     // Method
 
     public void useMove (Monster originMons, Monster targetMons) {
