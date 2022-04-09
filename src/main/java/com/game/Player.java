@@ -13,10 +13,12 @@ public class Player {
 	public Player(String name) {
 		this.name = name;
 		this.listOfMonster = new ArrayList<Monster>();
+		List<Monster> monstercandidates = Reader.getGameMonsters();
 		for (int i = 0; i < 6; i++) {
-			int randomMonster = new Random().nextInt(Reader.getGameMonsters().size());
-			Monster mons = Reader.getGameMonsters().get(randomMonster);
+			int randomMonster = new Random().nextInt(monstercandidates.size());
+			Monster mons = monstercandidates.get(randomMonster);
 			this.listOfMonster.add(mons);
+			monstercandidates.remove(mons);
 		}
 		int rando = new Random().nextInt(listOfMonster.size());
 		this.currentMonster = listOfMonster.get(rando);
