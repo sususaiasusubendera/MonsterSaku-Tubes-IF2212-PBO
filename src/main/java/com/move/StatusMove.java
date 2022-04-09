@@ -8,16 +8,16 @@ import java.util.Random;
 public class StatusMove extends Move {
 
     protected String statsEffect; // nama nya aku ubah biar gak sama kayak effect yang double.
-    protected double healHP;
+    protected double healPercentage;
     protected int id;
 
     public StatusMove(int id,String moveName, ElementType elementType, int accuracy, int priority,
-                      int ammunition, TargetOfMove targetOfMove, String statsEffect, Double healHP) {
+                      int ammunition, TargetOfMove targetOfMove, String statsEffect, Double healPercentage) {
 
         super(moveName, "STATUS", elementType, accuracy, priority, ammunition,targetOfMove);
         this.id = id;
         this.statsEffect = statsEffect;
-        this.healHP = healHP;
+        this.healPercentage = healPercentage;
     }
 
     // Getter
@@ -26,8 +26,8 @@ public class StatusMove extends Move {
         return statsEffect;
     }
 
-    public double getHealHP() {
-        return healHP;
+    public double getHealPercentage() {
+        return healPercentage;
     }
 
     public int getId() {
@@ -40,8 +40,8 @@ public class StatusMove extends Move {
         this.statsEffect = statsEffect;
     }
 
-    public void setHealHP(double healHP) {
-        this.healHP = healHP;
+    public void setHealPercentage(double healPercentage) {
+        this.healPercentage = healPercentage;
     }
 
     public void setId(int id) {

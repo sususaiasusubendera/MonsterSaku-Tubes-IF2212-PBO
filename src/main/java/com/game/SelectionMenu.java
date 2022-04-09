@@ -46,17 +46,19 @@ public class SelectionMenu {
                 if (move instanceof StatusMove) {
                     StatusMove statusMove = (StatusMove)move;
                     double currHP = source.getCurrentMonster().getBaseStats().getHealthPoint();
-                    source.getCurrentMonster().getBaseStats().setHealthPoint(currHP + statusMove.getHealHP());
+                    double healHP = source.getCurrentMonster().getMaxHP()*statusMove.getHealPercentage()/100;
+                    source.getCurrentMonster().getBaseStats().setHealthPoint(currHP + healHP);
                 }
             } else if (move.getTargetOfMove() == TargetOfMove.ENEMY) {
                 if (move instanceof NormalMove) {
                     NormalMove normalMove = (NormalMove)move;
-                    // damage calculation menyusulll
+                    DamageCalculation.normalDamage(source, target, normalMove);
                 } else if (move instanceof SpecialMove) {
                     SpecialMove specialMove = (SpecialMove)move;
-                    // damage calcu mnyusul
+                    DamageCalculation.specialDamage(source, target, specialMove);
                 } else if (move instanceof DefaultMove) {
-                    //aaaaaaaaaaaaaaaaaaaaaa
+                    DefaultMove defaultMove = (DefaultMove)move;
+                    DamageCalculation.defaultDamage(source, target, defaultMove);
                 } else if (move instanceof StatusMove) {
                     StatusMove statusMove = (StatusMove)move;
                     if (statusMove.getEffect().equals("BURN")) {
