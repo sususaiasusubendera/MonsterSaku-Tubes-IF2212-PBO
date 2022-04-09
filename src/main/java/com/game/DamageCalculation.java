@@ -63,8 +63,10 @@ public class DamageCalculation {
         double statusMultiplier = 0;
         if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.BURN) {
             statusMultiplier = 1/8;
-        } else {
+        } else if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.POISON) {
             statusMultiplier = 1/16;
+        } else {
+            statusMultiplier = 0;
         }
         double damage = Math.floor(maxHPMons*statusMultiplier);
         double currHP = target.getCurrentMonster().getBaseStats().getHealthPoint();
