@@ -17,7 +17,7 @@ public class DamageCalculation {
             burnfactor = 1;
         }
         Random rand = new Random();
-        int randomInt = rand.nextInt(100-85) + 85;
+        int randomInt = rand.nextInt(100-85+1) + 85;
         double ranDouble = randomInt/100;
         double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getAttack()/target.getCurrentMonster().getBaseStats().getDefense())+2)*(ranDouble)*(burnfactor));
         double newHP = target.getCurrentMonster().getBaseStats().getHealthPoint() - damage;

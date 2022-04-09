@@ -66,7 +66,7 @@ public class StatusMove extends Move {
         // gabisa gerak selama x giliran
         Random rand = new Random();
         int upperbound = 8;
-        int x = rand.nextInt(upperbound);
+        int x = rand.nextInt(upperbound-1) + 1;
         target.getCurrentMonster().getCondi().setSleepCount(x);
     }
 
