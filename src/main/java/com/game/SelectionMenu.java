@@ -33,12 +33,16 @@ public class SelectionMenu {
         System.out.println("Pilih monster: ");
         p.printMonsters();
         int monsPick = scanner.nextInt();
+        p.setCurrentMonster(p.getListOfMonster().get(monsPick-1));
+
+        /*** ini gk perlu gk sih? soalnya kalo monsternya mati dihapus dari list
         if (p.getListOfMonster().get(monsPick-1).getBaseStats().getHealthPoint() == 0) {
             System.out.println("Sorry, monsternya udah mati");
             SelectionMenu.chooseMonster(p);
         } else {
             p.setCurrentMonster(p.getListOfMonster().get(monsPick-1));
         }
+        ***/
     }
 // ini usemove blm beres
     public static void useMove(Player source, Player target, Move move) {
@@ -70,6 +74,7 @@ public class SelectionMenu {
         SelectionMenu.useMove(gofirst, gosecond, movefirst);
         if (gosecond.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
             System.out.println("Yah, monster kamu mati :(");
+            // hapus monster dari list
             ArrayList<Monster> monsters = gosecond.getListOfMonster();
             monsters.remove(gosecond.getCurrentMonster());
             gosecond.setListofMonster(monsters);
@@ -82,6 +87,7 @@ public class SelectionMenu {
             SelectionMenu.useMove(gosecond, gofirst, movesecond);
             if (gofirst.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
                 System.out.println("Yah, monster kamu mati :(");
+                // hapus monster dari list
                 ArrayList<Monster> monsters = gofirst.getListOfMonster();
                 monsters.remove(gofirst.getCurrentMonster());
                 gofirst.setListofMonster(monsters);

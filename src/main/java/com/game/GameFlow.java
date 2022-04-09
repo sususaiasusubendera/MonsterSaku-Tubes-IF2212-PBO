@@ -128,6 +128,7 @@ public class GameFlow {
                         // jika monster p2 mati setelah p1 melakukan move
                         if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
                             System.out.println("Yah, monster kamu mati :(");
+                            // hapus monster dari list
                             ArrayList<Monster> monsters = p2.getListOfMonster();
                             monsters.remove(p2.getCurrentMonster());
                             p2.setListofMonster(monsters);
@@ -152,6 +153,7 @@ public class GameFlow {
                         // jika monsternya p1 mati
                         if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
                             System.out.println("Yah, monster kamu mati :(");
+                            // hapus monster dari list
                             ArrayList<Monster> monsters = p1.getListOfMonster();
                             monsters.remove(p1.getCurrentMonster());
                             p1.setListofMonster(monsters);
