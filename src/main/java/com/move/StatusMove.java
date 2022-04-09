@@ -38,11 +38,10 @@ public class StatusMove extends Move {
     }
 
     // Method
-
     public void statusMove(Monster originMons, Monster targetMons) {
 
         // Hanya memberikan dampak pada status condition
-        // Menyembuhkan HP?? duh gakebayang
+        // Menyembuhkan HP?
 
     }
 

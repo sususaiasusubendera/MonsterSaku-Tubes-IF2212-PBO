@@ -11,7 +11,7 @@ public class DefaultMove extends Move {
 
     public DefaultMove() {
 
-        super("DEFAULT", "DEFAULT", ElementType.NORMAL, 100, 0, 50, TargetOfMove.ENEMY);
+        super("DEFAULT", "NORMAL", ElementType.NORMAL, 100, 0, 50, TargetOfMove.ENEMY);
         this.basePower = 50;
     }
 
