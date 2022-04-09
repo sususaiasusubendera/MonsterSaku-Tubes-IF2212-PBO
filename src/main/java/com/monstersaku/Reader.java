@@ -78,7 +78,7 @@ public class Reader {
                 // tambahkan ke listMonster
                 listMonster.add(monster);
             }
-        } catch (Exception e){
+        } catch (Exception e){ // IOException atau FileNotFoundException
             //apaya
         }
     }
@@ -128,7 +128,7 @@ public class Reader {
                 }               
                 // karna ga ngerjain bonus, status move cuma ngasih dampak ke status condition dan heal HP
             }
-        } catch (Exception e) {
+        } catch (Exception e) { // IOException atau FileNotFoundException
             //apaya
         }
     }
@@ -149,7 +149,7 @@ public class Reader {
                 String snt = source.name()+target.name();
                 mapEffectivity.put(snt, effectivity);
             }
-        } catch (Exception e){
+        } catch (Exception e){ // IOException atau FileNotFoundException
             //apaya
         }
     }
