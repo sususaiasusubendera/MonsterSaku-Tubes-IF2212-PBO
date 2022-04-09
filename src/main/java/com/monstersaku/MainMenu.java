@@ -2,6 +2,8 @@ package com.monstersaku;
 
 import java.lang.System;
 import java.util.Scanner;
+import com.game.*;
+import com.monster.*;
 
 // ini blm lengkap si,, kynya bisa ditambah new player atau new game gitu ntar
 
@@ -24,4 +26,19 @@ public class MainMenu {
         System.exit(0);
     }
 
+    public static void viewMonsterInfo(Player p) {
+        for (int i = 0; i < p.getNumberOfMonster(); i++) {
+            Monster currMonster = p.getListOfMonster().get(i);
+            System.out.printf("[%d]", i);
+            System.out.println("Nama: " + currMonster.getNama());
+            System.out.println("Element Types: " + currMonster.getElementTypes());
+            System.out.printf("Base Stats: [healthPoint: %d, attack: %d, defense: %d, specialAttack: %d, specialDefense: %d, speed: %d], ", currMonster.getBaseStats().getHealthPoint(), currMonster.getBaseStats().getAttack(), currMonster.getBaseStats().getDefense(), currMonster.getBaseStats().getSpecialAttack(), currMonster.getBaseStats().getSpecialDefense(), currMonster.getBaseStats().getSpeed());
+            System.out.println("Moves: ");
+            currMonster.printMoves();            
+        }
+    }
+
+    public static void viewGameInfo(){
+        
+    }
 }
