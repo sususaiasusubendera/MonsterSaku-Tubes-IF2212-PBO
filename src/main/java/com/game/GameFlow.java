@@ -1,6 +1,8 @@
 package com.game;
 
 import java.util.*;
+
+import com.monster.Monster;
 import com.monstersaku.*;
 import com.move.*;
 
@@ -120,12 +122,32 @@ public class GameFlow {
                                 }
                             }
                         }
+
+                        // Jika salah satu monster mati
+                        if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
+                            ArrayList<Monster> monsters = p1.getListOfMonster();
+                            monsters.remove(p1.getCurrentMonster());
+                            p1.setListofMonster(monsters);
+                            if (!p1.getListOfMonster().isEmpty()){
+                                SelectionMenu.chooseMonster(p1);
+                            }
+                        } else if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
+                            ArrayList<Monster> monsters = p2.getListOfMonster();
+                            monsters.remove(p2.getCurrentMonster());
+                            p2.setListofMonster(monsters);
+                            SelectionMenu.chooseMonster(p2);
+                            if (!p2.getListOfMonster().isEmpty()){
+                                SelectionMenu.chooseMonster(p2);
+                            }
+                        }
                         
                     } else if (pilihan == 1 && pilihan2 == 2) {
                         // use move 1
                         SelectionMenu.useMove(p1, p2, move1);
+                        SelectionMenu.chooseMonster(p2);
                     } else if (pilihan == 2 && pilihan2 == 1) {
                         // use move 2
+                        SelectionMenu.chooseMonster(p1);
                         SelectionMenu.useMove(p2, p1, move2);
                     } 
 
