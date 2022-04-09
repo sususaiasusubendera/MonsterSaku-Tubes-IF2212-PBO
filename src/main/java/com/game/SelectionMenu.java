@@ -57,6 +57,17 @@ public class SelectionMenu {
                     // damage calcu mnyusul
                 } else if (move instanceof DefaultMove) {
                     //aaaaaaaaaaaaaaaaaaaaaa
+                } else if (move instanceof StatusMove) {
+                    StatusMove statusMove = (StatusMove)move;
+                    if (statusMove.getEffect().equals("BURN")) {
+                        statusMove.burn(target);
+                    } else if (statusMove.getEffect().equals("POISON")) {
+                        statusMove.poison(target);
+                    } else if (statusMove.getEffect().equals("SLEEP")) {
+                        statusMove.sleep(target);
+                    } else if (statusMove.getEffect().equals("PARALYZE")) {
+                        statusMove.paralyze(target);
+                    }
                 }
             }
             // hapus move dari list kalo ammunition udah abis
