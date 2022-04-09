@@ -4,13 +4,13 @@ import com.monster.*;
 
 public class StatusMove extends Move {
 
-    protected String effect;
+    protected String statsEffect; // nama nya aku ubah biar gak sama kayak effect yang double.
     protected double healHP;
 
-    public StatusMove(int id, String name, ElementType elementType, int accuracy, int priority,
-                      int ammunition, String effect, Double healHP) {
-        super(id, name, "STATUS", elementType, accuracy, priority, ammunition);
-        this.effect = effect;
+    public StatusMove(int id, String moveName, ElementType elementType, int accuracy, int priority,
+                      int ammunition, TargetOfMove targetOfMove, double effect, String statsEffect, Double healHP) {
+        super(id,"STATUS",moveName, elementType, accuracy, priority, ammunition, targetOfMove, effect);
+        this.statsEffect = statsEffect;
         this.healHP = healHP;
     }
 
@@ -32,6 +32,7 @@ public class StatusMove extends Move {
     }
 
     // Setter
+
     public void setEffect(String effect) {
         this.effect = effect;
     }
