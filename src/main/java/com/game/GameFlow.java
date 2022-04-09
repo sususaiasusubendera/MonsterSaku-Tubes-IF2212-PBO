@@ -65,40 +65,6 @@ public class GameFlow {
                     // compare move
                     if (pilihan == 1 && pilihan2 == 1) {
                         if (move1.getPriority() > move2.getPriority()) {
-                            /*** ini ada di selectionMenu
-                            if (new Random().nextDouble() <= (move1.getAccuracy()/100)) {
-                                if(move1.getTarget() == TargetOfMove.OWN) {
-                                    if (move1 instanceof StatusMove) {
-                                        StatusMove statusMove = (StatusMove)move1;
-                                        p1.getCurrentMonster().getBaseStats().setHealthPoint(statusMove.getHealHP());
-                                    }
-                                } else if (move1.getTarget() == TargetOfMove.ENEMY) {
-                                    if (move1 instanceof NormalMove) {
-                                        NormalMove normalMove = (NormalMove)move1;
-                                        // damage calculation menyusulll
-                                    } else if (move1 instanceof SpecialMove) {
-                                        SpecialMove specialMove = (SpecialMove)move1;
-                                        // damage calcu mnyusul
-                                    } else if (move1 instanceof DefaultMove) {
-                                        //aaaaaaaaaaaaaaaaaaaaaa
-                                    }
-                                } // dibuat sesuatu semacam useMove????
-                            } else {
-                                System.out.println("Player " + p1.getName() + "gagal melakukan move");
-                            }
-                            // SIMPLIFIED
-                            SelectionMenu.useMove(p1, p2, move1);
-                            if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
-                                System.out.println("Yah, monster kamu mati :( ganti yak");
-                                SelectionMenu.chooseMonster(p2);
-                            } else {
-                                SelectionMenu.useMove(p2, p1, move2);
-                                if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
-                                    System.out.println("Yah, monster kamu mati :( ganti yak");
-                                    SelectionMenu.chooseMonster(p1);
-                                }
-                            }
-                            ***/
                             // p1 move duluan
                             SelectionMenu.battle(p1, p2, move1, move2);
                         } else if (move1.getPriority() < move2.getPriority()) {
