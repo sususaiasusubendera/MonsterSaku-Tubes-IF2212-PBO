@@ -31,7 +31,7 @@ public class MainMenu {
             System.out.printf("[%d]", i);
             System.out.println("Nama: " + currMonster.getNama());
             System.out.println("Element Types: " + currMonster.getElementTypes());
-            System.out.printf("Base Stats: [healthPoint: %d, attack: %d, defense: %d, specialAttack: %d, specialDefense: %d, speed: %d], ", currMonster.getBaseStats().getHealthPoint(), currMonster.getBaseStats().getAttack(), currMonster.getBaseStats().getDefense(), currMonster.getBaseStats().getSpecialAttack(), currMonster.getBaseStats().getSpecialDefense(), currMonster.getBaseStats().getSpeed());
+            System.out.printf("Base Stats: [healthPoint: %f, attack: %f, defense: %f, specialAttack: %f, specialDefense: %f, speed: %f], ", currMonster.getBaseStats().getHealthPoint(), currMonster.getBaseStats().getAttack(), currMonster.getBaseStats().getDefense(), currMonster.getBaseStats().getSpecialAttack(), currMonster.getBaseStats().getSpecialDefense(), currMonster.getBaseStats().getSpeed());
             System.out.println("Moves: ");
             currMonster.printMoves();            
         }

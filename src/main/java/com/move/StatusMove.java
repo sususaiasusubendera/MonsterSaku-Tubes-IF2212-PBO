@@ -68,6 +68,7 @@ public class StatusMove extends Move {
         int upperbound = 8;
         int x = rand.nextInt(upperbound-1) + 1;
         target.getCurrentMonster().getCondi().setSleepCount(x+1);
+        System.out.println("Sleep sebanyak " + (x+1) + " giliran");
     }
 
     public void paralyze(Player target) {
@@ -78,6 +79,7 @@ public class StatusMove extends Move {
         // mungkin gabisa gerak
         if (new Random().nextDouble() <= 0.25) {
             target.getCurrentMonster().getCondi().setCanMove(false);
+            System.out.println("Tidak bisa bergerak di giliran selanjutnya!");
         }
         // GIMANA BIAR ABIS SEKALI GAGAL MOVE, ABIS ITU BOLEH MOVE LAGI?
     }

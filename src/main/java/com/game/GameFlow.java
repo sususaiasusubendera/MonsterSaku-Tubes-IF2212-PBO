@@ -44,10 +44,26 @@ public class GameFlow {
                     SelectionMenu.decrementSleepCount(p1);
                     SelectionMenu.decrementSleepCount(p2);
                     // turn player 1
+                    System.out.println("Ronde: " + ronde);
                     System.out.println("Giliran: " + p1.getName());
+                    System.out.println("Monstermu: " + p1.getCurrentMonster().getNama());
                     System.out.println("Pilih menu!");
-                    System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
-                    int pilihan = scanner.nextInt();
+                    int pilihan = 0;
+                    while (pilihan != 1 && pilihan != 2) {
+                        System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
+                        System.out.printf("Pilihanku: ");
+                        pilihan = scanner.nextInt();
+                        if (pilihan == 3) {
+                            MainMenu.help();
+                        } else if (pilihan == 4) {
+                            MainMenu.exit();
+                        } else if (pilihan == 5) {
+                            MainMenu.viewMonsterInfo(p1);
+                        } else if (pilihan == 6) {
+                            MainMenu.viewGameInfo();
+                        }
+                    }
+                    
                     Move move1 = null;
                     if (pilihan == 1) {
                         if (p1.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.SLEEP) {
@@ -91,9 +107,23 @@ public class GameFlow {
 
                     // turn player 2
                     System.out.println("Giliran: " + p2.getName());
+                    System.out.println("Monstermu: " + p2.getCurrentMonster().getNama());
                     System.out.println("Pilih menu!");
-                    System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
-                    int pilihan2 = scanner.nextInt();
+                    int pilihan2 = 0;
+                    while (pilihan2 != 1 && pilihan2 != 2) {
+                        System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
+                        System.out.printf("Pilihanku: ");
+                        pilihan2 = scanner.nextInt();
+                        if (pilihan2 == 3) {
+                            MainMenu.help();
+                        } else if (pilihan2 == 4) {
+                            MainMenu.exit();
+                        } else if (pilihan2 == 5) {
+                            MainMenu.viewMonsterInfo(p2);
+                        } else if (pilihan2 == 6) {
+                            MainMenu.viewGameInfo();
+                        }
+                    }
                     Move move2 = null;
                     if (pilihan2 == 1) {
                         if (p2.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.SLEEP) {
@@ -167,7 +197,7 @@ public class GameFlow {
                             SelectionMenu.useMove(p1, p2, move1);
                             // jika monster p2 mati setelah p1 melakukan move
                             if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                                System.out.println("Yah, monster kamu mati :(");
+                                System.out.println("Yah, monster milik "+ p2.getName() + ", yaitu " + p2.getCurrentMonster().getNama() + ", mati :(");
                                 // hapus monster dari list
                                 ArrayList<Monster> monsters = p2.getListOfMonster();
                                 monsters.remove(p2.getCurrentMonster());
@@ -183,7 +213,7 @@ public class GameFlow {
                             SelectionMenu.useMove(p2, p1, move2);
                             // jika monster p1 mati setelah p2 melakukan move
                             if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                                System.out.println("Yah, monster kamu mati :(");
+                                System.out.println("Yah, monster milik "+ p1.getName() + ", yaitu " + p1.getCurrentMonster().getNama() + ", mati :(");
                                 // hapus monster dari list
                                 ArrayList<Monster> monsters = p1.getListOfMonster();
                                 monsters.remove(p1.getCurrentMonster());
@@ -202,7 +232,7 @@ public class GameFlow {
                         SelectionMenu.useMove(p1, p2, move1);
                         // jika monster p2 mati setelah p1 melakukan move
                         if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                            System.out.println("Yah, monster kamu mati :(");
+                            System.out.println("Yah, monster milik "+ p2.getName() + ", yaitu " + p2.getCurrentMonster().getNama() + ", mati :(");
                             // hapus monster dari list
                             ArrayList<Monster> monsters = p2.getListOfMonster();
                             monsters.remove(p2.getCurrentMonster());
@@ -220,7 +250,7 @@ public class GameFlow {
                         SelectionMenu.useMove(p2, p1, move2);
                         // jika monsternya p1 mati
                         if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                            System.out.println("Yah, monster kamu mati :(");
+                            System.out.println("Yah, monster milik "+ p1.getName() + ", yaitu " + p1.getCurrentMonster().getNama() + ", mati :(");
                             // hapus monster dari list
                             ArrayList<Monster> monsters = p1.getListOfMonster();
                             monsters.remove(p1.getCurrentMonster());
@@ -235,6 +265,13 @@ public class GameFlow {
                         System.out.println("Kalian berdua memilih SWITCH");
                         System.out.println("Lanjut ke ronde berikutnya!");
                     }
+                }
+                System.out.println("GAME OVER");
+                // cek pemenang
+                if (!p1.isAllDead()) {
+                    System.out.println("SELAMAT! " + p1.getName() + " adalah pemenangnya");
+                } else if (!p2.isAllDead()) {
+                    System.out.println("SELAMAT! " + p2.getName() + " adalah pemenangnya");
                 }
             } else if (pick == 2) {
                 MainMenu.help();

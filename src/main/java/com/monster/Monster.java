@@ -81,7 +81,7 @@ public class Monster {
     // print move
     public void printMoves() {
         for (int i = 0; i < moves.size(); i++) {
-            System.out.printf("[%d] " + moves.get(i).getMoveName(), i+1);
+            System.out.printf("[%d] " + moves.get(i).getMoveName() + "\n", i+1);
         }
     }
 }

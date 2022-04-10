@@ -45,6 +45,7 @@ public class SelectionMenu {
     }
 // ini usemove blm beres
     public static void useMove(Player source, Player target, Move move) {
+        System.out.println(source.getName() + " menggunakan " + move.getMoveName());
         double dob = new Random().nextDouble();
         double accuracy = move.getAccuracy();
         if (dob <= accuracy) {
@@ -54,6 +55,8 @@ public class SelectionMenu {
                     double currHP = source.getCurrentMonster().getBaseStats().getHealthPoint();
                     double healHP = source.getCurrentMonster().getMaxHP()*statusMove.getHealPercentage()/100;
                     source.getCurrentMonster().getBaseStats().setHealthPoint(currHP + healHP);
+                    System.out.println("Mendapatkan heal " + healHP +"%");
+                    System.out.println("HP sekarang: " + source.getCurrentMonster().getBaseStats().getHealthPoint());
                 }
             } else if (move.getTargetOfMove() == TargetOfMove.ENEMY) {
                 if (move instanceof NormalMove) {
@@ -69,12 +72,16 @@ public class SelectionMenu {
                     StatusMove statusMove = (StatusMove)move;
                     if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.NONE) {
                         if (statusMove.getEffect().equals("BURN")) {
+                            System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena BURN");
                             statusMove.burn(target);
                         } else if (statusMove.getEffect().equals("POISON")) {
+                            System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena POISON");
                             statusMove.poison(target);
                         } else if (statusMove.getEffect().equals("SLEEP")) {
+                            System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena SLEEP");
                             statusMove.sleep(target);
                         } else if (statusMove.getEffect().equals("PARALYZE")) {
+                            System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena PARALYZE");
                             statusMove.paralyze(target);
                         }
                     } else {
@@ -99,7 +106,7 @@ public class SelectionMenu {
     public static void battle(Player gofirst, Player gosecond, Move movefirst, Move movesecond) {
         SelectionMenu.useMove(gofirst, gosecond, movefirst);
         if (gosecond.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
-            System.out.println("Yah, monster kamu mati :(");
+            System.out.println("Yah, monster milik "+ gosecond.getName() + ", yaitu " + gosecond.getCurrentMonster().getNama() + ", mati :(");
             // hapus monster dari list
             ArrayList<Monster> monsters = gosecond.getListOfMonster();
             monsters.remove(gosecond.getCurrentMonster());
@@ -112,7 +119,7 @@ public class SelectionMenu {
         } else {
             SelectionMenu.useMove(gosecond, gofirst, movesecond);
             if (gofirst.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
-                System.out.println("Yah, monster kamu mati :(");
+                System.out.println("Yah, monster milik "+ gofirst.getName() + ", yaitu " + gofirst.getCurrentMonster().getNama() + ", mati :(");
                 // hapus monster dari list
                 ArrayList<Monster> monsters = gofirst.getListOfMonster();
                 monsters.remove(gofirst.getCurrentMonster());
