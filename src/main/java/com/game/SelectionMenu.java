@@ -1,10 +1,12 @@
 package com.game;
 
-import com.monster.*;
+import com.monster.Monster;
 import com.monstersaku.StatusCondition;
-
-import java.util.*;
 import com.move.*;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 // selection menu aku masukin semua method jadinya,, kayanya namanya sabi diubah tp kalo males gausa HEHE sorry
 public class SelectionMenu {

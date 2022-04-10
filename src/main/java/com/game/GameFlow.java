@@ -1,10 +1,14 @@
 package com.game;
 
-import java.util.*;
-
 import com.monster.Monster;
-import com.monstersaku.*;
-import com.move.*;
+import com.monstersaku.MainMenu;
+import com.monstersaku.Reader;
+import com.monstersaku.StatusCondition;
+import com.move.Move;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 public class GameFlow {
 
@@ -88,7 +92,7 @@ public class GameFlow {
                     // turn player 2
                     System.out.println("Giliran: " + p2.getName());
                     System.out.println("Pilih menu!");
-                    System.out.printf("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
+                    System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
                     int pilihan2 = scanner.nextInt();
                     Move move2 = null;
                     if (pilihan2 == 1) {
