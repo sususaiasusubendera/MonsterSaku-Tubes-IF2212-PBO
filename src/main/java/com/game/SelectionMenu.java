@@ -43,7 +43,9 @@ public class SelectionMenu {
     }
 // ini usemove blm beres
     public static void useMove(Player source, Player target, Move move) {
-        if (new Random().nextDouble() <= (move.getAccuracy()/100)) {
+        double dob = new Random().nextDouble();
+        double accuracy = move.getAccuracy();
+        if (dob <= accuracy) {
             if(move.getTargetOfMove() == TargetOfMove.OWN) {
                 if (move instanceof StatusMove) {
                     StatusMove statusMove = (StatusMove)move;
