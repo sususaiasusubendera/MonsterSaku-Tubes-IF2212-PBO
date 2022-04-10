@@ -8,7 +8,7 @@ public class Move {
     protected String moveType;
     protected String moveName;
     protected ElementType elementType;
-    protected int accuracy;
+    protected double accuracy;
     protected int priority;
     protected int ammunition;
     protected TargetOfMove targetOfMove;
@@ -18,7 +18,7 @@ public class Move {
     // Konstruktor Kelas Move
     // id berisi bilangan bulat positif unik
 
-    public Move(String moveName, String moveType, ElementType elementType,int accuracy,
+    public Move(String moveName, String moveType, ElementType elementType,double accuracy,
                 int priority, int ammunition, TargetOfMove targetOfMove) {
 
         this.moveName = moveName;
@@ -33,7 +33,7 @@ public class Move {
 
     // Setter
 
-    public void setAccuracy (int accuracy) {
+    public void setAccuracy (double accuracy) {
 
         this.accuracy = accuracy;
     }
@@ -60,7 +60,7 @@ public class Move {
         return this.elementType;
     }
 
-    public int getAccuracy() {
+    public double getAccuracy() {
 
         return accuracy;
     }
