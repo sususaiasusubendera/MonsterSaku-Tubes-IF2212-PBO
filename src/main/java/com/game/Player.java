@@ -74,4 +74,21 @@ public class Player {
             System.out.printf("[%d] " + listOfMonster.get(i).getNama(),"\n", i+1);
         }
 	}
+
+	// ngecekin kalo semua monsternya kena sleep
+	public boolean isAllSleep() {
+		// cek dulu monster lain ada yg gapunya sleep kah
+		int nom = getNumberOfMonster();
+		int sleepmonster = 0;
+		for (Monster m : this.getListOfMonster()) {
+            if (m.getCondi().getSleepCount() > 0) {
+				sleepmonster += 1;
+			}
+		}
+		if (nom == sleepmonster) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

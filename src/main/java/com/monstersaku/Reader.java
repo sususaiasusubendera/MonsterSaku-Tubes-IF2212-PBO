@@ -36,7 +36,7 @@ public class Reader {
 
     public static void setGameMonsters(){
         try{
-            CSVReader reader2 = new CSVReader(new File(Main.class.getResource("configs/monsterpool.csv").toURI()), ";");
+            CSVReader reader2 = new CSVReader(new File(Reader.class.getResource("configs/monsterpool.csv").toURI()), ";");
             reader2.setSkipHeader(true);
             List<String[]> lines2 = reader2.read();
             for (String[] line : lines2) {
@@ -85,7 +85,7 @@ public class Reader {
 
     public static void setGameMoves(){
         try {
-            CSVReader reader = new CSVReader(new File(Main.class.getResource("configs/movepool.csv").toURI()), ";");
+            CSVReader reader = new CSVReader(new File(Reader.class.getResource("configs/movepool.csv").toURI()), ";");
             reader.setSkipHeader(true);
             List<String[]> lines = reader.read();
             for (String[] line : lines) {
@@ -135,7 +135,7 @@ public class Reader {
 
     public static void setGameMapEffectivity(){
         try{
-            CSVReader reader3 = new CSVReader(new File(Main.class.getResource("configs/element-type-effectivity-chart.csv").toURI()), ";");
+            CSVReader reader3 = new CSVReader(new File(Reader.class.getResource("configs/element-type-effectivity-chart.csv").toURI()), ";");
             reader3.setSkipHeader(true);
             List<String[]> lines3 = reader3.read();
             for (String[] line : lines3) {

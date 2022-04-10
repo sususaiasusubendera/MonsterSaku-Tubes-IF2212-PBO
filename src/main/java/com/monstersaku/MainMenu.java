@@ -1,7 +1,6 @@
 package com.monstersaku;
 
 import java.lang.System;
-import java.util.Scanner;
 import com.game.*;
 import com.monster.*;
 

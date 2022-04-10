@@ -1,9 +1,6 @@
 package com.move;
 
 import com.monster.ElementType;
-import com.monster.Monster;
-
-import java.util.Random;
 
 public class SpecialMove extends Move {
 

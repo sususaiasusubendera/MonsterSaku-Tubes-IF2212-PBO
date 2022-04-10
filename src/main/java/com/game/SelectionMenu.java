@@ -1,6 +1,8 @@
 package com.game;
 
 import com.monster.*;
+import com.monstersaku.StatusCondition;
+
 import java.util.*;
 import com.move.*;
 
@@ -61,14 +63,18 @@ public class SelectionMenu {
                     DamageCalculation.defaultDamage(source, target, defaultMove);
                 } else if (move instanceof StatusMove) {
                     StatusMove statusMove = (StatusMove)move;
-                    if (statusMove.getEffect().equals("BURN")) {
-                        statusMove.burn(target);
-                    } else if (statusMove.getEffect().equals("POISON")) {
-                        statusMove.poison(target);
-                    } else if (statusMove.getEffect().equals("SLEEP")) {
-                        statusMove.sleep(target);
-                    } else if (statusMove.getEffect().equals("PARALYZE")) {
-                        statusMove.paralyze(target);
+                    if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.NONE) {
+                        if (statusMove.getEffect().equals("BURN")) {
+                            statusMove.burn(target);
+                        } else if (statusMove.getEffect().equals("POISON")) {
+                            statusMove.poison(target);
+                        } else if (statusMove.getEffect().equals("SLEEP")) {
+                            statusMove.sleep(target);
+                        } else if (statusMove.getEffect().equals("PARALYZE")) {
+                            statusMove.paralyze(target);
+                        }
+                    } else {
+                        System.out.println("Monster sudah memiliki Status Condition! Move gagal");
                     }
                 }
             }
@@ -115,4 +121,18 @@ public class SelectionMenu {
             }
         }
     }
+
+    // ngecekin ada yg sleep atau ga, kalo ada, kurangin sleepCount semuanya tiap abis giliran
+    public static void decrementSleepCount(Player p) {
+        for (Monster m : p.getListOfMonster()) {
+            int currSC = m.getCondi().getSleepCount();
+            if (currSC > 0) {
+                m.getCondi().setSleepCount(currSC-1);
+                if (currSC == 0) {
+                    m.getCondi().setStatCondi(StatusCondition.NONE);
+                }
+            }
+        }
+    }
+
 }

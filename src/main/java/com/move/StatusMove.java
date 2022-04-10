@@ -67,7 +67,7 @@ public class StatusMove extends Move {
         Random rand = new Random();
         int upperbound = 8;
         int x = rand.nextInt(upperbound-1) + 1;
-        target.getCurrentMonster().getCondi().setSleepCount(x);
+        target.getCurrentMonster().getCondi().setSleepCount(x+1);
     }
 
     public void paralyze(Player target) {

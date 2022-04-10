@@ -1,7 +1,6 @@
 package com.move;
 
 import com.monster.*;
-import java.lang.*;
 
 public class DefaultMove extends Move {
 
