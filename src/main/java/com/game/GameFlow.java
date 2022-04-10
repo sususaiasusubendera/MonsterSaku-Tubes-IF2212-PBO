@@ -9,6 +9,10 @@ import com.move.*;
 public class GameFlow {
 
     public static void main(String[] args) {
+        Reader.setGameMonsters();
+        Reader.setGameMoves();
+        Reader.setGameMapEffectivity();
+
         System.out.println("Welcome to Monster Saku!");
         
         Scanner scanner = new Scanner(System.in);

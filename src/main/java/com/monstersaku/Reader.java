@@ -12,9 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Reader {
-    private static List<Monster> listMonster = new ArrayList<Monster>();
-    private static List<Move> listMove = new ArrayList<Move>();
-    private static HashMap<String, Double> mapEffectivity = new HashMap<String, Double>();
+    private static List<Monster> listMonster;
+    private static List<Move> listMove;
+    private static HashMap<String, Double> mapEffectivity;
     
 
     // Getter
@@ -35,8 +35,9 @@ public class Reader {
     // Setter (Tanpa parameter, lokasi dan nama file tetap)
 
     public static void setGameMonsters(){
+        listMonster = new ArrayList<Monster>();
         try{
-            CSVReader reader2 = new CSVReader(new File(Reader.class.getResource("configs/monsterpool.csv").toURI()), ";");
+            CSVReader reader2 = new CSVReader(new File(Reader.class.getResource("../../../resources/com/monstersaku/configs/monsterpool.csv").toURI()), ";");
             reader2.setSkipHeader(true);
             List<String[]> lines2 = reader2.read();
             for (String[] line : lines2) {
@@ -84,8 +85,9 @@ public class Reader {
     }
 
     public static void setGameMoves(){
+        listMove = new ArrayList<Move>();
         try {
-            CSVReader reader = new CSVReader(new File(Reader.class.getResource("configs/movepool.csv").toURI()), ";");
+            CSVReader reader = new CSVReader(new File(Reader.class.getResource("../../../resources/com/monstersaku/configs/movepool.csv").toURI()), ";");
             reader.setSkipHeader(true);
             List<String[]> lines = reader.read();
             for (String[] line : lines) {
@@ -134,8 +136,9 @@ public class Reader {
     }
 
     public static void setGameMapEffectivity(){
+        mapEffectivity = new HashMap<String, Double>();
         try{
-            CSVReader reader3 = new CSVReader(new File(Reader.class.getResource("configs/element-type-effectivity-chart.csv").toURI()), ";");
+            CSVReader reader3 = new CSVReader(new File(Reader.class.getResource("../../../resources/com/monstersaku/configs/element-type-effectivity-chart.csv").toURI()), ";");
             reader3.setSkipHeader(true);
             List<String[]> lines3 = reader3.read();
             for (String[] line : lines3) {
