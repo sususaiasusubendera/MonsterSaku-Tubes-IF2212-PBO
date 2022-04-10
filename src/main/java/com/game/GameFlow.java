@@ -13,42 +13,6 @@ public class GameFlow {
         Reader.setGameMonsters();
         Reader.setGameMapEffectivity();
 
-        // untuk debugging (Test baca file config)
-		System.out.println("/***");
-        System.out.println("Debug: Baca Move");
-        if (Reader.getGameMoves().isEmpty()){
-            System.out.println("List move kosong, reader rusak :(");
-        } else{
-            System.out.println("Move kebaca yeeeyy");
-            for (Move m : Reader.getGameMoves()){
-                System.out.printf("%s, Type: %s\n", m.getMoveName(), m.getMoveType());
-            }
-        }
-        System.out.printf("Jumlah move yang kebaca = %d\n", Reader.getGameMoves().size());
-        System.out.println("");
-        System.out.println("Debug: Baca Monster");
-		if (Reader.getGameMonsters().isEmpty()){
-			System.out.println("List monster kosong, reader rusak :(");
-		} else{
-			System.out.println("Monster kebaca yeeeyy");
-			for (Monster m : Reader.getGameMonsters()) {
-				System.out.printf("%d %s\n", m.getId(), m.getNama());
-			}
-		}
-		System.out.printf("Jumlah monster yang kebaca = %d\n", Reader.getGameMonsters().size());
-        System.out.println("");
-        System.out.println("Debug: Baca Effectivity");
-        if (Reader.getGameMapEffectivity().isEmpty()){
-            System.out.println("Map effectivity kosong, reader rusak :(");
-        } else{
-            System.out.println("Effectivity kebaca yeeeyy");
-            for (String key: Reader.getGameMapEffectivity().keySet()){
-                System.out.printf("%s Value: %d\n", key, Reader.getGameMapEffectivity().get(key));
-            }
-        }
-		System.out.printf("***/\n\n");
-
-
         System.out.println("Welcome to Monster Saku!");
         
         Scanner scanner = new Scanner(System.in);

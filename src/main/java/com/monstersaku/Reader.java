@@ -1,12 +1,11 @@
 package com.monstersaku;
 // KAYANYAAA ntar main menu mau dipindah ke sini
 
-import com.monster.Monster;
+import com.monster.*;
 import com.monstersaku.util.CSVReader;
 import com.move.*;
 
 import java.io.File;
-import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,9 +48,9 @@ public class Reader {
                 // elementTypes
                 String elType = line[2];
                 String[] arrET = elType.split(",", 10);
-                List<com.monster.ElementType> elTypes = new ArrayList<com.monster.ElementType>();
+                List<ElementType> elTypes = new ArrayList<ElementType>();
                 for (String et : arrET) {
-                    com.monster.ElementType x = com.monster.ElementType.valueOf(et);
+                    ElementType x = ElementType.valueOf(et);
                     elTypes.add(x);
                 }
                 
@@ -96,7 +95,7 @@ public class Reader {
                 // move name
                 String mvName = line[2];
                 // element type
-                com.monster.ElementType elType = com.monster.ElementType.valueOf(line[3]);
+                ElementType elType = ElementType.valueOf(line[3]);
                 // accuracy
                 Integer accuracy = Integer.parseInt(line[4]);
                 // priority
@@ -150,7 +149,7 @@ public class Reader {
                 mapEffectivity.put(snt, effectivity);
             }
         } catch (Exception e){ // IOException atau FileNotFoundException
-            //apaya
+            System.err.println(e.getMessage());
         }
     }
 
