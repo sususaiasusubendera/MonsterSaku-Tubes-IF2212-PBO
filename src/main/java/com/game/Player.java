@@ -26,20 +26,6 @@ public class Player {
 		this.name = name;
 		this.listOfMonster = new ArrayList<Monster>();
 		List<Monster> monstercandidates = new ArrayList<Monster>(Reader.getGameMonsters()); // readernya kemungkinan error, soalnya listnya gk keisi
-		
-		// untuk debugging
-		System.out.println("/***");
-		if (monstercandidates.isEmpty()) {
-			System.out.println("list monster kosong, reader rusak :(");
-		} else{
-			System.out.println("monster kebaca yeeeyy");
-			for (Monster m : monstercandidates) {
-				System.out.printf("%d %s\n", m.getId(), m.getNama());
-			}
-		}
-		System.out.printf("jumlah monster yang kebaca = %d%n", monstercandidates.size());
-		System.out.println("***/");
-		System.out.println("");
 
 		for (int i = 0; i < 6; i++) {
 			int randomMonster = new Random().nextInt(monstercandidates.size());
