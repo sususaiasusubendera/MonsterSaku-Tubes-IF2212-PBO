@@ -9,8 +9,8 @@ import com.move.*;
 public class GameFlow {
 
     public static void main(String[] args) {
-        Reader.setGameMonsters();
         Reader.setGameMoves();
+        Reader.setGameMonsters();
         Reader.setGameMapEffectivity();
 
         System.out.println("Welcome to Monster Saku!");
@@ -21,6 +21,7 @@ public class GameFlow {
             System.out.println("Pilih menu: ");
             System.out.println("[1] Start Game\n[2] Help\n[3] Exit");
             int pick = scanner.nextInt();
+            System.out.println("");
             if (pick == 1) {
                 System.out.println("Mulai game");
                 System.out.println("Siapa aja yang main?");
@@ -28,6 +29,7 @@ public class GameFlow {
                 String playerName1 = scanner.next();
                 System.out.printf("2: ");
                 String playerName2 = scanner.next();
+                System.out.println("");
                 // buat players
                 Player p1 = new Player(playerName1);
                 Player p2 = new Player(playerName2);
@@ -40,7 +42,7 @@ public class GameFlow {
                     // turn player 1
                     System.out.println("Giliran: " + p1.getName());
                     System.out.println("Pilih menu!");
-                    System.out.printf("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
+                    System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
                     int pilihan = scanner.nextInt();
                     Move move1 = null;
                     if (pilihan == 1) {

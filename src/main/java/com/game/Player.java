@@ -25,17 +25,21 @@ public class Player {
 	public Player(String name) {
 		this.name = name;
 		this.listOfMonster = new ArrayList<Monster>();
-		List<Monster> monstercandidates = Reader.getGameMonsters(); // readernya kemungkinan error, soalnya listnya gk keisi
+		List<Monster> monstercandidates = new ArrayList<Monster>(Reader.getGameMonsters()); // readernya kemungkinan error, soalnya listnya gk keisi
 		
 		// untuk debugging
+		System.out.println("/***");
 		if (monstercandidates.isEmpty()) {
-			System.out.println("debug : list monster kosong, reader rusak :(");
+			System.out.println("list monster kosong, reader rusak :(");
+		} else{
+			System.out.println("monster kebaca yeeeyy");
+			for (Monster m : monstercandidates) {
+				System.out.printf("%d %s\n", m.getId(), m.getNama());
+			}
 		}
-		for (Monster m : monstercandidates) {
-			System.out.println("debug : monster kebaca yeeeyy");
-			System.out.println(m.getNama());
-		}
-		System.out.printf("debug : jumlah monster yang kebaca = %d%n", monstercandidates.size());
+		System.out.printf("jumlah monster yang kebaca = %d%n", monstercandidates.size());
+		System.out.println("***/");
+		System.out.println("");
 
 		for (int i = 0; i < 6; i++) {
 			int randomMonster = new Random().nextInt(monstercandidates.size());
@@ -45,6 +49,13 @@ public class Player {
 		}
 		int rando = new Random().nextInt(listOfMonster.size());
 		this.currentMonster = listOfMonster.get(rando);
+
+		// untuk debugging
+		System.out.println("/***");
+		System.out.printf("Monsternya %s:\n", getName());
+		printMonsters();
+		System.out.println("***/");
+		System.out.println("");
 	}
 
 	// getter
@@ -94,7 +105,8 @@ public class Player {
 
 	public void printMonsters() {
 		for (int i = 0; i < listOfMonster.size(); i++) {
-            System.out.printf("[%d] " + listOfMonster.get(i).getNama(),"\n", i+1);
+            // System.out.printf("[%d] " + listOfMonster.get(i).getNama(),"\n", i+1);
+			System.out.printf("[%d] %s\n", i+1, listOfMonster.get(i).getNama());
         }
 	}
 
