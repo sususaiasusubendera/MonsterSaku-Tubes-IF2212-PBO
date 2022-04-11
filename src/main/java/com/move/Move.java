@@ -1,7 +1,6 @@
 package com.move;
 
 import com.monster.ElementType;
-import com.monster.Monster;
 
 public class Move {
 
@@ -18,7 +17,7 @@ public class Move {
     // Konstruktor Kelas Move
     // id berisi bilangan bulat positif unik
 
-    public Move(String moveName, String moveType, ElementType elementType,double accuracy,
+    public Move(String moveName, String moveType, ElementType elementType, double accuracy,
                 int priority, int ammunition, TargetOfMove targetOfMove) {
 
         this.moveName = moveName;
@@ -30,6 +29,7 @@ public class Move {
         this.targetOfMove = targetOfMove;
 
     }
+
     public Move(Move copiedMove) {
 
         this.moveName = copiedMove.getMoveName();
@@ -44,17 +44,17 @@ public class Move {
 
     // Setter
 
-    public void setAccuracy (double accuracy) {
+    public void setAccuracy(double accuracy) {
 
         this.accuracy = accuracy;
     }
 
-    public void setPriority (int priority) {
+    public void setPriority(int priority) {
 
         this.priority = priority;
     }
 
-    public void setAmmunition (int ammunition) {
+    public void setAmmunition(int ammunition) {
 
         this.ammunition = ammunition;
     }
@@ -98,10 +98,9 @@ public class Move {
 
     // Method
 
-    public void useMove (Monster originMons, Monster targetMons) {
+    //public void useMove (Monster originMons, Monster targetMons) {
 
-        // ini bakal dimasukin ke selectionMenu karena monster milih buat gerak.
-    }
+    // ini bakal dimasukin ke selectionMenu karena monster milih buat gerak.
 }
 
 
