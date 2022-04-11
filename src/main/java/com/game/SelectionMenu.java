@@ -48,7 +48,7 @@ public class SelectionMenu {
     public static void useMove(Player source, Player target, Move move) {
         System.out.println(source.getName() + " menggunakan " + move.getMoveName());
         double dob = new Random().nextDouble();
-        double accuracy = move.getAccuracy();
+        double accuracy = move.getAccuracy()/100;
         if (dob <= accuracy) {
             if(move.getTargetOfMove() == TargetOfMove.OWN) {
                 if (move instanceof StatusMove) {

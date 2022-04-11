@@ -30,6 +30,17 @@ public class Move {
         this.targetOfMove = targetOfMove;
 
     }
+    public Move(Move copiedMove) {
+
+        this.moveName = copiedMove.getMoveName();
+        this.moveType = copiedMove.getMoveType();
+        this.elementType = copiedMove.getElementType();
+        this.accuracy = copiedMove.getAccuracy();
+        this.priority = copiedMove.getPriority();
+        this.ammunition = copiedMove.getAmmunition();
+        this.targetOfMove = copiedMove.getTargetOfMove();
+
+    }
 
     // Setter
 

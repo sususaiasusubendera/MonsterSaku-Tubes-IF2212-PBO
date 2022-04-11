@@ -1,6 +1,6 @@
 package com.monster;
 
-import java.util.List;
+import java.util.*;
 
 import com.move.Move;
 import com.monstersaku.Condition;
@@ -29,11 +29,16 @@ public class Monster {
         this.id = copiedMonster.getId();
         this.setNama(copiedMonster.getNama());
         this.setElementTypes(copiedMonster.getElementTypes());
-        Stats copiedStats = new Stats(copiedMonster.getBaseStats());
-        this.setBaseStats(copiedStats);
-        this.setMoves(copiedMonster.moves);
+        Stats copyOfStats = new Stats(copiedMonster.getBaseStats());
+        this.setBaseStats(copyOfStats);
+        List<Move> copyOfMoves = new ArrayList<Move>();
+        for (Move copiedMove : copiedMonster.getMoves()){
+            Move copyOfMove = new Move(copiedMove);
+            copyOfMoves.add(copyOfMove);
+        }
+        this.setMoves(copyOfMoves);
         this.condi = new Condition();
-        this.maxHP = copiedStats.getHealthPoint();
+        this.maxHP = copyOfStats.getHealthPoint();
     }
 
     // Getter

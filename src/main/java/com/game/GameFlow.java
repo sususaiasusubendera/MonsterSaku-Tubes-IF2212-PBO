@@ -267,7 +267,31 @@ public class GameFlow {
                         System.out.println("Lanjut ke ronde berikutnya!");
                     }
                     DamageCalculation.afterDamage(p1);
+                    if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
+                        System.out.println("Yah, monster milik "+ p1.getName() + ", yaitu " + p1.getCurrentMonster().getNama() + ", mati :(");
+                        // hapus monster dari list
+                        ArrayList<Monster> monsters = p1.getListOfMonster();
+                        monsters.remove(p1.getCurrentMonster());
+                        p1.setListofMonster(monsters);
+                        // jika p1 masih punya monster
+                        if (!p1.isAllDead()){
+                            System.out.println("Yuk ganti monster");
+                            SelectionMenu.chooseMonster(p1);
+                        }
+                    }
                     DamageCalculation.afterDamage(p2);
+                    if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
+                        System.out.println("Yah, monster milik "+ p2.getName() + ", yaitu " + p2.getCurrentMonster().getNama() + ", mati :(");
+                        // hapus monster dari list
+                        ArrayList<Monster> monsters = p2.getListOfMonster();
+                        monsters.remove(p2.getCurrentMonster());
+                        p2.setListofMonster(monsters);
+                        // jika p1 masih punya monster
+                        if (!p2.isAllDead()){
+                            System.out.println("Yuk ganti monster");
+                            SelectionMenu.chooseMonster(p2);
+                        }
+                    }
                 }
                 System.out.println("GAME OVER");
                 // cek pemenang

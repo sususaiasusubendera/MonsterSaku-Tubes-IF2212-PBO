@@ -94,7 +94,12 @@ public class DamageCalculation {
         }
         double damage = Math.floor(maxHPMons*statusMultiplier);
         double currHP = target.getCurrentMonster().getBaseStats().getHealthPoint();
-        target.getCurrentMonster().getBaseStats().setHealthPoint(currHP-damage);
+        double newHP  = currHP-damage;
+        if (newHP < 0){
+            target.getCurrentMonster().getBaseStats().setHealthPoint(0);
+        } else{
+            target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
+        }
         System.out.println("HP " + target.getCurrentMonster().getNama() + " milik " + target.getName() + " saat ini: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
     }
 
