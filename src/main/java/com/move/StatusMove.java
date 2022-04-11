@@ -19,6 +19,12 @@ public class StatusMove extends Move {
         this.statsEffect = statsEffect;
         this.healPercentage = healPercentage;
     }
+    public StatusMove(StatusMove copiedStatusMove){
+        super((Move)copiedStatusMove);
+        this.id = copiedStatusMove.getId();
+        this.statsEffect = copiedStatusMove.getEffect();
+        this.healPercentage = copiedStatusMove.getHealPercentage();
+    }
 
     // Getter
 

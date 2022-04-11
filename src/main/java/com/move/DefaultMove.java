@@ -13,6 +13,11 @@ public class DefaultMove extends Move {
         super("DEFAULT", "NORMAL", ElementType.NORMAL, 100, 0, 50, TargetOfMove.ENEMY);
         this.basePower = 50;
     }
+    public DefaultMove(DefaultMove copiedDefaultMove){
+        super((Move)copiedDefaultMove);
+        this.basePower = copiedDefaultMove.getBasePower();
+    }
+
 
     public double getBasePower() {
 

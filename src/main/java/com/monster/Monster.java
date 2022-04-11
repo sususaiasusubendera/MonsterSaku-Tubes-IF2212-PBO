@@ -2,7 +2,7 @@ package com.monster;
 
 import java.util.*;
 
-import com.move.Move;
+import com.move.*;
 import com.monstersaku.Condition;
 import com.monstersaku.Stats;
 
@@ -33,8 +33,16 @@ public class Monster {
         this.setBaseStats(copyOfStats);
         List<Move> copyOfMoves = new ArrayList<Move>();
         for (Move copiedMove : copiedMonster.getMoves()){
-            Move copyOfMove = new Move(copiedMove);
-            copyOfMoves.add(copyOfMove);
+            if (copiedMove instanceof NormalMove){
+                NormalMove copyOfMove = new NormalMove((NormalMove)copiedMove);
+                copyOfMoves.add(copyOfMove);
+            } else if (copiedMove instanceof SpecialMove){
+                SpecialMove copyOfMove = new SpecialMove((SpecialMove)copiedMove);
+                copyOfMoves.add(copyOfMove);
+            } else if (copiedMove instanceof StatusMove){
+                StatusMove copyOfMove = new StatusMove((StatusMove)copiedMove);
+                copyOfMoves.add(copyOfMove);
+            }
         }
         this.setMoves(copyOfMoves);
         this.condi = new Condition();
@@ -97,6 +105,5 @@ public class Monster {
         for (int i = 0; i < moves.size(); i++) {
             System.out.printf("[%d] " + moves.get(i).getMoveName() + "\n", i+1);
         }
-        System.out.println("");
     }
 }

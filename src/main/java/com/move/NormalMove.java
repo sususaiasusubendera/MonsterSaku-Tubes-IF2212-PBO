@@ -15,7 +15,13 @@ public class NormalMove extends Move {
         this.basePower = basePower;
 
     }
+    public NormalMove(NormalMove copiedNormalMove){
+        super((Move)copiedNormalMove);
+        this.id = copiedNormalMove.getId();
+        this.basePower = copiedNormalMove.getBasePower();
+    }
 
+    
     // Getter
     public double getBasePower() {
         return basePower;

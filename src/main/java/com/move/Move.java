@@ -29,7 +29,6 @@ public class Move {
         this.targetOfMove = targetOfMove;
 
     }
-
     public Move(Move copiedMove) {
 
         this.moveName = copiedMove.getMoveName();

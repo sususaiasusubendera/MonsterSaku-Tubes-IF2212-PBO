@@ -14,6 +14,11 @@ public class SpecialMove extends Move {
         this.id = id;
         this.basePower = basePower;
     }
+    public SpecialMove(SpecialMove copiedSpecialMove){
+        super((Move)copiedSpecialMove);
+        this.id = copiedSpecialMove.getId();
+        this.basePower = copiedSpecialMove.getBasePower();
+    }
 
     // Getter
     public double getBasePower() {
