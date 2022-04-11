@@ -92,6 +92,7 @@ public class Player {
 		return listOfMonster.isEmpty();
 	}
 
+
 	public void printMonsters() {
 		for (int i = 0; i < listOfMonster.size(); i++) {
             // System.out.printf("[%d] " + listOfMonster.get(i).getNama(),"\n", i+1);
@@ -113,6 +114,20 @@ public class Player {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	// jika monsternya player mati
+	public void removeCurrMonster(){
+		System.out.println("Yah, monster milik "+ this.getName() + ", yaitu " + this.getCurrentMonster().getNama() + ", mati :(");
+		// hapus monster dari list
+		ArrayList<Monster> monsters = this.getListOfMonster();
+		monsters.remove(this.getCurrentMonster());
+		this.setListofMonster(monsters);
+		// jika target masih punya monster
+		if (!this.isAllDead()){
+			System.out.println("Yuk ganti monster");
+			SelectionMenu.chooseMonster(this);
 		}
 	}
 }

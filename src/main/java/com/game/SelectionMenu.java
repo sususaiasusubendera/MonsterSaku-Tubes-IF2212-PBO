@@ -11,6 +11,8 @@ import java.util.Scanner;
 // selection menu aku masukin semua method jadinya,, kayanya namanya sabi diubah tp kalo males gausa HEHE sorry
 public class SelectionMenu {
     static Scanner scanner = new Scanner(System.in);
+
+
     public static Move chooseMove(Player p) {
         
         System.out.println("Pilih move: ");
@@ -26,6 +28,7 @@ public class SelectionMenu {
             return (new DefaultMove());
         }
     }
+
 
     public static void chooseMonster(Player p) {
         
@@ -44,6 +47,8 @@ public class SelectionMenu {
         }
         ***/
     }
+
+
 // ini usemove blm beres
     public static void useMove(Player source, Player target, Move move) {
         System.out.println(source.getName() + " menggunakan " + move.getMoveName());
@@ -95,6 +100,7 @@ public class SelectionMenu {
                     }
                 }
             }
+
             // hapus move dari list kalo ammunition udah abis
             if (move.getAmmunition() == 0){
                 for (Move m : source.getCurrentMonster().getMoves()) {
@@ -108,36 +114,20 @@ public class SelectionMenu {
         }
     }
 
+
     // kalau kedua player sama-sama move
     public static void battle(Player gofirst, Player gosecond, Move movefirst, Move movesecond) {
         SelectionMenu.useMove(gofirst, gosecond, movefirst);
         if (gosecond.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
-            System.out.println("Yah, monster milik "+ gosecond.getName() + ", yaitu " + gosecond.getCurrentMonster().getNama() + ", mati :(");
-            // hapus monster dari list
-            ArrayList<Monster> monsters = gosecond.getListOfMonster();
-            monsters.remove(gosecond.getCurrentMonster());
-            gosecond.setListofMonster(monsters);
-            // jika masih punya monster
-            if (!gosecond.isAllDead()){
-                System.out.println("Yuk ganti monster");
-                SelectionMenu.chooseMonster(gosecond);
-            }
+            gosecond.removeCurrMonster();
         } else {
             SelectionMenu.useMove(gosecond, gofirst, movesecond);
             if (gofirst.getCurrentMonster().getBaseStats().getHealthPoint() <= 0) {
-                System.out.println("Yah, monster milik "+ gofirst.getName() + ", yaitu " + gofirst.getCurrentMonster().getNama() + ", mati :(");
-                // hapus monster dari list
-                ArrayList<Monster> monsters = gofirst.getListOfMonster();
-                monsters.remove(gofirst.getCurrentMonster());
-                gofirst.setListofMonster(monsters);
-                // jika masih punya monster
-                if (!gofirst.isAllDead()){
-                    System.out.println("Yuk ganti monster");
-                    SelectionMenu.chooseMonster(gofirst);
-                }
+                gofirst.removeCurrMonster();
             }
         }
     }
+
 
     // ngecekin ada yg sleep atau ga, kalo ada, kurangin sleepCount semuanya tiap abis giliran
     public static void decrementSleepCount(Player p) {

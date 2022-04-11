@@ -44,8 +44,10 @@ public class GameFlow {
                     ronde += 1;
                     SelectionMenu.decrementSleepCount(p1);
                     SelectionMenu.decrementSleepCount(p2);
-                    // turn player 1
+
                     System.out.println("Ronde: " + ronde);
+                    
+                    // turn player 1
                     System.out.println("Giliran: " + p1.getName());
                     System.out.println("Monstermu: " + p1.getCurrentMonster().getNama());
                     System.out.println("Current HP: " + p1.getCurrentMonster().getBaseStats().getHealthPoint());
@@ -65,7 +67,6 @@ public class GameFlow {
                             MainMenu.viewGameInfo();
                         }
                     }
-                    
                     Move move1 = null;
                     if (pilihan == 1) {
                         if (p1.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.SLEEP) {
@@ -200,32 +201,14 @@ public class GameFlow {
                             SelectionMenu.useMove(p1, p2, move1);
                             // jika monster p2 mati setelah p1 melakukan move
                             if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                                System.out.println("Yah, monster milik "+ p2.getName() + ", yaitu " + p2.getCurrentMonster().getNama() + ", mati :(");
-                                // hapus monster dari list
-                                ArrayList<Monster> monsters = p2.getListOfMonster();
-                                monsters.remove(p2.getCurrentMonster());
-                                p2.setListofMonster(monsters);
-                                // jika p2 masih punya monster lain setelah currentMonster mati
-                                if (!p2.isAllDead()) {
-                                    System.out.println("Yuk ganti monster");
-                                    SelectionMenu.chooseMonster(p2);
-                                }
+                                p2.removeCurrMonster();
                             }
                         } else if (move1 == null && move2 != null) {
                             // use move2
                             SelectionMenu.useMove(p2, p1, move2);
                             // jika monster p1 mati setelah p2 melakukan move
                             if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                                System.out.println("Yah, monster milik "+ p1.getName() + ", yaitu " + p1.getCurrentMonster().getNama() + ", mati :(");
-                                // hapus monster dari list
-                                ArrayList<Monster> monsters = p1.getListOfMonster();
-                                monsters.remove(p1.getCurrentMonster());
-                                p1.setListofMonster(monsters);
-                                // jika p1 masih punya monster lain setelah currentMonster mati
-                                if (!p1.isAllDead()) {
-                                    System.out.println("Yuk ganti monster");
-                                    SelectionMenu.chooseMonster(p1);
-                                }
+                                p1.removeCurrMonster();
                             }
                         } else if (move1 == null && move2 == null) {
                             System.out.println("WKWK gabisa move kalian");
@@ -235,62 +218,28 @@ public class GameFlow {
                         SelectionMenu.useMove(p1, p2, move1);
                         // jika monster p2 mati setelah p1 melakukan move
                         if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                            System.out.println("Yah, monster milik "+ p2.getName() + ", yaitu " + p2.getCurrentMonster().getNama() + ", mati :(");
-                            // hapus monster dari list
-                            ArrayList<Monster> monsters = p2.getListOfMonster();
-                            monsters.remove(p2.getCurrentMonster());
-                            p2.setListofMonster(monsters);
-                            // jika p2 masih punya monster lain setelah currentMonster mati
-                            if (!p2.isAllDead()){
-                                System.out.println("Yuk ganti monster");
-                                SelectionMenu.chooseMonster(p2);
-                            }
+                            p2.removeCurrMonster();
                         }
                     } else if (pilihan == 2 && pilihan2 == 1) {
                         // use move2 (p2 melakukan move)
                         SelectionMenu.useMove(p2, p1, move2);
-                        // jika monsternya p1 mati
+                        // jika monster p1 mati setelah p2 melakukan move
                         if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                            System.out.println("Yah, monster milik "+ p1.getName() + ", yaitu " + p1.getCurrentMonster().getNama() + ", mati :(");
-                            // hapus monster dari list
-                            ArrayList<Monster> monsters = p1.getListOfMonster();
-                            monsters.remove(p1.getCurrentMonster());
-                            p1.setListofMonster(monsters);
-                            // jika p1 masih punya monster
-                            if (!p1.isAllDead()){
-                                System.out.println("Yuk ganti monster");
-                                SelectionMenu.chooseMonster(p1);
-                            }
+                            p1.removeCurrMonster();
                         }
                     } else if (pilihan == 2 && pilihan2 == 2){
                         System.out.println("Kalian berdua memilih SWITCH");
                         System.out.println("Lanjut ke ronde berikutnya!");
                     }
                     DamageCalculation.afterDamage(p1);
+                    // jika monster p1 mati karena afterdamage
                     if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                        System.out.println("Yah, monster milik "+ p1.getName() + ", yaitu " + p1.getCurrentMonster().getNama() + ", mati :(");
-                        // hapus monster dari list
-                        ArrayList<Monster> monsters = p1.getListOfMonster();
-                        monsters.remove(p1.getCurrentMonster());
-                        p1.setListofMonster(monsters);
-                        // jika p1 masih punya monster
-                        if (!p1.isAllDead()){
-                            System.out.println("Yuk ganti monster");
-                            SelectionMenu.chooseMonster(p1);
-                        }
+                        p1.removeCurrMonster();
                     }
                     DamageCalculation.afterDamage(p2);
+                    // jika monster p2 mati karena afterdamage
                     if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                        System.out.println("Yah, monster milik "+ p2.getName() + ", yaitu " + p2.getCurrentMonster().getNama() + ", mati :(");
-                        // hapus monster dari list
-                        ArrayList<Monster> monsters = p2.getListOfMonster();
-                        monsters.remove(p2.getCurrentMonster());
-                        p2.setListofMonster(monsters);
-                        // jika p1 masih punya monster
-                        if (!p2.isAllDead()){
-                            System.out.println("Yuk ganti monster");
-                            SelectionMenu.chooseMonster(p2);
-                        }
+                        p2.removeCurrMonster();
                     }
                 }
                 System.out.println("GAME OVER");
