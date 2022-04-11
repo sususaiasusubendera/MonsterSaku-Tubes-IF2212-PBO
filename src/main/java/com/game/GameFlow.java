@@ -24,6 +24,7 @@ public class GameFlow {
         while (true) {
             System.out.println("Pilih menu: ");
             System.out.println("[1] Start Game\n[2] Help\n[3] Exit");
+            System.out.printf("Pilihanku: ");
             int pick = scanner.nextInt();
             System.out.println("");
             if (pick == 1) {
@@ -47,6 +48,7 @@ public class GameFlow {
                     System.out.println("Ronde: " + ronde);
                     System.out.println("Giliran: " + p1.getName());
                     System.out.println("Monstermu: " + p1.getCurrentMonster().getNama());
+                    System.out.println("Current HP: " + p1.getCurrentMonster().getBaseStats().getHealthPoint());
                     System.out.println("Pilih menu!");
                     int pilihan = 0;
                     while (pilihan != 1 && pilihan != 2) {
@@ -108,6 +110,7 @@ public class GameFlow {
                     // turn player 2
                     System.out.println("Giliran: " + p2.getName());
                     System.out.println("Monstermu: " + p2.getCurrentMonster().getNama());
+                    System.out.println("Current HP: " + p2.getCurrentMonster().getBaseStats().getHealthPoint());
                     System.out.println("Pilih menu!");
                     int pilihan2 = 0;
                     while (pilihan2 != 1 && pilihan2 != 2) {
@@ -244,8 +247,6 @@ public class GameFlow {
                             }
                         }
                     } else if (pilihan == 2 && pilihan2 == 1) {
-                        // p1 memilih monster
-                        SelectionMenu.chooseMonster(p1);
                         // use move2 (p2 melakukan move)
                         SelectionMenu.useMove(p2, p1, move2);
                         // jika monsternya p1 mati
@@ -265,6 +266,8 @@ public class GameFlow {
                         System.out.println("Kalian berdua memilih SWITCH");
                         System.out.println("Lanjut ke ronde berikutnya!");
                     }
+                    DamageCalculation.afterDamage(p1);
+                    DamageCalculation.afterDamage(p2);
                 }
                 System.out.println("GAME OVER");
                 // cek pemenang

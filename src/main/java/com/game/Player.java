@@ -92,7 +92,7 @@ public class Player {
 	public void printMonsters() {
 		for (int i = 0; i < listOfMonster.size(); i++) {
             // System.out.printf("[%d] " + listOfMonster.get(i).getNama(),"\n", i+1);
-			System.out.printf("[%d] %s\n", i+1, listOfMonster.get(i).getNama());
+			System.out.printf("[%d] %s, HP: %.2f\n", i+1, listOfMonster.get(i).getNama(), listOfMonster.get(i).getBaseStats().getHealthPoint());
         }
 	}
 

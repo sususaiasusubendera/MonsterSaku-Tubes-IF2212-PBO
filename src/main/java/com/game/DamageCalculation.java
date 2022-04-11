@@ -84,10 +84,10 @@ public class DamageCalculation {
         double maxHPMons = target.getCurrentMonster().getMaxHP();
         double statusMultiplier = 0;
         if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.BURN) {
-            statusMultiplier = 1/8;
+            statusMultiplier = 0.125;
             System.out.println(target.getCurrentMonster().getNama() + " masih punya BURN");
         } else if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.POISON) {
-            statusMultiplier = 1/16;
+            statusMultiplier = 0.0625;
             System.out.println(target.getCurrentMonster().getNama() + " masih punya POISON");
         } else {
             statusMultiplier = 0;
@@ -95,7 +95,7 @@ public class DamageCalculation {
         double damage = Math.floor(maxHPMons*statusMultiplier);
         double currHP = target.getCurrentMonster().getBaseStats().getHealthPoint();
         target.getCurrentMonster().getBaseStats().setHealthPoint(currHP-damage);
-        System.out.println("HP saat ini: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
+        System.out.println("HP " + target.getCurrentMonster().getNama() + " milik " + target.getName() + " saat ini: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
     }
 
     public static double damageEffectivity(Player target, Move moveSource) {

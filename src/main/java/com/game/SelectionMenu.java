@@ -16,8 +16,8 @@ public class SelectionMenu {
         System.out.println("Pilih move: ");
         p.getCurrentMonster().printMoves();
         System.out.println("[0] Default Move");
+        System.out.printf("Pilihan move: ");
         int movePick = scanner.nextInt();
-
         if (movePick != 0) {
             int currAmmo = p.getCurrentMonster().getMoves().get(movePick-1).getAmmunition();
             p.getCurrentMonster().getMoves().get(movePick-1).setAmmunition(currAmmo-1);
@@ -31,6 +31,7 @@ public class SelectionMenu {
         
         System.out.println("Pilih monster: ");
         p.printMonsters();
+        System.out.printf("Pilihan monster: ");
         int monsPick = scanner.nextInt();
         p.setCurrentMonster(p.getListOfMonster().get(monsPick-1));
 
@@ -54,7 +55,12 @@ public class SelectionMenu {
                     StatusMove statusMove = (StatusMove)move;
                     double currHP = source.getCurrentMonster().getBaseStats().getHealthPoint();
                     double healHP = source.getCurrentMonster().getMaxHP()*statusMove.getHealPercentage()/100;
-                    source.getCurrentMonster().getBaseStats().setHealthPoint(currHP + healHP);
+                    double newHP = currHP + healHP;
+                    if (newHP >= source.getCurrentMonster().getMaxHP()) {
+                        source.getCurrentMonster().getBaseStats().setHealthPoint(source.getCurrentMonster().getMaxHP());
+                    } else {
+                        source.getCurrentMonster().getBaseStats().setHealthPoint(currHP + healHP);
+                    }
                     System.out.println("Mendapatkan heal " + healHP +"%");
                     System.out.println("HP sekarang: " + source.getCurrentMonster().getBaseStats().getHealthPoint());
                 }
