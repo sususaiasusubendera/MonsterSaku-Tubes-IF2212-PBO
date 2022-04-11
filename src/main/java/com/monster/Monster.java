@@ -22,10 +22,19 @@ public class Monster {
         this.setElementTypes(elementTypes);
         this.setBaseStats(baseStats);
         this.setMoves(moves);
-        this.condi = new Condition();
+        this.condi = null;
         this.maxHP = baseStats.getHealthPoint();
     }
-
+    public Monster(Monster copiedMonster){
+        this.id = copiedMonster.getId();
+        this.setNama(copiedMonster.getNama());
+        this.setElementTypes(copiedMonster.getElementTypes());
+        Stats copiedStats = new Stats(copiedMonster.getBaseStats());
+        this.setBaseStats(copiedStats);
+        this.setMoves(copiedMonster.moves);
+        this.condi = new Condition();
+        this.maxHP = copiedStats.getHealthPoint();
+    }
 
     // Getter
     public int getId() {

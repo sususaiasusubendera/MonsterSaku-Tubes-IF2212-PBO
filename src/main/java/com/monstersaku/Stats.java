@@ -17,6 +17,14 @@ public class Stats {
 		this.specialDefense = specialDefense;
 		this.speed = speed;
 	}
+	public Stats(Stats copiedStats){
+		this.healthPoint = copiedStats.getHealthPoint();
+		this.attack = copiedStats.getAttack();
+		this.defense = copiedStats.getDefense();
+		this.specialAttack = copiedStats.getSpecialAttack();
+		this.specialDefense = copiedStats.getSpecialDefense();
+		this.speed = copiedStats.getSpeed();
+	}
 
 	// getter
 	public double getHealthPoint() {

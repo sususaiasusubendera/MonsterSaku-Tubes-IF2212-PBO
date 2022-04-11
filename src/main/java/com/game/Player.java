@@ -25,8 +25,11 @@ public class Player {
 	public Player(String name) {
 		this.name = name;
 		this.listOfMonster = new ArrayList<Monster>();
-		List<Monster> monstercandidates = new ArrayList<Monster>(Reader.getGameMonsters()); // readernya kemungkinan error, soalnya listnya gk keisi
-
+		List<Monster> monstercandidates = new ArrayList<Monster>();
+		for (Monster gameMonster : Reader.getGameMonsters()){
+			Monster playerMonster = new Monster(gameMonster);
+			monstercandidates.add(playerMonster);
+		}
 		for (int i = 0; i < 6; i++) {
 			int randomMonster = new Random().nextInt(monstercandidates.size());
 			Monster mons = monstercandidates.get(randomMonster);
