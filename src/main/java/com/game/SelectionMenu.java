@@ -63,16 +63,20 @@ public class SelectionMenu {
             if(move.getTargetOfMove() == TargetOfMove.OWN) {
                 if (move instanceof StatusMove) {
                     StatusMove statusMove = (StatusMove)move;
-                    double currHP = source.getCurrentMonster().getBaseStats().getHealthPoint();
-                    double healHP = source.getCurrentMonster().getMaxHP()*statusMove.getHealPercentage()/100;
-                    double newHP = currHP + healHP;
-                    if (newHP >= source.getCurrentMonster().getMaxHP()) {
-                        source.getCurrentMonster().getBaseStats().setHealthPoint(source.getCurrentMonster().getMaxHP());
+                    if (statusMove.getHealPercentage() > 0){
+                        double currHP = source.getCurrentMonster().getBaseStats().getHealthPoint();
+                        double healHP = source.getCurrentMonster().getMaxHP()*statusMove.getHealPercentage()/100;
+                        double newHP = currHP + healHP;
+                        if (newHP >= source.getCurrentMonster().getMaxHP()) {
+                            source.getCurrentMonster().getBaseStats().setHealthPoint(source.getCurrentMonster().getMaxHP());
+                        } else {
+                            source.getCurrentMonster().getBaseStats().setHealthPoint(currHP + healHP);
+                        }
+                        System.out.println("Mendapatkan heal " + healHP +"%");
+                        System.out.println("HP sekarang: " + source.getCurrentMonster().getBaseStats().getHealthPoint());
                     } else {
-                        source.getCurrentMonster().getBaseStats().setHealthPoint(currHP + healHP);
+                        buffMonster(source, statusMove);
                     }
-                    System.out.println("Mendapatkan heal " + healHP +"%");
-                    System.out.println("HP sekarang: " + source.getCurrentMonster().getBaseStats().getHealthPoint());
                 }
             } else if (move.getTargetOfMove() == TargetOfMove.ENEMY) {
                 if (move instanceof NormalMove) {
@@ -86,22 +90,26 @@ public class SelectionMenu {
                     DamageCalculation.defaultDamage(source, target, defaultMove);
                 } else if (move instanceof StatusMove) {
                     StatusMove statusMove = (StatusMove)move;
-                    if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.NONE) {
-                        if (statusMove.getEffect().equals("BURN")) {
-                            System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena BURN");
-                            statusMove.burn(target);
-                        } else if (statusMove.getEffect().equals("POISON")) {
-                            System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena POISON");
-                            statusMove.poison(target);
-                        } else if (statusMove.getEffect().equals("SLEEP")) {
-                            System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena SLEEP");
-                            statusMove.sleep(target);
-                        } else if (statusMove.getEffect().equals("PARALYZE")) {
-                            System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena PARALYZE");
-                            statusMove.paralyze(target);
+                    if (statusMove.getEffect().equals("-")){
+                        buffMonster(target, statusMove);
+                    } else{
+                        if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.NONE) {
+                            if (statusMove.getEffect().equals("BURN")) {
+                                System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena BURN");
+                                statusMove.burn(target);
+                            } else if (statusMove.getEffect().equals("POISON")) {
+                                System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena POISON");
+                                statusMove.poison(target);
+                            } else if (statusMove.getEffect().equals("SLEEP")) {
+                                System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena SLEEP");
+                                statusMove.sleep(target);
+                            } else if (statusMove.getEffect().equals("PARALYZE")) {
+                                System.out.println(target.getCurrentMonster().getNama() + " milik " + target.getName() + " terkena PARALYZE");
+                                statusMove.paralyze(target);
+                            }
+                        } else {
+                            System.out.println("Monster sudah memiliki Status Condition! Move gagal");
                         }
-                    } else {
-                        System.out.println("Monster sudah memiliki Status Condition! Move gagal");
                     }
                 }
             }
@@ -143,6 +151,86 @@ public class SelectionMenu {
                 if (currSC == 0) {
                     m.getCondi().setStatCondi(StatusCondition.NONE);
                 }
+            }
+        }
+    }
+
+
+    // Fungsi Buff Factor (untuk semua buff)
+    public static double buffFactor(int buff){
+        double value;
+        switch (buff) {
+            case -4: value = 2.0/6.0; break;
+            case -3: value = 2.0/5.0; break;
+            case -2: value = 2.0/4.0; break;
+            case -1: value = 2.0/3.0; break;
+            case  0: value = 1.0;     break;
+            case  1: value = 3.0/2.0; break;
+            case  2: value = 4.0/2.0; break;
+            case  3: value = 5.0/2.0; break;
+            case  4: value = 6.0/2.0; break;
+            default: value = 1.0;
+        }
+        return value;
+    }
+
+
+    // Memberikan efek buff ke monster
+    public static void buffMonster(Player p, StatusMove buffMove){
+        System.out.println(p.getCurrentMonster().getNama() + " milik " + p.getName() + " mendapatkan buff!");
+        // Buff Attack
+        if (buffMove.getBuffAttack() != 0){
+            double currAttack  = p.getCurrentMonster().getBaseStats().getAttack();
+            double newAttack   = Math.floor(currAttack*buffFactor(buffMove.getBuffAttack()));
+            p.getCurrentMonster().getBaseStats().setAttack(newAttack);
+            if (newAttack > currAttack){
+                System.out.println("Attack bertambah dari " + currAttack + " menjadi " + newAttack + "!");
+            } else if (newAttack < currAttack){
+                System.out.println("Attack berkurang dari " + currAttack + " menjadi " + newAttack + "!");
+            }
+        }
+        // Buff Defense
+        if (buffMove.getBuffDefense() != 0){
+            double currDefense = p.getCurrentMonster().getBaseStats().getDefense();
+            double newDefense  = Math.floor(currDefense*buffFactor(buffMove.getBuffDefense()));
+            p.getCurrentMonster().getBaseStats().setDefense(newDefense);
+            if (newDefense > currDefense){
+                System.out.println("Defense bertambah dari " + currDefense + " menjadi " + newDefense + "!");
+            } else if (newDefense < currDefense){
+                System.out.println("Defense berkurang dari " + currDefense + " menjadi " + newDefense + "!");
+            }
+        }
+        // Buff Special Attack
+        if (buffMove.getBuffSpecialAttack() != 0){
+            double currSpecialAttack = p.getCurrentMonster().getBaseStats().getSpecialAttack();
+            double newSpecialAttack  = Math.floor(currSpecialAttack*buffFactor(buffMove.getBuffSpecialAttack()));
+            p.getCurrentMonster().getBaseStats().setSpecialAttack(newSpecialAttack);
+            if (newSpecialAttack > currSpecialAttack){
+                System.out.println("Special Attack bertambah dari " + currSpecialAttack + " menjadi " + newSpecialAttack + "!");
+            } else if (newSpecialAttack < currSpecialAttack){
+                System.out.println("Special Attack berkurang dari " + currSpecialAttack + " menjadi " + newSpecialAttack + "!");
+            }
+        }
+        // Buff Special Defense
+        if (buffMove.getBuffSpecialDefense() != 0){
+            double currSpecialDefense = p.getCurrentMonster().getBaseStats().getSpecialDefense();
+            double newSpecialDefense  = Math.floor(currSpecialDefense*buffFactor(buffMove.getBuffSpecialDefense()));
+            p.getCurrentMonster().getBaseStats().setSpecialDefense(newSpecialDefense);
+            if (newSpecialDefense > currSpecialDefense){
+                System.out.println("Special Defense bertambah dari " + currSpecialDefense + " menjadi " + newSpecialDefense + "!");
+            } else if (newSpecialDefense < currSpecialDefense){
+                System.out.println("Special Defense berkurang dari " + currSpecialDefense + " menjadi " + newSpecialDefense + "!");
+            }
+        }
+        // Buff Speed
+        if (buffMove.getBuffSpeed() != 0){
+            double currSpeed = p.getCurrentMonster().getBaseStats().getSpeed();
+            double newSpeed  = Math.floor(currSpeed*buffFactor(buffMove.getBuffSpeed()));
+            p.getCurrentMonster().getBaseStats().setSpeed(newSpeed);
+            if (newSpeed > currSpeed){
+                System.out.println("Speed bertambah dari " + currSpeed + " menjadi " + newSpeed + "!");
+            } else if (newSpeed < currSpeed){
+                System.out.println("Speed berkurang dari " + currSpeed + " menjadi " + newSpeed + "!");
             }
         }
     }

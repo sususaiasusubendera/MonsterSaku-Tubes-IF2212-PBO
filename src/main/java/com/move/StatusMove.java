@@ -43,7 +43,7 @@ public class StatusMove extends Move {
         this.buffSpeed = copiedStatusMove.getBuffSpeed();
     }
 
-    
+
     // Getter
 
     public int getId() {
