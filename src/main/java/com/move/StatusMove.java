@@ -8,26 +8,47 @@ import java.util.Random;
 
 public class StatusMove extends Move {
 
+    protected int id;
     protected String statsEffect; // nama nya aku ubah biar gak sama kayak effect yang double.
     protected double healPercentage;
-    protected int id;
+    protected int buffAttack;
+    protected int buffDefense;
+    protected int buffSpecialAttack;
+    protected int buffSpecialDefense;
+    protected int buffSpeed;
 
     public StatusMove(int id,String moveName, ElementType elementType, int accuracy, int priority,
-                      int ammunition, TargetOfMove targetOfMove, String statsEffect, Double healPercentage) {
+                      int ammunition, TargetOfMove targetOfMove, String statsEffect, 
+                      Double healPercentage, int buffAttack, int buffDefense, int buffSpecialAttack, int buffSpecialDefense, int buffSpeed) {
 
         super(moveName, "STATUS", elementType, accuracy, priority, ammunition,targetOfMove);
         this.id = id;
         this.statsEffect = statsEffect;
         this.healPercentage = healPercentage;
+        this.buffAttack = buffAttack;
+        this.buffDefense = buffDefense;
+        this.buffSpecialAttack = buffSpecialAttack;
+        this.buffSpecialDefense = buffSpecialDefense;
+        this.buffSpeed = buffSpeed;
     }
     public StatusMove(StatusMove copiedStatusMove){
         super((Move)copiedStatusMove);
         this.id = copiedStatusMove.getId();
         this.statsEffect = copiedStatusMove.getEffect();
         this.healPercentage = copiedStatusMove.getHealPercentage();
+        this.buffAttack = copiedStatusMove.getBuffAttack();
+        this.buffDefense = copiedStatusMove.getBuffDefense();
+        this.buffSpecialAttack = copiedStatusMove.getBuffSpecialAttack();
+        this.buffSpecialDefense = copiedStatusMove.getBuffSpecialDefense();
+        this.buffSpeed = copiedStatusMove.getBuffSpeed();
     }
 
+    
     // Getter
+
+    public int getId() {
+        return id;
+    }
 
     public String getEffect() {
         return statsEffect;
@@ -37,11 +58,32 @@ public class StatusMove extends Move {
         return healPercentage;
     }
 
-    public int getId() {
-        return id;
+    public int getBuffAttack(){
+        return buffAttack;
     }
 
+    public int getBuffDefense(){
+        return buffDefense;
+    }
+
+    public int getBuffSpecialAttack(){
+        return buffSpecialAttack;
+    }
+
+    public int getBuffSpecialDefense(){
+        return buffSpecialDefense;
+    }
+
+    public int getBuffSpeed(){
+        return buffSpeed;
+    }
+
+
     // Setter
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setEffect(String statsEffect) {
         this.statsEffect = statsEffect;
@@ -51,9 +93,26 @@ public class StatusMove extends Move {
         this.healPercentage = healPercentage;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBuffAttack(int buffAttack){
+        this.buffAttack = buffAttack;
     }
+
+    public void setBuffDefense(int buffDefense){
+        this.buffDefense = buffDefense;
+    }
+
+    public void setBuffSpecialAttack(int buffSpecialAttack){
+        this.buffSpecialAttack = buffSpecialAttack;
+    }
+
+    public void setBuffSpecialDefense(int buffSpecialDefense){
+        this.buffSpecialDefense = buffSpecialDefense;
+    }
+
+    public void setBuffSpeed(int buffSpeed){
+        this.buffSpeed = buffSpeed;
+    }
+
 
     // Method
     public void burn(Player target) {

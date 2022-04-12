@@ -109,8 +109,14 @@ public class Reader {
                     String effect = line[8];
                     String statsEffect = line[9];
                     String[] arrStatsEffect = statsEffect.split(",", 10);
-                    Double healHP = Double.parseDouble(arrStatsEffect[0]);
-                    StatusMove move = new StatusMove(id, mvName, elType, accuracy, priority, ammunition, tOfMove, effect, healHP);
+                    Double healPercentage = Double.parseDouble(arrStatsEffect[0]);
+                    int buffAttack = Integer.parseInt(arrStatsEffect[1]);
+                    int buffDefense = Integer.parseInt(arrStatsEffect[2]);
+                    int buffSpecialAttack = Integer.parseInt(arrStatsEffect[3]);
+                    int buffSpecialDefense = Integer.parseInt(arrStatsEffect[4]);
+                    int buffSpeed = Integer.parseInt(arrStatsEffect[5]);
+                    StatusMove move = new StatusMove(id, mvName, elType, accuracy, priority, ammunition, tOfMove, effect, 
+                                                     healPercentage, buffAttack, buffDefense, buffSpecialAttack, buffSpecialDefense, buffSpeed);
                     // tambahkan ke listMove
                     listMove.add(move);
                 } else {

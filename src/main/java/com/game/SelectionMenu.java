@@ -54,6 +54,11 @@ public class SelectionMenu {
         System.out.println(source.getName() + " menggunakan " + move.getMoveName());
         double dob = new Random().nextDouble();
         double accuracy = move.getAccuracy()/100;
+        /*** Debug Accuracy
+        System.out.println("dob = " + dob);
+        System.out.println("acc = " + accuracy);
+        System.out.println("mov : " + (dob<=accuracy));
+        ***/
         if (dob <= accuracy) {
             if(move.getTargetOfMove() == TargetOfMove.OWN) {
                 if (move instanceof StatusMove) {
