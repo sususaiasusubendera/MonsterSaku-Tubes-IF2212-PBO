@@ -1,12 +1,10 @@
 package com.game;
 
-import com.monster.Monster;
 import com.monstersaku.MainMenu;
 import com.monstersaku.Reader;
 import com.monstersaku.StatusCondition;
 import com.move.Move;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -60,6 +58,7 @@ public class GameFlow {
                         if (pilihan == 3) {
                             MainMenu.help();
                         } else if (pilihan == 4) {
+                            scanner.close();
                             MainMenu.exit();
                         } else if (pilihan == 5) {
                             MainMenu.viewMonsterInfo(p1);
@@ -100,6 +99,7 @@ public class GameFlow {
                     } else if (pilihan == 3) {
                         MainMenu.help();
                     } else if (pilihan == 4) {
+                        scanner.close();
                         MainMenu.exit();
                     } else if (pilihan == 5) {
                         MainMenu.viewMonsterInfo(p1);
@@ -121,6 +121,7 @@ public class GameFlow {
                         if (pilihan2 == 3) {
                             MainMenu.help();
                         } else if (pilihan2 == 4) {
+                            scanner.close();
                             MainMenu.exit();
                         } else if (pilihan2 == 5) {
                             MainMenu.viewMonsterInfo(p2);
@@ -161,6 +162,7 @@ public class GameFlow {
                     } else if (pilihan2 == 3) {
                         MainMenu.help();
                     } else if (pilihan2 == 4) {
+                        scanner.close();
                         MainMenu.exit();
                     } else if (pilihan2 == 5) {
                         MainMenu.viewMonsterInfo(p2);
@@ -252,6 +254,7 @@ public class GameFlow {
             } else if (pick == 2) {
                 MainMenu.help();
             } else if (pick == 3) {
+                scanner.close();
                 MainMenu.exit();
             }
         }

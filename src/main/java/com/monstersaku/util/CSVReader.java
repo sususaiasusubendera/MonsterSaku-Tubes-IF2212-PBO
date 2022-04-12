@@ -72,6 +72,7 @@ public class CSVReader {
             }
             firstLine = false;
         }
+        br.close();
         return list;
     }
 }

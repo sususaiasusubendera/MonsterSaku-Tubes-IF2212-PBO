@@ -4,7 +4,6 @@ import com.monster.Monster;
 import com.monstersaku.StatusCondition;
 import com.move.*;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
