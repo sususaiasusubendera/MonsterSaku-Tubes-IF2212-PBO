@@ -29,7 +29,7 @@ public class DamageCalculation {
         } else {
             target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
         }
-        System.out.println(target.getCurrentMonster().getNama() + " terkurangi HP sebesar " + damage);
+        System.out.println("HP " + target.getCurrentMonster().getNama() + " berkurang sebesar " + damage);
         System.out.println("HP baru: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
     }
 
@@ -53,7 +53,7 @@ public class DamageCalculation {
         } else {
             target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
         }
-        System.out.println(target.getCurrentMonster().getNama() + " terkurangi HP sebesar " + damage);
+        System.out.println("HP " + target.getCurrentMonster().getNama() + " berkurang sebesar " + damage);
         System.out.println("HP baru: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
     }
 
@@ -78,8 +78,10 @@ public class DamageCalculation {
             target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
         }
         move.defaultMove(source.getCurrentMonster());
-        System.out.println(target.getCurrentMonster().getNama() + " terkurangi HP sebesar " + damage);
+        System.out.println("HP " + target.getCurrentMonster().getNama() + " berkurang sebesar " + damage);
         System.out.println("HP baru: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
+        System.out.println("HP " + source.getCurrentMonster().getNama() + " juga berkurang sebesar " + Math.floor((1.0/4.0)*source.getCurrentMonster().getMaxHP()) );
+        System.out.println("HP baru: " + source.getCurrentMonster().getBaseStats().getHealthPoint());
     }
 
 

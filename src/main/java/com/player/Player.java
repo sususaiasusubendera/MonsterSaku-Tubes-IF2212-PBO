@@ -10,18 +10,6 @@ public class Player {
 	private ArrayList<Monster> listOfMonster;
 	private Monster currentMonster;
 
-	/***
-	 * 	1;Chairmander;FIRE,NORMAL;100,100,100,100,100,100;1,2
-		2;Pikachu;NORMAL;100,100,100,100,100,100;3,2
-		3;Thievul;NORMAL;70,58,58,87,92,90;2
-		4;Buizel;WATER;55,65,35,60,30,85;4
-		5;Drizzile;WATER,NORMAL;65,60,55,95,55,90;5,1
-		6;Lombre;WATER,GRASS;60,50,50,60,70,50;1,3,2
-		7;Bibarel;NORMAL,WATER;79,85,60,55,60,71;4,5
-	 * 
-	*/
-
-
 	// konstruktor
 	public Player(String name) {
 		this.name = name;
@@ -40,12 +28,12 @@ public class Player {
 		int rando = new Random().nextInt(listOfMonster.size());
 		this.currentMonster = listOfMonster.get(rando);
 
-		// untuk debugging
-		System.out.println("/***");
-		System.out.printf("Monsternya %s:\n", getName());
-		printMonsters();
-		System.out.println("***/");
-		System.out.println("");
+		System.out.printf("Monsternya %s: \n", getName());
+		List<String> monstersName = new ArrayList<String>();
+		for (Monster m : listOfMonster) {
+			monstersName.add(m.getNama());
+		}
+		System.out.printf("%s\n", monstersName.toString());
 	}
 
 	// getter

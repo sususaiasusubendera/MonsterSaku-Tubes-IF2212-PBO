@@ -5,6 +5,7 @@ import com.monster.Monster;
 import com.condition.*;
 import com.move.*;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -15,37 +16,60 @@ public class SelectionMenu {
 
     public static Move chooseMove(Player p) {
         
-        System.out.println("Pilih move: ");
-        p.getCurrentMonster().printMoves();
-        System.out.println("[0] Default Move");
-        System.out.printf("Pilihan move: ");
-        int movePick = scanner.nextInt();
-        if (movePick != 0) {
-            int currAmmo = p.getCurrentMonster().getMoves().get(movePick-1).getAmmunition();
-            p.getCurrentMonster().getMoves().get(movePick-1).setAmmunition(currAmmo-1);
-            return (p.getCurrentMonster().getMoves().get(movePick-1));
-        } else {
-            return (new DefaultMove());
-        }
+        int movePick = -1;
+        Move m = null;
+        do {
+            try{
+                System.out.println("Pilih move: ");
+                p.getCurrentMonster().printMoves();
+                System.out.println("[0] Default Move");
+                System.out.printf("Pilihan move: ");
+                movePick = scanner.nextInt();
+                System.out.println("");
+                if (movePick >= 0 && movePick <= p.getCurrentMonster().getMoves().size()){
+                    if (movePick != 0) {
+                        int currAmmo = p.getCurrentMonster().getMoves().get(movePick-1).getAmmunition();
+                        p.getCurrentMonster().getMoves().get(movePick-1).setAmmunition(currAmmo-1);
+                        m = (p.getCurrentMonster().getMoves().get(movePick-1));
+                    } else {
+                        m = (new DefaultMove());
+                    }
+                } else{
+                    System.out.println("--- Masukan salah, tolong diulang ya ---");
+                }
+            } catch (InputMismatchException e){
+                System.out.println("");
+                System.out.println("--- Masukan salah, tolong diulang ya ---");
+                scanner.next();
+                continue;
+            }
+        } while (movePick < 0 || movePick > p.getCurrentMonster().getMoves().size());
+        return m;
     }
 
 
     public static void chooseMonster(Player p) {
         
-        System.out.println("Pilih monster: ");
-        p.printMonsters();
-        System.out.printf("Pilihan monster: ");
-        int monsPick = scanner.nextInt();
-        p.setCurrentMonster(p.getListOfMonster().get(monsPick-1));
-
-        /*** ini gk perlu gk sih? soalnya kalo monsternya mati dihapus dari list
-        if (p.getListOfMonster().get(monsPick-1).getBaseStats().getHealthPoint() == 0) {
-            System.out.println("Sorry, monsternya udah mati");
-            SelectionMenu.chooseMonster(p);
-        } else {
-            p.setCurrentMonster(p.getListOfMonster().get(monsPick-1));
-        }
-        ***/
+        int monsPick = 0;
+        do {
+            try{
+                System.out.println("Pilih monster: ");
+                p.printMonsters();
+                System.out.printf("Pilihan monster: ");
+                monsPick = scanner.nextInt();
+                System.out.println("");
+                if (monsPick >= 1 && monsPick <= p.getNumberOfMonster()){
+                    p.setCurrentMonster(p.getListOfMonster().get(monsPick-1));   
+                } else{
+                    System.out.println("--- Masukan salah, tolong diulang ya ---");
+                }
+            } catch (InputMismatchException e){
+                System.out.println("");
+                System.out.println("--- Masukan salah, tolong diulang ya ---");
+                scanner.next();
+                continue;
+            }
+        } while (monsPick < 1 || monsPick > p.getNumberOfMonster());
     }
 
 
@@ -125,6 +149,7 @@ public class SelectionMenu {
         } else {
             System.out.println("Player " + source.getName() + " gagal melakukan move karena kurang beruntung");
         }
+        System.out.println("");
     }
 
 

@@ -19,6 +19,7 @@ public class MainMenu {
         System.out.println("3. Dalam fase pertarungan, kedua pemain secara bergilir memilih move");
         System.out.println("4. Move akan dieksekusi bergiliran berdasarkan prioritas dan speed");
         System.out.println("5. Pemain dengan monster setidaknya satu di akhir permainan akan menang");
+        System.out.println("");
     }
 
     public static void exit() {

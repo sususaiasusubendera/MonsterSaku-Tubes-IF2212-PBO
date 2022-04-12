@@ -8,6 +8,7 @@ import com.reader.Reader;
 import com.condition.*;
 import com.move.Move;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,19 +18,41 @@ public class MonsterSaku {
         Reader.setGameMoves();
         Reader.setGameMonsters();
         Reader.setGameMapEffectivity();
+        if (Reader.getGameMoves().isEmpty() || Reader.getGameMonsters().isEmpty() || Reader.getGameMapEffectivity().isEmpty()){
+            System.exit(0);
+        }
 
-        System.out.println("Welcome to Monster Saku!");
+        System.out.println("");
+        System.out.println("░█▄█░█▀█░█▀█░█▀▀░▀█▀░█▀▀░█▀▄░░░█▀▀░█▀█░█░█░█░█░");
+        System.out.println("░█░█░█░█░█░█░▀▀█░░█░░█▀▀░█▀▄░░░▀▀█░█▀█░█▀▄░█░█░");
+        System.out.println("░▀░▀░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀░▀░░░▀▀▀░▀░▀░▀░▀░▀▀▀░");
+        System.out.println("");
+        System.out.println("----------- Press Enter to Continue -----------");
+        try{System.in.read();} catch(Exception e) {}
         
         Scanner scanner = new Scanner(System.in);
         
         while (true) {
-            System.out.println("Pilih menu: ");
-            System.out.println("[1] Start Game\n[2] Help\n[3] Exit");
-            System.out.printf("Pilihanku: ");
-            int pick = scanner.nextInt();
-            System.out.println("");
+            int pick = 0;
+            do {
+                try {
+                    System.out.println("Pilih menu: ");
+                    System.out.println("[1] Start Game\n[2] Help\n[3] Exit");
+                    System.out.printf("Pilihanku: ");
+                    pick = scanner.nextInt();
+                    System.out.println("");
+                    if (pick < 1 || pick > 3){
+                        System.out.println("--- Masukan salah, tolong diulang ya ---");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("");
+                    System.out.println("--- Masukan salah, tolong diulang ya ---");
+                    scanner.next();
+                    continue;
+                }
+            } while (pick < 1 || pick > 3);
             if (pick == 1) {
-                System.out.println("Mulai game");
+                System.out.println("======================= GAME STARTED =======================");
                 System.out.println("Siapa aja yang main?");
                 System.out.printf("1: " );
                 String playerName1 = scanner.next();
@@ -39,6 +62,7 @@ public class MonsterSaku {
                 // buat players
                 Player p1 = new Player(playerName1);
                 Player p2 = new Player(playerName2);
+                System.out.println("");
                 int ronde = 0;
 
                 while (!p1.isAllDead() && !p2.isAllDead()) { // while player 1 dan 2 monsternya masi blm mati semua 
@@ -46,29 +70,39 @@ public class MonsterSaku {
                     SelectionMenu.decrementSleepCount(p1);
                     SelectionMenu.decrementSleepCount(p2);
 
-                    System.out.println("Ronde: " + ronde);
+                    System.out.printf("========================= Ronde %s =========================\n", String.format("%02d", ronde));
                     
                     // turn player 1
-                    System.out.println("Giliran: " + p1.getName());
-                    System.out.println("Monstermu: " + p1.getCurrentMonster().getNama());
-                    System.out.println("Current HP: " + p1.getCurrentMonster().getBaseStats().getHealthPoint());
-                    System.out.println("Pilih menu!");
                     int pilihan = 0;
-                    while (pilihan != 1 && pilihan != 2) {
-                        System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
-                        System.out.printf("Pilihanku: ");
-                        pilihan = scanner.nextInt();
-                        if (pilihan == 3) {
-                            MainMenu.help();
-                        } else if (pilihan == 4) {
-                            scanner.close();
-                            MainMenu.exit();
-                        } else if (pilihan == 5) {
-                            MainMenu.viewMonsterInfo(p1);
-                        } else if (pilihan == 6) {
-                            MainMenu.viewGameInfo();
+                    do {
+                        try {
+                            System.out.println("Giliran   : " + p1.getName());
+                            System.out.println("Monstermu : " + p1.getCurrentMonster().getNama());
+                            System.out.println("Current HP: " + p1.getCurrentMonster().getBaseStats().getHealthPoint());
+                            System.out.println("Pilih menu!");
+                            System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monsters Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
+                            System.out.printf("Pilihanku: ");
+                            pilihan = scanner.nextInt();
+                            System.out.println("");
+                            if (pilihan == 3) {
+                                MainMenu.help();
+                            } else if (pilihan == 4) {
+                                scanner.close();
+                                MainMenu.exit();
+                            } else if (pilihan == 5) {
+                                MainMenu.viewMonsterInfo(p1);
+                            } else if (pilihan == 6) {
+                                MainMenu.viewGameInfo();
+                            } else if (pilihan > 6 || pilihan < 1){
+                                System.out.println("--- Masukan salah, tolong diulang ya ---");
+                            }
+                        } catch (InputMismatchException e){
+                            System.out.println("");
+                            System.out.println("--- Masukan salah, tolong diulang ya ---");
+                            scanner.next();
+                            continue;
                         }
-                    }
+                    } while (pilihan != 1 && pilihan != 2);
                     Move move1 = null;
                     if (pilihan == 1) {
                         if (p1.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.SLEEP) {
@@ -98,40 +132,39 @@ public class MonsterSaku {
                     } else if (pilihan == 2) {
                         SelectionMenu.chooseMonster(p1);
                     }
-                    /*
-                    } else if (pilihan == 3) {
-                        MainMenu.help();
-                    } else if (pilihan == 4) {
-                        scanner.close();
-                        MainMenu.exit();
-                    } else if (pilihan == 5) {
-                        MainMenu.viewMonsterInfo(p1);
-                    } else if (pilihan == 6) {
-                        // buat view game info (ntahlah bisa di main menu atau di sini ae)
-                    }
-                    */
+
 
                     // turn player 2
-                    System.out.println("Giliran: " + p2.getName());
-                    System.out.println("Monstermu: " + p2.getCurrentMonster().getNama());
-                    System.out.println("Current HP: " + p2.getCurrentMonster().getBaseStats().getHealthPoint());
-                    System.out.println("Pilih menu!");
                     int pilihan2 = 0;
-                    while (pilihan2 != 1 && pilihan2 != 2) {
-                        System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monster Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
-                        System.out.printf("Pilihanku: ");
-                        pilihan2 = scanner.nextInt();
-                        if (pilihan2 == 3) {
-                            MainMenu.help();
-                        } else if (pilihan2 == 4) {
-                            scanner.close();
-                            MainMenu.exit();
-                        } else if (pilihan2 == 5) {
-                            MainMenu.viewMonsterInfo(p2);
-                        } else if (pilihan2 == 6) {
-                            MainMenu.viewGameInfo();
+                    do {
+                        try {
+                            System.out.println("Giliran   : " + p2.getName());
+                            System.out.println("Monstermu : " + p2.getCurrentMonster().getNama());
+                            System.out.println("Current HP: " + p2.getCurrentMonster().getBaseStats().getHealthPoint());
+                            System.out.println("Pilih menu!");
+                            System.out.println("[1] Move\n[2] Switch\n[3] Help\n[4] Exit\n[5] View Monsters Info\n[6] View Game Info"); // tambahin menu aplikasi (help, exit, dll), mungkin buat printMenu di mainmenu
+                            System.out.printf("Pilihanku: ");
+                            pilihan2 = scanner.nextInt();
+                            System.out.println("");
+                            if (pilihan2 == 3) {
+                                MainMenu.help();
+                            } else if (pilihan2 == 4) {
+                                scanner.close();
+                                MainMenu.exit();
+                            } else if (pilihan2 == 5) {
+                                MainMenu.viewMonsterInfo(p2);
+                            } else if (pilihan2 == 6) {
+                                MainMenu.viewGameInfo();
+                            } else if (pilihan2 > 6 || pilihan2 < 1){
+                                System.out.println("--- Masukan salah, tolong diulang ya ---");
+                            }
+                        } catch (InputMismatchException e){
+                            System.out.println("");
+                            System.out.println("--- Masukan salah, tolong diulang ya ---");
+                            scanner.next();
+                            continue;
                         }
-                    }
+                    } while (pilihan2 != 1 && pilihan2 != 2);
                     Move move2 = null;
                     if (pilihan2 == 1) {
                         if (p2.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.SLEEP) {
@@ -161,18 +194,7 @@ public class MonsterSaku {
                     } else if (pilihan2 == 2) {
                         SelectionMenu.chooseMonster(p2);
                     }
-                    /* 
-                    } else if (pilihan2 == 3) {
-                        MainMenu.help();
-                    } else if (pilihan2 == 4) {
-                        scanner.close();
-                        MainMenu.exit();
-                    } else if (pilihan2 == 5) {
-                        MainMenu.viewMonsterInfo(p2);
-                    } else if (pilihan2 == 6) {
-                        // buat view game info (ntahlah bisa di main menu atau di sini ae)
-                    }
-                    */
+
 
                     // compare move
                     if (pilihan == 1 && pilihan2 == 1) {
@@ -246,14 +268,16 @@ public class MonsterSaku {
                     if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
                         p2.removeCurrMonster();
                     }
+                    System.out.printf("====================== Akhir Ronde %s ======================\n\n\n", String.format("%02d", ronde));
                 }
-                System.out.println("GAME OVER");
+                System.out.println("------------------ GAME OVER ------------------");
                 // cek pemenang
                 if (!p1.isAllDead()) {
                     System.out.println("SELAMAT! " + p1.getName() + " adalah pemenangnya");
                 } else if (!p2.isAllDead()) {
                     System.out.println("SELAMAT! " + p2.getName() + " adalah pemenangnya");
                 }
+                System.out.println("============================================================");
             } else if (pick == 2) {
                 MainMenu.help();
             } else if (pick == 3) {

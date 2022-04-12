@@ -76,8 +76,9 @@ public class Reader {
                 // tambahkan ke listMonster
                 listMonster.add(monster);
             }
-        } catch (Exception e){ // IOException atau FileNotFoundException
-            //apaya
+        } catch (Exception e){
+            System.out.println("Error membaca monster, pastikan file monsterpool.csv ada di direktori berikut:");
+            System.out.println("src/main/resources/com/monstersaku/configs");
         }
     }
 
@@ -132,8 +133,9 @@ public class Reader {
                 }               
                 // karna ga ngerjain bonus, status move cuma ngasih dampak ke status condition dan heal HP
             }
-        } catch (Exception e) { // IOException atau FileNotFoundException
-            //apaya
+        } catch (Exception e) {
+            System.out.println("Error membaca move, pastikan file movepool.csv ada di direktori berikut:");
+            System.out.println("src/main/resources/com/monstersaku/configs");
         }
     }
 
@@ -153,8 +155,9 @@ public class Reader {
                 String snt = source.name()+target.name();
                 mapEffectivity.put(snt, effectivity);
             }
-        } catch (Exception e){ // IOException atau FileNotFoundException
-            System.err.println(e.getMessage());
+        } catch (Exception e){
+            System.out.println("Error membaca effectivity, pastikan file element-type-effectivity-chart.csv ada di direktori berikut:");
+            System.out.println("src/main/resources/com/monstersaku/configs");
         }
     }
 

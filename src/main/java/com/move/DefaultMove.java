@@ -26,7 +26,7 @@ public class DefaultMove extends Move {
 
     public void defaultMove(Monster monster) {
 
-        double newHP = monster.getBaseStats().getHealthPoint() - (Math.floor((1/4)*monster.getMaxHP()));
+        double newHP = monster.getBaseStats().getHealthPoint() - (Math.floor((1.0/4.0)*monster.getMaxHP()));
         monster.getBaseStats().setHealthPoint(newHP);
     }
 }
