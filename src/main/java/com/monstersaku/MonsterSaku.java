@@ -22,15 +22,15 @@ public class MonsterSaku {
             System.exit(0);
         }
 
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("");
         System.out.println("░█▄█░█▀█░█▀█░█▀▀░▀█▀░█▀▀░█▀▄░░░█▀▀░█▀█░█░█░█░█░");
         System.out.println("░█░█░█░█░█░█░▀▀█░░█░░█▀▀░█▀▄░░░▀▀█░█▀█░█▀▄░█░█░");
         System.out.println("░▀░▀░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀░▀░░░▀▀▀░▀░▀░▀░▀░▀▀▀░");
         System.out.println("");
         System.out.println("----------- Press Enter to Continue -----------");
-        try{System.in.read();} catch(Exception e) {}
-        
-        Scanner scanner = new Scanner(System.in);
+        try{scanner.nextLine();} catch(Exception e) {}
         
         while (true) {
             int pick = 0;
