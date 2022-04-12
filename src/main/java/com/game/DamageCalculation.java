@@ -1,9 +1,11 @@
 package com.game;
 
+import com.reader.Reader;
 import com.player.*;
 import com.monster.*;
-import com.monstersaku.*;
+import com.condition.*;
 import com.move.*;
+
 import java.util.*;
 
 public class DamageCalculation {

@@ -1,17 +1,17 @@
-package com.main;
+package com.monstersaku;
 
 // TADINYA INI GameFlow.java
 
 import com.game.*;
 import com.player.*;
-import com.monstersaku.Reader;
-import com.monstersaku.StatusCondition;
+import com.reader.Reader;
+import com.condition.*;
 import com.move.Move;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class MonsterSaku {
 
     public static void main(String[] args) {
         Reader.setGameMoves();

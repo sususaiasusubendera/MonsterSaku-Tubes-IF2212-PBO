@@ -1,4 +1,5 @@
-package com.monstersaku;
+package com.condition;
+
 public enum StatusCondition {
     // diubah jd enum aja ya WKWKW
     BURN,

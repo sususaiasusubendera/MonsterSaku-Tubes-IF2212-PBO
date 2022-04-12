@@ -1,4 +1,4 @@
-package com.monstersaku;
+package com.condition;
 
 public class Condition {
     private StatusCondition statcondi;

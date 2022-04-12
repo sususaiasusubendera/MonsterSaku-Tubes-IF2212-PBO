@@ -1,8 +1,9 @@
 package com.player;
 
 import java.util.*;
+
 import com.monster.*;
-import com.monstersaku.*;
+import com.reader.Reader;
 
 public class Player {
 	private String name;

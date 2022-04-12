@@ -2,7 +2,7 @@ package com.game;
 
 import com.player.*;
 import com.monster.Monster;
-import com.monstersaku.StatusCondition;
+import com.condition.*;
 import com.move.*;
 
 import java.util.Random;

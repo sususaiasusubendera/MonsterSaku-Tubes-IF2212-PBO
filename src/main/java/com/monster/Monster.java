@@ -3,8 +3,7 @@ package com.monster;
 import java.util.*;
 
 import com.move.*;
-import com.monstersaku.Condition;
-import com.monstersaku.Stats;
+import com.condition.*;
 
 public class Monster {
     private int id;
