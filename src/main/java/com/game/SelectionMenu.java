@@ -123,7 +123,7 @@ public class SelectionMenu {
                 }
             }
         } else {
-            System.out.println("Player " + source.getName() + "gagal melakukan move karena kurang beruntung");
+            System.out.println("Player " + source.getName() + " gagal melakukan move karena kurang beruntung");
         }
     }
 
