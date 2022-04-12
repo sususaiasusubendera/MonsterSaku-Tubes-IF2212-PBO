@@ -1,5 +1,6 @@
 package com.game;
 
+import com.player.*;
 import com.monster.*;
 import com.monstersaku.*;
 import com.move.*;

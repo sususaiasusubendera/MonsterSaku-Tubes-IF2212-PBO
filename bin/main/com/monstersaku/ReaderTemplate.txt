@@ -1,5 +1,4 @@
 package com.monstersaku;
-// KAYANYAAA ntar main menu mau dipindah ke sini
 import com.move.*;
 import com.monster.*;
 
@@ -16,7 +15,7 @@ import javax.lang.model.element.Element;
 
 import java.util.ArrayList;
 
-public class Main {
+public class ReaderTemplate {
     private static final List<String> CSV_FILE_PATHS = Collections.unmodifiableList(Arrays.asList(
             "configs/monsterpool.csv",
             "configs/movepool.csv",

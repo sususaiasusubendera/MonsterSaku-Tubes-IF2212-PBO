@@ -1,7 +1,8 @@
-package com.monstersaku;
+package com.game;
 
 import java.lang.System;
-import com.game.*;
+
+import com.player.*;
 import com.monster.*;
 
 // ini blm lengkap si,, kynya bisa ditambah new player atau new game gitu ntar

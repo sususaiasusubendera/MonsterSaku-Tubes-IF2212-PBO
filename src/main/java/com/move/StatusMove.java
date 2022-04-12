@@ -1,8 +1,9 @@
 package com.move;
 
+import com.player.*;
 import com.monster.*;
 import com.monstersaku.StatusCondition;
-import com.game.*;
+
 import java.util.Random;
 
 public class StatusMove extends Move {
