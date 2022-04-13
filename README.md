@@ -1,4 +1,4 @@
-# IF2212 Tugas Besar Monster Saku Game 2022
+# IF2212 Tugas Besar Permainan Monster Saku
 
 Here is an example of project using gradle as the build tools.
 Try running these commands:
