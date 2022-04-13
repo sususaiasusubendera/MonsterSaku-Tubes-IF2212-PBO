@@ -45,7 +45,7 @@ public class Monster {
         }
         this.setMoves(copyOfMoves);
         this.condi = new Condition();
-        this.maxHP = copyOfStats.getHealthPoint();
+        this.maxHP = copiedMonster.getMaxHP();
     }
 
     // Getter

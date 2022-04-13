@@ -90,9 +90,9 @@ public class MonsterSaku {
                                 scanner.close();
                                 MainMenu.exit();
                             } else if (pilihan == 5) {
-                                MainMenu.viewMonsterInfo(p1);
+                                MainMenu.viewMonsterInfo(p1, scanner);
                             } else if (pilihan == 6) {
-                                MainMenu.viewGameInfo(p1);
+                                MainMenu.viewGameInfo(p1, ronde);
                             } else if (pilihan > 6 || pilihan < 1){
                                 System.out.println("--- Masukan salah, tolong diulang ya ---");
                             }
@@ -152,9 +152,9 @@ public class MonsterSaku {
                                 scanner.close();
                                 MainMenu.exit();
                             } else if (pilihan2 == 5) {
-                                MainMenu.viewMonsterInfo(p2);
+                                MainMenu.viewMonsterInfo(p2, scanner);
                             } else if (pilihan2 == 6) {
-                                MainMenu.viewGameInfo(p2);
+                                MainMenu.viewGameInfo(p2, ronde);
                             } else if (pilihan2 > 6 || pilihan2 < 1){
                                 System.out.println("--- Masukan salah, tolong diulang ya ---");
                             }
@@ -272,10 +272,12 @@ public class MonsterSaku {
                 }
                 System.out.println("------------------ GAME OVER ------------------");
                 // cek pemenang
-                if (!p1.isAllDead()) {
+                if (!p1.isAllDead() && p2.isAllDead()) {
                     System.out.println("SELAMAT! " + p1.getName() + " adalah pemenangnya");
-                } else if (!p2.isAllDead()) {
+                } else if (!p2.isAllDead() && p1.isAllDead()) {
                     System.out.println("SELAMAT! " + p2.getName() + " adalah pemenangnya");
+                } else if (p1.isAllDead() && p2.isAllDead()){
+                    System.out.println("Sayang sekali, tidak ada pemenang kali ini");
                 }
                 System.out.println("============================================================");
             } else if (pick == 2) {
