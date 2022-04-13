@@ -23,25 +23,33 @@ public class MainMenu {
     }
 
     public static void exit() {
-        System.out.println("  _            /|       _________   ");
-        System.out.println("  \\`.         /_|      /         \\  ");
-        System.out.println("   \\-\\        | |     /  See you  \\ ");
-        System.out.println("    \\ \\ ______| |     \\  later!   / ");
-        System.out.println("     \\.``    `` |      \\ ________/  ");
-        System.out.println("     /          \\      //           ");
-        System.out.println("    |  @   .  @  | .--.             ");
-        System.out.println("    | _   ___  _ |/   /             ");
-        System.out.println("    \\(_)  \\_/ (_)/   /_________     ");
-        System.out.println(" ____`._      _,/   / \\        |    ");
-        System.out.println("/                  /   \\    ___|    ");
-        System.out.println("`-----._          |  ___\\  |        ");
-        System.out.println("      |            \\ \\   __|        ");
-        System.out.println("     /              \\_\\ \\           ");
-        System.out.println("     |              |____\\          ");
-        System.out.println("     \\              /               ");
-        System.out.println("   __.`--.-------.-''___             ");
-        System.out.println("  '-----`         `----`            ");
-        System.exit(0);
+        try {
+            System.out.println("  _            /|       _________   ");
+            System.out.println("  \\`.         /_|      /         \\  ");
+            System.out.println("   \\-\\        | |     /  See you  \\ ");
+            System.out.println("    \\ \\ ______| |     \\  later!   / ");
+            System.out.println("     \\.``    `` |      \\ ________/  ");
+            System.out.println("     /          \\      //           ");
+            System.out.println("    |  @   .  @  | .--.             ");
+            System.out.println("    | _   ___  _ |/   /             ");
+            System.out.println("    \\(_)  \\_/ (_)/   /_________     ");
+            System.out.println(" ____`._      _,/   / \\        |    ");
+            System.out.println("/                  /   \\    ___|    ");
+            System.out.println("`-----._          |  ___\\  |        ");
+            System.out.println("      |            \\ \\   __|        ");
+            System.out.println("     /              \\_\\ \\           ");
+            System.out.println("     |              |____\\          ");
+            System.out.println("     \\              /               ");
+            System.out.println("   __.`--.-------.-''___             ");
+            System.out.println("  '-----`         `----`            ");
+            int timer = 4;
+            System.out.printf("Exiting game.");
+            for (int i = 0;i < timer;i++){
+                Thread.sleep(1000);
+                System.out.printf(".");
+            }
+            System.exit(0);
+        } catch (InterruptedException e) {}
     }
 
     public static void viewMonsterInfo(Player p, Scanner scanner) {
