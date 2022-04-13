@@ -95,11 +95,6 @@ public class Move {
         return moveName;
     }
 
-    // Method
-
-    //public void useMove (Monster originMons, Monster targetMons) {
-
-    // ini bakal dimasukin ke selectionMenu karena monster milih buat gerak.
 }
 
 
