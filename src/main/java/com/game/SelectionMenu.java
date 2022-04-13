@@ -89,7 +89,7 @@ public class SelectionMenu {
                     StatusMove statusMove = (StatusMove)move;
                     if (statusMove.getHealPercentage() > 0){
                         double currHP = source.getCurrentMonster().getBaseStats().getHealthPoint();
-                        double healHP = source.getCurrentMonster().getMaxHP()*statusMove.getHealPercentage()/100;
+                        double healHP = source.getCurrentMonster().getMaxHP()*(statusMove.getHealPercentage()/100);
                         double newHP = currHP + healHP;
                         if (newHP >= source.getCurrentMonster().getMaxHP()) {
                             source.getCurrentMonster().getBaseStats().setHealthPoint(source.getCurrentMonster().getMaxHP());

@@ -23,13 +23,15 @@ public class DamageCalculation {
         double ranDouble = dobel/100;
         double effectivity = damageEffectivity(target, move);
         double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getAttack()/target.getCurrentMonster().getBaseStats().getDefense())+2)*(ranDouble)*effectivity*(burnfactor));
-        double newHP = target.getCurrentMonster().getBaseStats().getHealthPoint() - damage;
+        double oldHP = target.getCurrentMonster().getBaseStats().getHealthPoint();
+        double newHP = oldHP - damage;
         if (newHP < 0) {
             target.getCurrentMonster().getBaseStats().setHealthPoint(0);
         } else {
             target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
         }
         System.out.println("HP " + target.getCurrentMonster().getNama() + " berkurang sebesar " + damage);
+        System.out.println("HP lama " + target.getCurrentMonster().getNama() + " milik " + target.getName() + ": " + oldHP);
         System.out.println("HP baru: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
     }
 
@@ -47,13 +49,15 @@ public class DamageCalculation {
         double ranDouble = dobel/100;
         double effectivity = damageEffectivity(target, move);
         double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getSpecialAttack()/target.getCurrentMonster().getBaseStats().getSpecialDefense())+2)*(ranDouble)*effectivity*(burnfactor));
-        double newHP = target.getCurrentMonster().getBaseStats().getHealthPoint() - damage;
+        double oldHP = target.getCurrentMonster().getBaseStats().getHealthPoint();
+        double newHP = oldHP - damage;
         if (newHP < 0) {
             target.getCurrentMonster().getBaseStats().setHealthPoint(0);
         } else {
             target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
         }
         System.out.println("HP " + target.getCurrentMonster().getNama() + " berkurang sebesar " + damage);
+        System.out.println("HP lama " + target.getCurrentMonster().getNama() + " milik " + target.getName() + ": " + oldHP);
         System.out.println("HP baru: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
     }
 
@@ -71,17 +75,21 @@ public class DamageCalculation {
         double ranDouble = dobel/100;
         double effectivity = damageEffectivity(target, move);
         double damage = Math.floor((move.getBasePower()*(source.getCurrentMonster().getBaseStats().getAttack()/target.getCurrentMonster().getBaseStats().getDefense())+2)*(ranDouble)*effectivity*(burnfactor));
-        double newHP = target.getCurrentMonster().getBaseStats().getHealthPoint() - damage;
+        double oldHP = target.getCurrentMonster().getBaseStats().getHealthPoint();
+        double newHP = oldHP - damage;
         if (newHP < 0) {
             target.getCurrentMonster().getBaseStats().setHealthPoint(0);
         } else {
             target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
         }
-        move.defaultMove(source.getCurrentMonster());
-        System.out.println("HP " + target.getCurrentMonster().getNama() + " berkurang sebesar " + damage);
-        System.out.println("HP baru: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
-        System.out.println("HP " + source.getCurrentMonster().getNama() + " juga berkurang sebesar " + Math.floor((1.0/4.0)*source.getCurrentMonster().getMaxHP()) );
-        System.out.println("HP baru: " + source.getCurrentMonster().getBaseStats().getHealthPoint());
+        double oldHP2 = source.getCurrentMonster().getBaseStats().getHealthPoint();
+        move.defaultMove(source);
+        System.out.println("HP " + target.getCurrentMonster().getNama() + " milik " + target.getName() + " berkurang sebesar " + damage);
+        System.out.println("HP lama " + target.getCurrentMonster().getNama() + " milik " + target.getName() + ": " + oldHP);
+        System.out.println("HP baru " + target.getCurrentMonster().getNama() + " milik " + target.getName() + ": " + target.getCurrentMonster().getBaseStats().getHealthPoint());
+        System.out.println("HP " + source.getCurrentMonster().getNama() + " milik " + source.getName() + " juga berkurang sebesar " + Math.floor((1.0/4.0)*source.getCurrentMonster().getMaxHP()) );
+        System.out.println("HP lama " + source.getCurrentMonster().getNama() + " milik " + source.getName() + ": " + oldHP2);
+        System.out.println("HP baru " + source.getCurrentMonster().getNama() + " milik " + source.getName() + ": " + source.getCurrentMonster().getBaseStats().getHealthPoint());
     }
 
 

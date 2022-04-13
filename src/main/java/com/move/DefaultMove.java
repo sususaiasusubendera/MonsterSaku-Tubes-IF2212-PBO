@@ -1,6 +1,7 @@
 package com.move;
 
 import com.monster.*;
+import com.player.Player;
 
 public class DefaultMove extends Move {
 
@@ -24,9 +25,13 @@ public class DefaultMove extends Move {
         return basePower;
     }
 
-    public void defaultMove(Monster monster) {
-
-        double newHP = monster.getBaseStats().getHealthPoint() - (Math.floor((1.0/4.0)*monster.getMaxHP()));
-        monster.getBaseStats().setHealthPoint(newHP);
+    public void defaultMove(Player p) {
+        double defaultdamage = Math.floor((1.0/4.0)*p.getCurrentMonster().getMaxHP());
+        double newHP = p.getCurrentMonster().getBaseStats().getHealthPoint() - defaultdamage;
+        if (newHP <= 0) {
+            p.getCurrentMonster().getBaseStats().setHealthPoint(0);
+        } else {
+            p.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
+        }
     }
 }
