@@ -1,6 +1,7 @@
 package com.game;
 
 import java.lang.System;
+import java.util.*;
 
 import com.player.*;
 import com.monster.*;
@@ -39,7 +40,21 @@ public class MainMenu {
         }
     }
 
-    public static void viewGameInfo(){
-        
+    public static void viewGameInfo(Player p){
+        System.out.println("---------------GAME INFO---------------");
+        System.out.println("Giliran              : " + p.getName());
+        System.out.println("Monster yang bermain : " + p.getCurrentMonster().getNama());
+        System.out.println("Monster yang tidak bermain :");
+        List<Monster> Mons = new ArrayList<Monster>();
+        for (Monster m: p.getListOfMonster()) {
+            if (m != p.getCurrentMonster()) {
+                Mons.add(m);
+            }
+        }
+        for (int i = 0; i < p.getNumberOfMonster() - 1; i++) {
+            System.out.printf("[%d] %s\n", i + 1, Mons.get(i).getNama());
+        }
+        System.out.println("--------------------------------------");
+        System.out.println("");
     }
 }

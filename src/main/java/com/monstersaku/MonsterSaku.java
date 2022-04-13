@@ -92,7 +92,7 @@ public class MonsterSaku {
                             } else if (pilihan == 5) {
                                 MainMenu.viewMonsterInfo(p1);
                             } else if (pilihan == 6) {
-                                MainMenu.viewGameInfo();
+                                MainMenu.viewGameInfo(p1);
                             } else if (pilihan > 6 || pilihan < 1){
                                 System.out.println("--- Masukan salah, tolong diulang ya ---");
                             }
@@ -154,7 +154,7 @@ public class MonsterSaku {
                             } else if (pilihan2 == 5) {
                                 MainMenu.viewMonsterInfo(p2);
                             } else if (pilihan2 == 6) {
-                                MainMenu.viewGameInfo();
+                                MainMenu.viewGameInfo(p2);
                             } else if (pilihan2 > 6 || pilihan2 < 1){
                                 System.out.println("--- Masukan salah, tolong diulang ya ---");
                             }
