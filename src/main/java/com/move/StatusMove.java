@@ -9,7 +9,7 @@ import java.util.Random;
 public class StatusMove extends Move {
 
     protected int id;
-    protected String statsEffect; // nama nya aku ubah biar gak sama kayak effect yang double.
+    protected String statsEffect; 
     protected double healPercentage;
     protected int buffAttack;
     protected int buffDefense;
@@ -117,37 +117,37 @@ public class StatusMove extends Move {
     // Method
     public void burn(Player target) {
         target.getCurrentMonster().getCondi().setStatCondi(StatusCondition.BURN);
-        // damage output kurang 50%
-        // ini diimplementasi pas nyerang gt kah? brrti kudu cek dulu dia burn apa tydak
-        // yg after damage udah ada calculationnya di damagecalculation
     }
 
     public void poison(Player target) {
         target.getCurrentMonster().getCondi().setStatCondi(StatusCondition.POISON);
-        // yg after damage udah ada calculationnya di damagecalculation
     }
 
     public void sleep(Player target) {
         target.getCurrentMonster().getCondi().setStatCondi(StatusCondition.SLEEP);
         // gabisa gerak selama x giliran
         Random rand = new Random();
-        int upperbound = 8;
-        int x = rand.nextInt(upperbound-1) + 1;
-        target.getCurrentMonster().getCondi().setSleepCount(x+1);
-        System.out.println("Sleep sebanyak " + (x+1) + " giliran");
+        int upperbound = 7;
+        int lowerbound = 1;
+        int x = rand.nextInt(upperbound-lowerbound+1) + lowerbound;
+        target.getCurrentMonster().getCondi().setSleepCount(x);
+        System.out.println("Sleep sebanyak " + (x) + " giliran");
     }
 
     public void paralyze(Player target) {
         target.getCurrentMonster().getCondi().setStatCondi(StatusCondition.PARALYZE);
         // speed turun 50%
         double currSpeed = target.getCurrentMonster().getBaseStats().getSpeed();
-        target.getCurrentMonster().getBaseStats().setSpeed(currSpeed*0.5);
+        double newSpeed = currSpeed*0.5;
+        target.getCurrentMonster().getBaseStats().setSpeed(newSpeed);
+        System.out.printf("Speed berkurang 50% dari %f menjadi %f\n", currSpeed, newSpeed);
         // mungkin gabisa gerak
         if (new Random().nextDouble() <= 0.25) {
             target.getCurrentMonster().getCondi().setCanMove(false);
-            System.out.println("Tidak bisa bergerak di giliran selanjutnya!");
+            System.out.println("Tidak bisa bergerak di giliran selanjutnya karena kurang beruntung!");
+        } else {
+            System.out.println("Untung saja kamu masih boleh bergerak di giliran selanjutnya");
         }
-        // GIMANA BIAR ABIS SEKALI GAGAL MOVE, ABIS ITU BOLEH MOVE LAGI?
     }
 }
 

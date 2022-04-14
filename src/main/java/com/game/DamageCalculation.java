@@ -94,26 +94,30 @@ public class DamageCalculation {
 
 
     public static void afterDamage(Player target) {
-        double maxHPMons = target.getCurrentMonster().getMaxHP();
-        double statusMultiplier = 0;
-        if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.BURN) {
-            statusMultiplier = 0.125;
-            System.out.println(target.getCurrentMonster().getNama() + " masih punya BURN");
-        } else if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.POISON) {
-            statusMultiplier = 0.0625;
-            System.out.println(target.getCurrentMonster().getNama() + " masih punya POISON");
+        if (target.getCurrentMonster() != null) {
+            double maxHPMons = target.getCurrentMonster().getMaxHP();
+            double statusMultiplier = 0;
+            if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.BURN) {
+                statusMultiplier = 0.125;
+                System.out.println(target.getCurrentMonster().getNama() + " masih punya BURN");
+            } else if (target.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.POISON) {
+                statusMultiplier = 0.0625;
+                System.out.println(target.getCurrentMonster().getNama() + " masih punya POISON");
+            } else {
+                statusMultiplier = 0;
+            }
+            double damage = Math.floor(maxHPMons*statusMultiplier);
+            double currHP = target.getCurrentMonster().getBaseStats().getHealthPoint();
+            double newHP  = currHP-damage;
+            if (newHP < 0){
+                target.getCurrentMonster().getBaseStats().setHealthPoint(0);
+            } else{
+                target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
+            }
+            System.out.println("HP " + target.getCurrentMonster().getNama() + " milik " + target.getName() + " saat ini: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
         } else {
-            statusMultiplier = 0;
+            System.out.printf("Monster milik %s mati semua...\n", target.getName());
         }
-        double damage = Math.floor(maxHPMons*statusMultiplier);
-        double currHP = target.getCurrentMonster().getBaseStats().getHealthPoint();
-        double newHP  = currHP-damage;
-        if (newHP < 0){
-            target.getCurrentMonster().getBaseStats().setHealthPoint(0);
-        } else{
-            target.getCurrentMonster().getBaseStats().setHealthPoint(newHP);
-        }
-        System.out.println("HP " + target.getCurrentMonster().getNama() + " milik " + target.getName() + " saat ini: " + target.getCurrentMonster().getBaseStats().getHealthPoint());
     }
 
     public static double damageEffectivity(Player target, Move moveSource) {

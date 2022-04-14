@@ -14,4 +14,6 @@ public interface MainMenu {
     public static void viewMonsterInfo(Player p, Scanner scanner) {}
 
     public static void viewGameInfo(Player p, int ronde){}
+
+    public static void viewTeamMembers() {}
 }

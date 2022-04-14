@@ -9,7 +9,6 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-// selection menu aku masukin semua method jadinya,, kayanya namanya sabi diubah tp kalo males gausa HEHE sorry
 public class SelectionMenu {
     static Scanner scanner = new Scanner(System.in);
 
@@ -73,16 +72,10 @@ public class SelectionMenu {
     }
 
 
-// ini usemove blm beres
     public static void useMove(Player source, Player target, Move move) {
         System.out.println(source.getName() + " menggunakan " + move.getMoveName());
         double dob = new Random().nextDouble();
         double accuracy = move.getAccuracy()/100;
-        /*** Debug Accuracy
-        System.out.println("dob = " + dob);
-        System.out.println("acc = " + accuracy);
-        System.out.println("mov : " + (dob<=accuracy));
-        ***/
         if (dob <= accuracy) {
             if(move.getTargetOfMove() == TargetOfMove.OWN) {
                 if (move instanceof StatusMove) {
@@ -140,9 +133,15 @@ public class SelectionMenu {
 
             // hapus move dari list kalo ammunition udah abis
             if (move.getAmmunition() == 0){
-                for (Move m : source.getCurrentMonster().getMoves()) {
+                boolean found = false;
+                int i = 0;
+                while (found == false && i < source.getCurrentMonster().getMoves().size()) {
+                    Move m = source.getCurrentMonster().getMoves().get(i);
                     if (m.equals(move)) {
                         source.getCurrentMonster().getMoves().remove(m);
+                        found = true;
+                    } else {
+                        i++;
                     }
                 }
             }

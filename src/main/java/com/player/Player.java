@@ -117,6 +117,9 @@ public class Player {
 		if (!this.isAllDead()){
 			System.out.println("Yuk ganti monster");
 			com.game.SelectionMenu.chooseMonster(this);
+		} else {
+			Monster m = null;
+			this.setCurrentMonster(m);
 		}
 	}
 }

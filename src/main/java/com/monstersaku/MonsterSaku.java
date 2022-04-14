@@ -1,7 +1,5 @@
 package com.monstersaku;
 
-// TADINYA INI GameFlow.java
-
 import com.game.*;
 import com.player.*;
 import com.reader.Reader;
@@ -23,6 +21,7 @@ public class MonsterSaku implements MainMenu{
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Kelompok 7 presents...");
         System.out.println("");
         System.out.println("░█▄█░█▀█░█▀█░█▀▀░▀█▀░█▀▀░█▀▄░░░█▀▀░█▀█░█░█░█░█░");
         System.out.println("░█░█░█░█░█░█░▀▀█░░█░░█▀▀░█▀▄░░░▀▀█░█▀█░█▀▄░█░█░");
@@ -36,11 +35,11 @@ public class MonsterSaku implements MainMenu{
             do {
                 try {
                     System.out.println("Pilih menu: ");
-                    System.out.println("[1] Start Game\n[2] Help\n[3] Exit");
+                    System.out.println("[1] Start Game\n[2] Help\n[3] Exit\n[4] View Team Members");
                     System.out.printf("Pilihanku: ");
                     pick = scanner.nextInt();
                     System.out.println("");
-                    if (pick < 1 || pick > 3){
+                    if (pick < 1 || pick > 4){
                         System.out.println("--- Masukan salah, tolong diulang ya ---");
                     }
                 } catch (InputMismatchException e) {
@@ -49,7 +48,7 @@ public class MonsterSaku implements MainMenu{
                     scanner.next();
                     continue;
                 }
-            } while (pick < 1 || pick > 3);
+            } while (pick < 1 || pick > 4);
             if (pick == 1) {
                 System.out.println("======================= GAME STARTED =======================");
                 System.out.println("Siapa aja yang main?");
@@ -259,14 +258,19 @@ public class MonsterSaku implements MainMenu{
                     }
                     DamageCalculation.afterDamage(p1);
                     // jika monster p1 mati karena afterdamage
-                    if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                        p1.removeCurrMonster();
+                    if (p1.getCurrentMonster() != null) {
+                        if (p1.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
+                            p1.removeCurrMonster();
+                        }
                     }
                     DamageCalculation.afterDamage(p2);
                     // jika monster p2 mati karena afterdamage
-                    if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
-                        p2.removeCurrMonster();
+                    if (p2.getCurrentMonster() != null) {
+                        if (p2.getCurrentMonster().getBaseStats().getHealthPoint() <= 0){
+                            p2.removeCurrMonster();
+                        }
                     }
+                    
                     System.out.printf("====================== Akhir Ronde %s ======================\n\n\n", String.format("%02d", ronde));
                 }
                 System.out.println("------------------ GAME OVER ------------------");
@@ -284,6 +288,8 @@ public class MonsterSaku implements MainMenu{
             } else if (pick == 3) {
                 scanner.close();
                 exit();
+            } else if (pick == 4) {
+                viewTeamMembers();
             }
         }
         
@@ -443,20 +449,13 @@ public class MonsterSaku implements MainMenu{
         System.out.println("-----------------------------------------------------");
         System.out.println("");
     }
-}
 
-// YANG KURANG
-/***
- * benerin statuscondition
- * implementasi statuscondition (kalo movenya jenis statusmove)
- * ^ itu kayanya harus benerin useMove, tp emang useMove masi ngaco sih
- * benerin move (default move, trs yg lain biar ngikutin csv (?))
- * benerin csv reader biar sesuai move
- * damage calculation...
- * after damage calculation
- * view monster info
- * view game info
- * BOOKLET...
- * sama apa lg ya sorry klo ada yg kelewat atau codenya gaje
- * 
- */
+    public static void viewTeamMembers() {
+        System.out.println("-------------------------------- TEAM MEMBERS --------------------------------");
+        System.out.println("1. 18220017 Gratia Nindyaratri");
+        System.out.println("2. 18220029 Rahmat Al Fajri");
+        System.out.println("3. 18220055 Rahadyanino Maheswara");
+        System.out.println("4. 18220069 Alifiya Brizita Shary");
+        System.out.println("------------------------------------------------------------------------------\n");
+    }
+}

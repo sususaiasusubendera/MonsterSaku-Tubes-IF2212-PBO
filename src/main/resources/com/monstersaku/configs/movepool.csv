@@ -17,3 +17,4 @@ id;moveType;name;elementType;accuracy;priority;ammunition;target;effect
 16;STATUS;Cotton Guard;GRASS;90;2;5;ENEMY;-;0,0,-4,0,0,0
 17;STATUS;Cotton Spore;GRASS;90;40;5;OWN;-;0,0,0,0,0,4
 18;STATUS;Ingrain;GRASS;90;5;10;OWN;-;0,0,1,0,0,0
+19;STATUS;Poison;NORMAL;90;4;5;ENEMY;POISON;0,0,0,0,0,0
