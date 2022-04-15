@@ -1,22 +1,23 @@
 # IF2212 Tugas Besar Permainan Monster Saku
 
-Here is an example of project using gradle as the build tools.
-Try running these commands:
+### Kelompok 07
+1. 18220017 Gratia Nindyaratri
+2. 18220029 Rahmat Al Fajri
+3. 18220055 Rahadyanino Maheswara
+4. 18220069 Alifiya Brizita Shary
 
-On linux:
+Untuk menjalankan permainan, download zip dan jangan lupa untuk di extract. 
+Kemudian buka Terminal dari Folder yang sudah di extract.
+Salin command dibawah ke terminal.
+
+On linux or Mac Os:
 ```bash
-./gradlew run
+./gradlew -q run
 ```
 
 On windows:
 ```cmd
-gradlew.bat run
+./gradlew.bat -q run
 ```
 
-Notice that it will run the `Main.java` inside the `com.monstersaku` package.
-In the command line you can see the data that is being read by `CSVReader.java`.
-
-What happen is when you use `./gradlew run`, it will start the main function in your app.
-For this app, the main function lives in `Main.java`.
-
-You can explore more about gradle [here](https://guides.gradle.org/creating-new-gradle-builds/)
+Untuk mekanisme aturan dan deskripsi permainan dapat dilihat pada Buklet yang tersedia di Folder "Buklet"
