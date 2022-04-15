@@ -140,7 +140,7 @@ public class StatusMove extends Move {
         double currSpeed = target.getCurrentMonster().getBaseStats().getSpeed();
         double newSpeed = currSpeed*0.5;
         target.getCurrentMonster().getBaseStats().setSpeed(newSpeed);
-        System.out.printf("Speed berkurang 50% dari %f menjadi %f\n", currSpeed, newSpeed);
+        System.out.printf("Speed berkurang 50%% dari %.1f menjadi %.1f\n", currSpeed, newSpeed);
         // mungkin gabisa gerak
         if (new Random().nextDouble() <= 0.25) {
             target.getCurrentMonster().getCondi().setCanMove(false);
