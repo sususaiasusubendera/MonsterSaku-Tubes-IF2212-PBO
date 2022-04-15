@@ -111,7 +111,7 @@ public class MonsterSaku implements MainMenu{
                                 System.out.println("Maaf, monster kamu kena SLEEP semua");
                                 System.out.println("Tidak bisa bergerak!");
                             } else {
-                                while (p1.getCurrentMonster().getCondi().getSleepCount() > 0) {
+                                while (p1.getCurrentMonster().getCondi().getSleepCount() >= 0 && p1.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.SLEEP) {
                                     System.out.println("Maaf, monster yang kamu pakai lagi kena SLEEP!");
                                     System.out.println("Sisa SLEEP: " + p1.getCurrentMonster().getCondi().getSleepCount() + " ronde lagi");
                                     System.out.println("Ganti monster, yuk!");
@@ -173,7 +173,7 @@ public class MonsterSaku implements MainMenu{
                                 System.out.println("Maaf, monster kamu kena SLEEP semua");
                                 System.out.println("Tidak bisa bergerak!");
                             } else {
-                                while (p2.getCurrentMonster().getCondi().getSleepCount() > 0) {
+                                while (p2.getCurrentMonster().getCondi().getSleepCount() >= 0 && p2.getCurrentMonster().getCondi().getStatCondi() == StatusCondition.SLEEP) {
                                     System.out.println("Maaf, monster yang kamu pakai lagi kena SLEEP!");
                                     System.out.println("Sisa SLEEP: " + p2.getCurrentMonster().getCondi().getSleepCount() + " ronde lagi");
                                     System.out.println("Ganti monster, yuk!");

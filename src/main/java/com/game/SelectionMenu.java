@@ -170,11 +170,12 @@ public class SelectionMenu {
     public static void decrementSleepCount(Player p) {
         for (Monster m : p.getListOfMonster()) {
             int currSC = m.getCondi().getSleepCount();
-            if (currSC > 0) {
+            if (currSC > 0 && m.getCondi().getStatCondi() == StatusCondition.SLEEP) {
                 m.getCondi().setSleepCount(currSC-1);
-                if (currSC == 0) {
-                    m.getCondi().setStatCondi(StatusCondition.NONE);
-                }
+            }
+            else if (currSC <= 0 && m.getCondi().getStatCondi() == StatusCondition.SLEEP) {
+                m.getCondi().setStatCondi(StatusCondition.NONE);
+                m.getCondi().setSleepCount(0);
             }
         }
     }
