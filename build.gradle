@@ -4,10 +4,10 @@ plugins {
 
 apply plugin: 'application'
 
-mainClassName = 'com.monstersaku.Main'
+mainClassName = 'com.monstersaku.MonsterSaku'
 
 group 'com.monstersaku'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 repositories {
     mavenCentral()
@@ -20,4 +20,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+run {
+    standardInput = System.in
 }

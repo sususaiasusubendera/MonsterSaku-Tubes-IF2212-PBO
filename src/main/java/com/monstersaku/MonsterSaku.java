@@ -22,11 +22,14 @@ public class MonsterSaku implements MainMenu{
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Kelompok 7 presents...");
-        System.out.println("");
-        System.out.println("░█▄█░█▀█░█▀█░█▀▀░▀█▀░█▀▀░█▀▄░░░█▀▀░█▀█░█░█░█░█░");
-        System.out.println("░█░█░█░█░█░█░▀▀█░░█░░█▀▀░█▀▄░░░▀▀█░█▀█░█▀▄░█░█░");
-        System.out.println("░▀░▀░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀░▀░░░▀▀▀░▀░▀░▀░▀░▀▀▀░");
-        System.out.println("");
+        System.out.println(" _______________________________________________________________"); 
+        System.out.println("|  __  __                 _              ____        _          |"); 
+        System.out.println("| |  \\/  | ___  _ __  ___| |_ ___ _ __  / ___|  __ _| | ___   _ |"); 
+        System.out.println("| | |\\/| |/ _ \\| '_ \\/ __| __/ _ \\ '__| \\___ \\ / _` | |/ / | | ||"); 
+        System.out.println("| | |  | | (_) | | | \\__ \\ ||  __/ |     ___) | (_| |   <| |_| ||"); 
+        System.out.println("| |_|  |_|\\___/|_| |_|___/\\__\\___|_|    |____/ \\__,_|_|\\_\\\\__,_||"); 
+        System.out.println("|_______________________________________________________________|");
+        System.out.println(""); 
         System.out.println("----------- Press Enter to Continue -----------");
         try{scanner.nextLine();} catch(Exception e) {}
         
