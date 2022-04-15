@@ -6,18 +6,23 @@
 3. 18220055 Rahadyanino Maheswara
 4. 18220069 Alifiya Brizita Shary
 
+#### Sebelum menjalankan permainan
+- Install Java Development Kits
+- Install Java Runtime Environment
+- Install Gradle
+
 Untuk menjalankan permainan, download zip dan jangan lupa untuk di extract. 
 Kemudian buka Terminal dari Folder yang sudah di extract.
 Salin command dibawah ke terminal.
 
-On linux or Mac Os:
+Pada Linux atau Mac Os:
 ```bash
 ./gradlew -q run
 ```
 
-On windows:
+Pada Windows:
 ```cmd
 ./gradlew.bat -q run
 ```
 
-Untuk mekanisme aturan dan deskripsi permainan dapat dilihat pada Buklet yang tersedia di Folder "Buklet"
+#### Untuk mekanisme aturan dan deskripsi permainan dapat dilihat pada Buklet yang tersedia di Folder "Buklet"
