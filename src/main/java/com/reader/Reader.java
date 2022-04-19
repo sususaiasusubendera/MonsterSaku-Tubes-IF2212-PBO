@@ -65,7 +65,7 @@ public class Reader {
                 
                 // moves
                 String move = line[4];
-                String[] arrMoves = move.split(",", 10);
+                String[] arrMoves = move.split(",", 100);
                 List<Move> theMoves = new ArrayList<Move>();
                 for (int i = 0; i < arrMoves.length; i ++) {
                     theMoves.add(listMove.get(Integer.valueOf(arrMoves[i])-1));
